@@ -12,6 +12,7 @@ import { Credit, WikiImage } from "@/components/uw/wiki-image";
 import { StopBadge } from "@/components/uw/stop-badge";
 import { AccountButton } from "@/components/uw/account-button";
 import { Wordmark } from "@/components/uw/brand";
+import { MadeBy } from "@/components/uw/made-by";
 import { fmtMinutes } from "@/lib/geo";
 import { settleAfter } from "@/lib/motion";
 
@@ -52,20 +53,20 @@ export function HomeScreen() {
   return (
     <main ref={root} className="relative min-h-dvh overflow-hidden bg-uw-ink pb-32 text-white">
       {/* hero */}
-      <section className="relative h-[78dvh] min-h-[560px] overflow-hidden rounded-b-[36px]">
+      <section className="relative h-[78dvh] min-h-[540px] overflow-hidden rounded-b-[36px] md:h-[72dvh] md:max-h-[860px] md:rounded-b-[48px] [@media(max-height:560px)]:h-auto [@media(max-height:560px)]:min-h-[100dvh]">
         {cover && <WikiImage photo={cover} sizes="(max-width: 440px) 100vw, 440px" priority className="h-cover absolute inset-0 size-full" alt={coverStop?.name ?? ""} />}
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/20 to-black/90" />
 
-        <header className="relative flex items-center justify-between px-5 safe-top">
+        <header className="px-content relative flex items-center justify-between safe-top">
           <div className="h-rise flex items-center gap-2.5 pt-1">
             <Wordmark className="w-[150px] text-white" />
           </div>
           <AccountButton tone="dark" className="h-rise" />
         </header>
 
-        <div className="absolute inset-x-0 bottom-0 px-5 pb-7">
+        <div className="px-content absolute inset-x-0 bottom-0 pb-7 [@media(max-height:560px)]:relative [@media(max-height:560px)]:pt-10">
           <p className="h-rise eyebrow text-on-photo text-white/90">{ev.kicker}</p>
-          <h1 className="display text-on-photo mt-3 text-[64px]">
+          <h1 className="display text-on-photo mt-3 text-[clamp(44px,15vw,96px)] [@media(max-height:560px)]:text-[56px]">
             <span className="h-rise block">{first}</span>
             <span className="h-rise block">{rest.join(" ")}</span>
           </h1>
@@ -90,7 +91,7 @@ export function HomeScreen() {
       </section>
 
       {/* event info */}
-      <section className="px-5 pt-7">
+      <section className="px-content pt-7">
         <p className="h-rise flex items-center gap-2 text-[13px] text-white/70">
           <CalendarDays className="size-4" /> {fmtDate(ev.start_date)} · {ev.organiser}
         </p>
@@ -109,16 +110,16 @@ export function HomeScreen() {
 
       {/* stops carousel */}
       <section className="mt-9">
-        <div className="flex items-baseline justify-between px-5">
+        <div className="px-content flex items-baseline justify-between">
           <h2 className="text-[20px] font-semibold tracking-tight">Along the way</h2>
           <span className="text-[12px] text-white/55">Swipe</span>
         </div>
-        <ol className="mt-3 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto pb-2 pl-5 scrollbar-none">
+        <ol className="pl-content scroll-pl-content mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 scrollbar-none">
           {model.stops.map((s) => {
             const photo = s.content?.photos[0];
             return (
               <li key={s.id} className="h-card snap-start">
-                <Link href={`/landmark/${s.id}`} className="press relative block h-[210px] w-[156px] overflow-hidden rounded-[24px] bg-uw-charcoal">
+                <Link href={`/landmark/${s.id}`} className="press relative block h-[210px] w-[156px] overflow-hidden rounded-[24px] bg-uw-charcoal md:h-[260px] md:w-[196px]">
                   {photo && <WikiImage photo={photo} sizes="156px" maxWidth={500} className="absolute inset-0 size-full" alt="" />}
                   <span className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent" />
                   <StopBadge n={s.number} className="absolute left-2.5 top-2.5" />
@@ -132,7 +133,10 @@ export function HomeScreen() {
         </ol>
       </section>
 
-      <p className="mx-5 mt-8 rounded-[20px] border border-white/10 p-4 text-[12px] leading-relaxed text-white/55">{ev.source_note}</p>
+      <div className="px-content mt-8">
+        <p className="rounded-[20px] border border-white/10 p-4 text-[12px] leading-relaxed text-white/55">{ev.source_note}</p>
+        <MadeBy tone="dark" className="mt-6 justify-center" />
+      </div>
     </main>
   );
 }

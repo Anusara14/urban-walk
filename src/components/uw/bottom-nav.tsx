@@ -23,10 +23,10 @@ export function BottomNav() {
 
   return (
     <nav aria-label="Main" className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center safe-bottom">
-      <div className="pointer-events-auto flex items-center gap-2 px-4">
+      <div className="pointer-events-auto flex items-center gap-2 px-3">
         <button
           onClick={() => openComposer("photo", near)}
-          className="press focus-ring grid size-[60px] place-items-center rounded-full bg-uw-yellow text-uw-ink shadow-[var(--shadow-float)]"
+          className="press focus-ring grid size-[60px] place-items-center rounded-full bg-uw-yellow text-uw-ink shadow-[var(--shadow-float)] max-[359px]:size-[52px]"
           aria-label="Capture a photo"
         >
           <Camera className="size-6" strokeWidth={1.75} />
@@ -46,7 +46,7 @@ export function BottomNav() {
                 )}
               >
                 <Icon className="size-[18px]" strokeWidth={1.75} />
-                {active && <span>{label}</span>}
+                {active && <span className="max-[359px]:sr-only">{label}</span>}
               </Link>
             );
           })}

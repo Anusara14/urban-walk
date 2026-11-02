@@ -68,10 +68,10 @@ export function LandmarkScreen({ id }: { id: string }) {
   return (
     <main ref={root} className="relative min-h-dvh bg-uw-paper pb-36">
       {/* hero */}
-      <section className="relative h-[64dvh] min-h-[440px] overflow-hidden bg-uw-charcoal">
+      <section className="relative h-[64dvh] min-h-[420px] overflow-hidden bg-uw-charcoal md:max-h-[720px] [@media(max-height:560px)]:min-h-[320px]">
         {hero && <WikiImage photo={hero} sizes="(max-width: 440px) 100vw, 440px" priority className="lm-hero absolute inset-0 size-full" alt={target.name} />}
         <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-black/60" />
-        <div className="absolute inset-x-0 top-0 flex items-center justify-between px-4 safe-top">
+        <div className="px-content absolute inset-x-0 top-0 flex items-center justify-between safe-top">
           <button onClick={() => (history.length > 1 ? router.back() : router.push("/walk"))} aria-label="Back" className="press glass-dark grid size-14 place-items-center rounded-full">
             <ChevronLeft className="size-6" strokeWidth={1.75} />
           </button>
@@ -81,7 +81,7 @@ export function LandmarkScreen({ id }: { id: string }) {
         </div>
 
         {/* floating fact chips — only facts we actually hold (position, distance) */}
-        <div className="absolute bottom-12 left-4 right-4 flex flex-wrap gap-2">
+        <div className="inset-x-content absolute bottom-12 flex flex-wrap gap-2">
           {stop && (
             <span className="lm-chip glass-dark flex items-center gap-2 rounded-[18px] px-3.5 py-2.5">
               <StopBadge n={stop.number} visited={visited} />
@@ -102,13 +102,13 @@ export function LandmarkScreen({ id }: { id: string }) {
             </span>
           )}
         </div>
-        {hero && <Credit photo={hero} className="absolute bottom-4 left-4 right-4 text-white" />}
+        {hero && <Credit photo={hero} className="inset-x-content absolute bottom-4 text-white" />}
       </section>
 
       {/* body */}
-      <article className="lm-body relative -mt-6 rounded-t-[30px] bg-uw-paper px-5 pt-7">
+      <article className="lm-body px-content relative -mt-6 rounded-t-[30px] bg-uw-paper pt-7">
         <p className="eyebrow text-uw-slate">{stop ? `${stop.area} · Official stop` : CATEGORY_LABEL[place!.category]}</p>
-        <h1 className="display mt-2 text-[46px]">{target.name}</h1>
+        <h1 className="display mt-2 text-[clamp(34px,11vw,64px)]">{target.name}</h1>
         {stop && stop.sourceName !== stop.name && (
           <p className="mt-2 text-[12px] text-uw-slate">Labelled “{stop.sourceName}” in the organisers’ map.</p>
         )}
@@ -134,7 +134,7 @@ export function LandmarkScreen({ id }: { id: string }) {
         {photos.length > 1 && (
           <section className="mt-9">
             <h2 className="text-[19px] font-semibold tracking-tight">Photographs</h2>
-            <ul className="-mx-5 mt-3 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto pb-1 pl-5 scrollbar-none">
+            <ul className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 scrollbar-none">
               {photos.map((p) => (
                 <li key={p.page} className="w-[220px] shrink-0 snap-start">
                   <div className="h-[260px] overflow-hidden rounded-[22px] bg-uw-mist">
@@ -168,7 +168,7 @@ export function LandmarkScreen({ id }: { id: string }) {
             {posts.length === 0 ? (
               <p className="mt-2 rounded-[18px] border border-dashed border-uw-line p-4 text-[13px] text-uw-slate">No one has posted from this stop yet.</p>
             ) : (
-              <div className="mt-3 flex flex-col gap-3">{posts.map((p) => <PostCard key={p.id} post={p} compact />)}</div>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">{posts.map((p) => <PostCard key={p.id} post={p} compact />)}</div>
             )}
           </section>
         )}

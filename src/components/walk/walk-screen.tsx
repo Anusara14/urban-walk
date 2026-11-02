@@ -184,7 +184,7 @@ export function WalkScreen() {
       {/* right control rail */}
       <div
         className={cn(
-          "absolute bottom-[calc(max(env(safe-area-inset-bottom),14px)+112px)] right-4 flex flex-col items-center gap-2.5 transition-opacity",
+          "absolute bottom-[calc(max(env(safe-area-inset-bottom),14px)+112px)] right-4 flex flex-col items-center gap-2.5 transition-opacity [@media(max-height:620px)]:bottom-[calc(max(env(safe-area-inset-bottom),14px)+80px)] [@media(max-height:620px)]:gap-2",
           (selectedId || post) && "pointer-events-none opacity-0",
         )}
         inert={!!(selectedId || post)}
@@ -199,7 +199,7 @@ export function WalkScreen() {
         <RailButton label="My location" onClick={locate} active={walk.geo.status === "active"}>
           <LocateFixed className={cn("size-[18px]", walk.geo.status === "requesting" && "animate-pulse")} />
         </RailButton>
-        <div className="glass flex flex-col overflow-hidden rounded-full">
+        <div className="glass flex flex-col overflow-hidden rounded-full [@media(max-height:620px)]:hidden">
           <button aria-label="Zoom in" onClick={() => mapRef.current?.zoomIn()} className="press grid size-12 place-items-center"><Plus className="size-5" strokeWidth={1.5} /></button>
           <button aria-label="Zoom out" onClick={() => mapRef.current?.zoomOut()} className="press grid size-12 place-items-center"><Minus className="size-5" strokeWidth={1.5} /></button>
         </div>

@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight, Loader2, LogOut, Settings2 } from "lucide-react";
 import { Wordmark } from "@/components/uw/brand";
+import { MadeBy } from "@/components/uw/made-by";
 import { displayName, signInLocal, signInWithGoogle, signOut, updateName, useAuth } from "@/lib/auth";
 import { settleAfter } from "@/lib/motion";
 import { backendMode } from "@/lib/supabase";
@@ -75,6 +76,7 @@ export function LoginScreen() {
             Development mode: your profile and posts stay on this device. Connect Supabase to sign in with Google.
           </p>
         )}
+        <MadeBy tone="dark" className="lg-rise mt-10" />
       </section>
     </main>
   );

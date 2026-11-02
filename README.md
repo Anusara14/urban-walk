@@ -11,6 +11,10 @@
   <strong>v1-beta</strong> · Next.js 16 · MapLibre GL · Supabase (optional) · PWA
 </p>
 
+<p align="center">
+  Developed by <a href="https://codemypage.com">Codemypage</a> · <a href="https://github.com/Anusara14">Anusara14</a>
+</p>
+
 ---
 
 URBAN WALK is a mobile-first web app for organised urban walks. It is built for undergraduate planners,
@@ -277,6 +281,7 @@ Known limits:
 
 ## Credits
 
+- **Developed by** [Codemypage](https://codemypage.com) · [Anusara14](https://github.com/Anusara14).
 - **Route and stops:** Young Planners Forum, Urban Walk 01.
 - **Map data:** © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors, served by
   [OpenFreeMap](https://openfreemap.org).

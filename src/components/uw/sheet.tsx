@@ -87,7 +87,7 @@ export function Sheet({ open, onClose, children, label, className }: SheetProps)
         tabIndex={-1}
         className={cn(
           "outline-none",
-          "absolute bottom-0 w-full max-w-[440px] rounded-t-sheet bg-uw-paper shadow-[var(--shadow-soft)] will-change-transform",
+          "absolute bottom-0 w-full max-w-[440px] sm:max-w-[560px] rounded-t-sheet bg-uw-paper shadow-[var(--shadow-soft)] will-change-transform",
           "max-h-[92dvh] flex flex-col",
           className,
         )}

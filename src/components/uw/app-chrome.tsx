@@ -8,8 +8,8 @@ import { Composer } from "./composer";
 import { ProximityToast } from "./proximity-toast";
 
 /**
- * Phone-width shell. On desktop the app sits in a centred column, the way the
- * references present it, instead of stretching a mobile layout across a monitor.
+ * Full-width shell. Each page caps its own text measure (.px-content) so phones,
+ * tablets and desktops all use the whole screen without over-long lines.
  */
 export function AppChrome({ children }: { children: ReactNode }) {
   const path = usePathname();
@@ -31,7 +31,7 @@ export function AppChrome({ children }: { children: ReactNode }) {
 
   if (bare) return <>{children}</>;
   return (
-    <div className="relative mx-auto min-h-dvh w-full max-w-[440px] overflow-x-clip bg-uw-paper md:shadow-[0_0_80px_-20px_rgba(0,0,0,0.25)]">
+    <div className="relative min-h-dvh w-full overflow-x-clip bg-uw-paper">
       {children}
       <BottomNav />
       <ProximityToast />

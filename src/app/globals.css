@@ -195,7 +195,18 @@
 }
 
 html { color-scheme: light; -webkit-tap-highlight-color: transparent; }
-body { background: #dfe2e6; overscroll-behavior: none; }
+body { background: var(--uw-paper); overscroll-behavior: none; }
+
+/*
+ * One content measure for every screen: 20px gutters on phones, growing on
+ * tablets/desktop so text stays ~46rem wide while photos and maps go full-bleed.
+ * Percentages resolve against the element's container, so these work anywhere.
+ */
+:root { --content-max: 46rem; }
+.px-content { padding-inline: max(1.25rem, calc((100% - var(--content-max)) / 2)); }
+.pl-content { padding-left: max(1.25rem, calc((100% - var(--content-max)) / 2)); }
+.scroll-pl-content { scroll-padding-left: max(1.25rem, calc((100% - var(--content-max)) / 2)); }
+.inset-x-content { left: max(1rem, calc((100% - var(--content-max)) / 2)); right: max(1rem, calc((100% - var(--content-max)) / 2)); }
 
 @layer components {
   .glass {

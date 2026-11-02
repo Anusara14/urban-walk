@@ -20,14 +20,14 @@ export default function ProgressPage() {
   const current = nextStop?.number ?? total;
 
   return (
-    <main className="min-h-dvh px-5 pb-36 safe-top">
+    <main className="px-content min-h-dvh pb-36 safe-top">
       <div className="flex items-center justify-between pt-4">
         <Wordmark className="w-[118px] text-uw-ink" />
         <AccountButton />
       </div>
       <header className="pt-5">
         <p className="eyebrow text-uw-slate">Walking progress</p>
-        <h1 className="display tabular mt-2 text-[76px]">
+        <h1 className="display tabular mt-2 text-[clamp(56px,20vw,112px)]">
           {String(current).padStart(2, "0")}<span className="text-uw-line"> / {String(total).padStart(2, "0")}</span>
         </h1>
         <p className="mt-1 text-[15px] text-uw-charcoal/80">

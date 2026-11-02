@@ -9,6 +9,7 @@ import { Moderation } from "@/components/admin/moderation";
 import { Overview } from "@/components/admin/overview";
 import { AccountButton } from "@/components/uw/account-button";
 import { Wordmark } from "@/components/uw/brand";
+import { MadeBy } from "@/components/uw/made-by";
 import { adminTestAccess, useAuth } from "@/lib/auth";
 import { backendMode } from "@/lib/supabase";
 import type { EventConfig } from "@/lib/types";
@@ -124,6 +125,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
             <AccountButton tone="dark" />
             <Link href="/" className="flex items-center gap-1 text-[13px] text-white/70 hover:text-white">Open app <ArrowUpRight className="size-3.5" /></Link>
           </div>
+          <MadeBy tone="dark" className="border-t border-white/10 pt-3" />
         </div>
       </aside>
 
@@ -193,6 +195,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
             )}
             {section === "features" && <FeaturesTab cfg={cfg} patch={patch} />}
           </div>
+          <MadeBy className="mt-12 justify-center border-t border-uw-mist pt-5 lg:hidden" />
         </main>
       </div>
     </div>

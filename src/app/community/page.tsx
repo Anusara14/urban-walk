@@ -20,14 +20,14 @@ export default function CommunityPage() {
   const shown = posts.filter((p) => (filter === "all" || p.kind === filter) && (!stopId || p.landmark_id === stopId));
 
   return (
-    <main className="min-h-dvh px-5 pb-36 safe-top">
+    <main className="px-content min-h-dvh pb-36 safe-top">
       <div className="flex items-center justify-between pt-4">
         <Wordmark className="w-[118px] text-uw-ink" />
         <AccountButton />
       </div>
       <header className="pt-5">
         <p className="eyebrow text-uw-slate">Shared field notes</p>
-        <h1 className="display mt-2 text-[52px]">Discoveries</h1>
+        <h1 className="display mt-2 text-[clamp(40px,13vw,72px)]">Discoveries</h1>
         <p className="mt-3 max-w-[34ch] text-[14px] leading-relaxed text-uw-charcoal/75">
           What participants noticed, felt and photographed along the walk.
         </p>
@@ -55,7 +55,7 @@ export default function CommunityPage() {
 
       {postsError && <p role="alert" className="mt-4 rounded-[18px] bg-red-50 p-3 text-[13px] text-red-700">{postsError}</p>}
 
-      <div className="mt-4 flex flex-col gap-3">
+      <div className="mt-4 grid items-start gap-3 md:grid-cols-2">
         {shown.length === 0 ? (
           <div className="rounded-[24px] border border-dashed border-uw-line p-6 text-center text-[14px] text-uw-slate">
             Nothing here yet. Tap the yellow camera button or write the first observation.

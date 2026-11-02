@@ -21,12 +21,12 @@ export function TitleBlock({ stop, isNext, onClick }: { stop: Stop; isNext: bool
   const half = Math.ceil(words.length / 2);
   const lines = words.length > 1 ? [words.slice(0, half).join(" "), words.slice(half).join(" ")] : [stop.name];
   return (
-    <button ref={ref} onClick={onClick} className="max-w-[230px] text-left focus-visible:outline-none" aria-label={`${isNext ? "Next stop" : "Selected stop"}: ${stop.name}`}>
+    <button ref={ref} onClick={onClick} className="max-w-[min(62vw,360px)] text-left focus-visible:outline-none" aria-label={`${isNext ? "Next stop" : "Selected stop"}: ${stop.name}`}>
       <p className="tb-line eyebrow text-on-map mb-2 flex items-center gap-2 text-uw-charcoal">
         <span className="tabular grid size-5 place-items-center rounded-full bg-uw-yellow text-[10px] text-uw-ink">{stop.number}</span>
         {isNext ? "Next stop" : "Stop"}
       </p>
-      <h1 className="display text-on-map text-[44px] text-uw-ink">
+      <h1 className="display text-on-map text-[clamp(32px,11vw,56px)] text-uw-ink [@media(max-height:560px)]:text-[28px]">
         {lines.map((l) => (
           <span key={l} className="tb-line block overflow-hidden pb-[0.06em]">{l}</span>
         ))}
