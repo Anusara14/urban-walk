@@ -1,0 +1,78 @@
+{
+  "id": "urban-walk-colombo-01",
+  "title": "Fort to Galle Face",
+  "kicker": "Urban Walk 01 · Colombo",
+  "location": "Pettah · Colombo Fort · Galle Face",
+  "city": "Colombo, Sri Lanka",
+  "organiser": "Young Planners Forum",
+  "start_date": null,
+  "end_date": null,
+  "description": "A 3.5 km walk that starts at the Old Town Hall in Pettah, threads through the commercial streets of Colombo Fort, passes the Old Parliament and opens onto Galle Face Green before following Galle Road south.",
+  "cover": {
+    "feature_id": "finalized-layer--06--colombo-old-clock-tower",
+    "photo": 0
+  },
+  "source_note": "Route, stops and facilities come from the organisers' Google My Maps export (Urban Walk.kml). The original map describes the walk as covering 06 segments; segment boundaries are not in the export and can be set in /admin.",
+  "walking_speed_kmh": 4.5,
+  "dwell_minutes_per_stop": 6,
+  "corridor_m": 150,
+  "default_proximity_m": 40,
+  "stops": [
+    {
+      "feature_id": "finalized-layer--09--old-town-hall-building-and-museum",
+      "display_name": "Old Town Hall",
+      "area": "Pettah",
+      "role": "start"
+    },
+    {
+      "feature_id": "finalized-layer--03--jami-ul-alfar-mosque",
+      "display_name": "Jami Ul-Alfar Mosque",
+      "area": "Pettah"
+    },
+    {
+      "feature_id": "finalized-layer--07--gaffor-building",
+      "display_name": "Gaffoor Building",
+      "area": "Colombo Fort"
+    },
+    {
+      "feature_id": "finalized-layer--08--cargills-building",
+      "display_name": "Cargills Building",
+      "area": "Colombo Fort"
+    },
+    {
+      "feature_id": "finalized-layer--05--de-mel-building",
+      "display_name": "De Mel Building",
+      "area": "Colombo Fort"
+    },
+    {
+      "feature_id": "finalized-layer--02--historic-central-point-building",
+      "display_name": "Central Point",
+      "area": "Colombo Fort"
+    },
+    {
+      "feature_id": "finalized-layer--06--colombo-old-clock-tower",
+      "display_name": "Old Clock Tower",
+      "area": "Colombo Fort"
+    },
+    {
+      "feature_id": "finalized-layer--00--old-parlimant",
+      "display_name": "Old Parliament",
+      "area": "Colombo Fort"
+    },
+    {
+      "feature_id": "finalized-layer--01--gall-face-green",
+      "display_name": "Galle Face Green",
+      "area": "Galle Face",
+      "proximity_m": 90
+    },
+    {
+      "feature_id": "finalized-layer--04--sltda",
+      "display_name": "SLTDA, 80 Galle Road",
+      "area": "Kollupitiya",
+      "role": "end"
+    }
+  ],
+  "segments": [],
+  "category_overrides": {},
+  "sections": {}
+}

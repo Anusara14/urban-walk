@@ -1,0 +1,74 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.84922,
+     6.93683
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--10--public-washrooms",
+    "name": "Public Washrooms",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 10,
+    "source_style": "#icon-1733-3949AB-nodesc",
+    "geometry_type": "Point",
+    "category": "public_facility",
+    "route_position_km": 0.568,
+    "offset_from_route_m": 25
+   },
+   "id": "finalized-layer--10--public-washrooms"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.84495,
+     6.93478
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--11--public-washrooms",
+    "name": "Public Washrooms",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 11,
+    "source_style": "#icon-1733-3949AB-nodesc",
+    "geometry_type": "Point",
+    "category": "public_facility",
+    "route_position_km": 1.2461,
+    "offset_from_route_m": 11
+   },
+   "id": "finalized-layer--11--public-washrooms"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.84426,
+     6.92613
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--12--public-washrooms",
+    "name": "Public Washrooms",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 12,
+    "source_style": "#icon-1733-3949AB-nodesc",
+    "geometry_type": "Point",
+    "category": "public_facility",
+    "route_position_km": 2.5393,
+    "offset_from_route_m": 34
+   },
+   "id": "finalized-layer--12--public-washrooms"
+  }
+ ]
+}

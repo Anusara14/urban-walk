@@ -1,0 +1,87 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       79.8448718,
+       6.9351564
+      ],
+      [
+       79.8448107,
+       6.9351705
+      ],
+      [
+       79.8447161,
+       6.9346197
+      ],
+      [
+       79.8447794,
+       6.934608
+      ],
+      [
+       79.8448718,
+       6.9351564
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "locations--17--possible-rest-area",
+    "name": "Possible Rest Area",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 17,
+    "source_style": "#poly-0F9D58-1200-77-nodesc",
+    "geometry_type": "Polygon",
+    "category": "rest_area"
+   },
+   "id": "locations--17--possible-rest-area"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       79.84623,
+       6.936266
+      ],
+      [
+       79.8462375,
+       6.9362372
+      ],
+      [
+       79.8467449,
+       6.9364353
+      ],
+      [
+       79.8467278,
+       6.9364598
+      ],
+      [
+       79.84623,
+       6.936266
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "id": "locations--18--possible-rest-area",
+    "name": "Possible Rest Area",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 18,
+    "source_style": "#poly-0F9D58-1200-77-nodesc",
+    "geometry_type": "Polygon",
+    "category": "rest_area"
+   },
+   "id": "locations--18--possible-rest-area"
+  }
+ ]
+}

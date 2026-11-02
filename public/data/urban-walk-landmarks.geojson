@@ -1,0 +1,672 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8442655,
+     6.9257048
+    ]
+   },
+   "properties": {
+    "id": "locations--00--warm-up-galle-face-green",
+    "name": "Warm Up @ Galle Face Green",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 0,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 2.5858,
+    "offset_from_route_m": 48
+   },
+   "id": "locations--00--warm-up-galle-face-green"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.842872,
+     6.9311127
+    ]
+   },
+   "properties": {
+    "id": "locations--01--old-parliament",
+    "name": "Old Parliament",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 1,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.8966,
+    "offset_from_route_m": 58
+   },
+   "id": "locations--01--old-parliament"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8435788,
+     6.9337138
+    ]
+   },
+   "properties": {
+    "id": "locations--02--the-old-hospital",
+    "name": "The Old Hospital",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 2,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.5924,
+    "offset_from_route_m": 90
+   },
+   "id": "locations--02--the-old-hospital"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8428554,
+     6.934725
+    ]
+   },
+   "properties": {
+    "id": "locations--03--colombo-old-clock-tower",
+    "name": "Colombo Old Clock Tower",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 3,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.506,
+    "offset_from_route_m": 11
+   },
+   "id": "locations--03--colombo-old-clock-tower"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8502516,
+     6.9336208
+    ]
+   },
+   "properties": {
+    "id": "locations--04--colombo-railway-station",
+    "name": "Colombo Railway Station",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 4,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 0.5409,
+    "offset_from_route_m": 371
+   },
+   "id": "locations--04--colombo-railway-station"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8447193,
+     6.9356566
+    ]
+   },
+   "properties": {
+    "id": "locations--05--cargills-building",
+    "name": "Cargills Building",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 5,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.1562,
+    "offset_from_route_m": 30
+   },
+   "id": "locations--05--cargills-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8430134,
+     6.9345436
+    ]
+   },
+   "properties": {
+    "id": "locations--06--historic-central-point-building",
+    "name": "Historic Central Point Building",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 6,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.5232,
+    "offset_from_route_m": 11
+   },
+   "id": "locations--06--historic-central-point-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8449377,
+     6.9374149
+    ]
+   },
+   "properties": {
+    "id": "locations--07--grand-oriental-hotel",
+    "name": "Grand Oriental Hotel",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 7,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.0708,
+    "offset_from_route_m": 144
+   },
+   "id": "locations--07--grand-oriental-hotel"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8434827,
+     6.9362994
+    ]
+   },
+   "properties": {
+    "id": "locations--08--old-general-post-office-gpo",
+    "name": "OLD GENERAL POST OFFICE (GPO)",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 8,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.1126,
+    "offset_from_route_m": 178
+   },
+   "id": "locations--08--old-general-post-office-gpo"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8457745,
+     6.9355646
+    ]
+   },
+   "properties": {
+    "id": "locations--09--delft-gateway-colombo-fort",
+    "name": "Delft Gateway - Colombo Fort",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 9,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.0444,
+    "offset_from_route_m": 80
+   },
+   "id": "locations--09--delft-gateway-colombo-fort"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8467958,
+     6.9367554
+    ]
+   },
+   "properties": {
+    "id": "locations--10--gaffoor-building",
+    "name": "Gaffoor Building",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 10,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 0.8981,
+    "offset_from_route_m": 16
+   },
+   "id": "locations--10--gaffoor-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8442896,
+     6.9345531
+    ]
+   },
+   "properties": {
+    "id": "locations--11--de-mel-building",
+    "name": "De Mel building",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 11,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 1.3567,
+    "offset_from_route_m": 16
+   },
+   "id": "locations--11--de-mel-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8371811,
+     6.9274206
+    ]
+   },
+   "properties": {
+    "id": "locations--12--colombo-port-city-foot-bridge",
+    "name": "Colombo Port City Foot Bridge",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 12,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 2.1229,
+    "offset_from_route_m": 653
+   },
+   "id": "locations--12--colombo-port-city-foot-bridge"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8446964,
+     6.9271601
+    ]
+   },
+   "properties": {
+    "id": "locations--13--one-galle-face-mall",
+    "name": "One Galle Face Mall",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 13,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 2.4481,
+    "offset_from_route_m": 50
+   },
+   "id": "locations--13--one-galle-face-mall"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8515304,
+     6.9386698
+    ]
+   },
+   "properties": {
+    "id": "locations--14--jami-ul-alfar-mosque",
+    "name": "Jami Ul-Alfar Mosque",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 14,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 0.2658,
+    "offset_from_route_m": 82
+   },
+   "id": "locations--14--jami-ul-alfar-mosque"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.851639,
+     6.9359623
+    ]
+   },
+   "properties": {
+    "id": "locations--15--dutch-museum",
+    "name": "Dutch Museum",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 15,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 0.3844,
+    "offset_from_route_m": 194
+   },
+   "id": "locations--15--dutch-museum"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.847246,
+     6.9179276
+    ]
+   },
+   "properties": {
+    "id": "locations--16--sri-lanka-tourism-development-authority",
+    "name": "Sri Lanka Tourism Development Authority",
+    "source_folder": "locations",
+    "source_folder_index": 0,
+    "source_order": 16,
+    "source_style": "#icon-1502-A52714-nodesc",
+    "geometry_type": "Point",
+    "category": "supporting_location",
+    "route_position_km": 3.5199,
+    "offset_from_route_m": 26
+   },
+   "id": "locations--16--sri-lanka-tourism-development-authority"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8424308,
+     6.9309172
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--00--old-parlimant",
+    "name": "Old Parlimant",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 0,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 1.9512,
+    "offset_from_route_m": 13
+   },
+   "id": "finalized-layer--00--old-parlimant"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8446195,
+     6.9258124
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--01--gall-face-green",
+    "name": "Gall Face Green",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 1,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 2.5859,
+    "offset_from_route_m": 7
+   },
+   "id": "finalized-layer--01--gall-face-green"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8430287,
+     6.9346217
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--02--historic-central-point-building",
+    "name": "Historic Central Point Building",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 2,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 1.495,
+    "offset_from_route_m": 4
+   },
+   "id": "finalized-layer--02--historic-central-point-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8516789,
+     6.9384059
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--03--jami-ul-alfar-mosque",
+    "name": "Jami Ul Alfar Mosque",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 3,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 0.2638,
+    "offset_from_route_m": 49
+   },
+   "id": "finalized-layer--03--jami-ul-alfar-mosque"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8474463,
+     6.9178983
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--04--sltda",
+    "name": "SLTDA",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 4,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 3.5199,
+    "offset_from_route_m": 13
+   },
+   "id": "finalized-layer--04--sltda"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8442882,
+     6.9345025
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--05--de-mel-building",
+    "name": "De Mel Building",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 5,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 1.3559,
+    "offset_from_route_m": 10
+   },
+   "id": "finalized-layer--05--de-mel-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8428484,
+     6.9346601
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--06--colombo-old-clock-tower",
+    "name": "Colombo Old Clock Tower",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 6,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 1.5158,
+    "offset_from_route_m": 9
+   },
+   "id": "finalized-layer--06--colombo-old-clock-tower"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8468584,
+     6.9366777
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--07--gaffor-building",
+    "name": "Gaffor Building",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 7,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 0.895,
+    "offset_from_route_m": 5
+   },
+   "id": "finalized-layer--07--gaffor-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8447193,
+     6.9356566
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--08--cargills-building",
+    "name": "Cargills Building",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 8,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 1.1562,
+    "offset_from_route_m": 30
+   },
+   "id": "finalized-layer--08--cargills-building"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8540906,
+     6.9388726
+    ]
+   },
+   "properties": {
+    "id": "finalized-layer--09--old-town-hall-building-and-museum",
+    "name": "Old Town Hall Building and Museum",
+    "source_folder": "Finalized Layer",
+    "source_folder_index": 1,
+    "source_order": 9,
+    "source_style": "#icon-1899-0288D1-nodesc",
+    "geometry_type": "Point",
+    "category": "official_landmark",
+    "route_position_km": 0,
+    "offset_from_route_m": 13
+   },
+   "id": "finalized-layer--09--old-town-hall-building-and-museum"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8540493,
+     6.9389843
+    ]
+   },
+   "properties": {
+    "id": "urban-walk-final-route--01--old-town-hall-building-and-museum",
+    "name": "Old Town Hall Building and Museum",
+    "source_folder": "Urban Walk Final Route",
+    "source_folder_index": 2,
+    "source_order": 1,
+    "source_style": "#icon-1899-DB4436-nodesc",
+    "geometry_type": "Point",
+    "category": "starting_point",
+    "route_position_km": 0,
+    "offset_from_route_m": 0
+   },
+   "id": "urban-walk-final-route--01--old-town-hall-building-and-museum"
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     79.8474745,
+     6.9180106
+    ]
+   },
+   "properties": {
+    "id": "urban-walk-final-route--02--80-galle-rd-colombo-00300-sri-lanka",
+    "name": "80 Galle Rd, Colombo 00300, Sri Lanka",
+    "source_folder": "Urban Walk Final Route",
+    "source_folder_index": 2,
+    "source_order": 2,
+    "source_style": "#icon-1899-DB4436-nodesc",
+    "geometry_type": "Point",
+    "category": "ending_point",
+    "route_position_km": 3.5199,
+    "offset_from_route_m": 1
+   },
+   "id": "urban-walk-final-route--02--80-galle-rd-colombo-00300-sri-lanka"
+  }
+ ]
+}

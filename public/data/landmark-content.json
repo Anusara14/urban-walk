@@ -1,0 +1,677 @@
+{
+ "fetched_at": "2026-11-02T13:54:29.678Z",
+ "landmarks": {
+  "finalized-layer--09--old-town-hall-building-and-museum": {
+   "article": null,
+   "area": {
+    "title": "Pettah, Sri Lanka",
+    "url": "https://en.wikipedia.org/wiki/Pettah,_Sri_Lanka",
+    "paragraphs": [
+     "Pettah (Sinhala: පිටකොටුව (Piṭakoṭuwa), Tamil: புறக்கோட்டை (Puṟakkōṭṭai) is a neighbourhood in Colombo, Sri Lanka, located east of the city centre Fort, and behind the Colombo Port. The Pettah neighborhood is famous for the Pettah Market, a series of open air night pasars and markets. It is one of Sri Lanka's busiest commercial areas, where a huge number of wholesale and retail shops, buildings, commercial institutions and other organisations are located.",
+     "The main market segment is designed like a gigantic crossword puzzle, where one may traverse through the entire markets from dawn till dusk, but not completely cover every part of it.",
+     "Pettah is derived from Tamil: Pettai, an Anglo-Indian word used to indicate a suburb outside a fort. Today, the Sinhala phrase, pita-kotuwa (outside the fort) conveniently describes the same place."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Old_Colombo_Town_Hall.jpg/960px-Old_Colombo_Town_Hall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 640,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Colombo_Town_Hall.jpg",
+     "caption": "Former Colombo Town Hall, located on Main Street in Pettah, Colombo. The building was designed by J.G. Smither, an architect in the Public Works Department duri",
+     "author": "Dan arndt",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Old_Town_Hall_Pettah_-_panoramio.jpg/960px-Old_Town_Hall_Pettah_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Town_Hall_Pettah_-_panoramio.jpg",
+     "caption": "Old Town Hall Pettah",
+     "author": "Pol van den Scheetek…",
+     "license": "CC BY 3.0"
+    }
+   ]
+  },
+  "finalized-layer--03--jami-ul-alfar-mosque": {
+   "article": {
+    "title": "Jami Ul-Alfar Mosque",
+    "url": "https://en.wikipedia.org/wiki/Jami_Ul-Alfar_Mosque",
+    "paragraphs": [
+     "Jami-Ul-Alfar Mosque (Sinhala: කොලඹ කොටුව රතු පල්ලිය, romanized: Kolomba Kotuwa Rathu Palliya, Tamil: மஸ்ஜிதுல் ஜாமிஉல் அஃபார்",
+     "அல்லது சம்மாங்கோடு பள்ளிவாசல், romanized: Sammankodu Pallivasal,",
+     "(known colloquially as the Samman Kottu Palli, Rathu Palliya, Red Masjid or the Red Mosque) is a historic mosque in Colombo, Sri Lanka.  It is located on Second Cross Street in Pettah. It is one of the oldest mosques in Colombo and a popular tourist site in the city."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/SL_Colombo_asv2020-01_img22_Jami_Ul-Alfar_Mosque.jpg/960px-SL_Colombo_asv2020-01_img22_Jami_Ul-Alfar_Mosque.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 960,
+     "page": "https://commons.wikimedia.org/wiki/File:SL_Colombo_asv2020-01_img22_Jami_Ul-Alfar_Mosque.jpg",
+     "caption": "Jami Ul-Alfar Mosque in Colombo, Sri Lanka",
+     "author": "A.Savin",
+     "license": "FAL"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Jami_ul-Alfar_Mosque.jpg/960px-Jami_ul-Alfar_Mosque.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1280,
+     "page": "https://commons.wikimedia.org/wiki/File:Jami_ul-Alfar_Mosque.jpg",
+     "caption": "This mosque is called as srilankas red mosque too. Painted completely by only two colors. Built in 80s period.",
+     "author": "Ketheeswaran sujiv",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Jami-Ul-Alfar_Mosque_Pettah.jpg/960px-Jami-Ul-Alfar_Mosque_Pettah.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Jami-Ul-Alfar_Mosque_Pettah.jpg",
+     "caption": "The wonderfully painted Jami-Ul-Alfar Mosque (Pettah Mosque) in the Pettah harbour area near the Fort Station.",
+     "author": "McKay Savage from London, UK",
+     "license": "CC BY 2.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Jami_Ul_Alfar_Masque.jpg/960px-Jami_Ul_Alfar_Masque.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1280,
+     "page": "https://commons.wikimedia.org/wiki/File:Jami_Ul_Alfar_Masque.jpg",
+     "caption": "During sunset",
+     "author": "Ayshaahmeddd",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "finalized-layer--07--gaffor-building": {
+   "article": {
+    "title": "Gaffoor Building",
+    "url": "https://en.wikipedia.org/wiki/Gaffoor_Building",
+    "paragraphs": [
+     "The Gaffoor Building is a prominent four-storey wedge-shaped building located on the corner Sir Baron Jayatilaka Mawatha and Leyden Bastian Street, Colombo Fort.",
+     "The building was built for Noordeen Hajiar Abdul Gaffoor, one of the country's pioneer jewellers and gem stone traders. Gaffoor established N. D. H. Abdul Gaffoor & Sons (Export of Gems, Pearls, & Jewelry, Import of Diamonds) at the Bristol Hotel in Colombo in 1894. He was one of a few merchants who received exclusive permission to board ships in the Colombo harbour to sell gems and jewellery. In 1901 Gaffoor was granted the privilege of exhibiting pearls, diamonds, rubies and sapphires and art works to the Prince and Princess of Wales during their Royal visit. He took part in a number of world exhibitions including, the St. Louis World's Fair in 1904, All Ceylon Exhibition in 1912, the British Empire Exhibition in 1924 and the Philadelphia World Fair in 1925, all of which further enhanced his and his company's reputation. His younger brother, N. H. M. Abdul Cader, was one of the Muslim representatives on the Legislative Council, serving between 1917 and 1930."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Colombo_02.jpg/960px-Colombo_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 640,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_02.jpg",
+     "caption": "Main Street in the Fort with the Gafoor Building in the background, Colombo, Sri Lanka.",
+     "author": "Bernard Gagnon",
+     "license": "CC BY-SA 3.0"
+    }
+   ]
+  },
+  "finalized-layer--08--cargills-building": {
+   "article": null,
+   "area": {
+    "title": "Fort (Colombo)",
+    "url": "https://en.wikipedia.org/wiki/Fort_(Colombo)",
+    "paragraphs": [
+     "Fort (Sinhala: කොටුව; Tamil: கோட்டை) is the central business district of Colombo in Sri Lanka. It is the financial district of Colombo and the location of the Colombo Stock Exchange (CSE) and the World Trade Centre of Colombo from which the CSE operates. It is also the location of the Bank of Ceylon headquarters. Along the foreshore of the Fort area is the Galle Face Green Promenade, built in 1859 under the governance of Sir Henry George Ward, the Governor of Ceylon (Sri Lanka) during British colonial era. Fort is also home to the General Post Office, hotels, government departments and offices."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/SL_Colombo_asv2020-01_img25_Cargills_Building.jpg/960px-SL_Colombo_asv2020-01_img25_Cargills_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 480,
+     "page": "https://commons.wikimedia.org/wiki/File:SL_Colombo_asv2020-01_img25_Cargills_Building.jpg",
+     "caption": "Colonial architecture (Cargills (Ceylon) Building) in Colombo, Sri Lanka",
+     "author": "A.Savin",
+     "license": "FAL"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/Facade_of_Cargills_%28Ceylon%29_with_Military_Vehicle_-_Fort_District_-_Colombo_-_Sri_Lanka_%2814014756511%29.jpg/960px-Facade_of_Cargills_%28Ceylon%29_with_Military_Vehicle_-_Fort_District_-_Colombo_-_Sri_Lanka_%2814014756511%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Facade_of_Cargills_(Ceylon)_with_Military_Vehicle_-_Fort_District_-_Colombo_-_Sri_Lanka_(14014756511).jpg",
+     "caption": "Facade of Cargills (Ceylon) with Military Vehicle - Fort District - Colombo - Sri Lanka",
+     "author": "Adam Jones from Kelowna, BC, Canada",
+     "license": "CC BY-SA 2.0"
+    }
+   ]
+  },
+  "finalized-layer--05--de-mel-building": {
+   "article": null,
+   "area": {
+    "title": "Fort (Colombo)",
+    "url": "https://en.wikipedia.org/wiki/Fort_(Colombo)",
+    "paragraphs": [
+     "Fort (Sinhala: කොටුව; Tamil: கோட்டை) is the central business district of Colombo in Sri Lanka. It is the financial district of Colombo and the location of the Colombo Stock Exchange (CSE) and the World Trade Centre of Colombo from which the CSE operates. It is also the location of the Bank of Ceylon headquarters. Along the foreshore of the Fort area is the Galle Face Green Promenade, built in 1859 under the governance of Sir Henry George Ward, the Governor of Ceylon (Sri Lanka) during British colonial era. Fort is also home to the General Post Office, hotels, government departments and offices."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/De_Mel_Blg_%281%29.jpg/960px-De_Mel_Blg_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1440,
+     "page": "https://commons.wikimedia.org/wiki/File:De_Mel_Blg_(1).jpg",
+     "caption": "De Mel Building, at 103 Chatham Street, Colombo Fort - constructed in 1925. HL De Mel and Company owned and managing coconut, cinnamon and tea estates, fibre mi",
+     "author": "Dan arndt",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/De_Mel_Blg_%282%29.jpg/960px-De_Mel_Blg_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1440,
+     "page": "https://commons.wikimedia.org/wiki/File:De_Mel_Blg_(2).jpg",
+     "caption": "De Mel Building, at 103 Chatham Street, Colombo Fort - constructed in 1925. HL De Mel and Company owned and managing coconut, cinnamon and tea estates, fibre mi",
+     "author": "Dan arndt",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Pagoda_Tearooms%2C_Colombo.jpg/960px-Pagoda_Tearooms%2C_Colombo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 640,
+     "page": "https://commons.wikimedia.org/wiki/File:Pagoda_Tearooms,_Colombo.jpg",
+     "caption": "The Pagoda Tearooms, located at the ground floor of the De Mel Building, 103 Chatham Street, Colombo Fort. It is famous for being one of the locations where Dur",
+     "author": "Dan arndt",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "finalized-layer--02--historic-central-point-building": {
+   "article": null,
+   "area": {
+    "title": "Fort (Colombo)",
+    "url": "https://en.wikipedia.org/wiki/Fort_(Colombo)",
+    "paragraphs": [
+     "Fort (Sinhala: කොටුව; Tamil: கோட்டை) is the central business district of Colombo in Sri Lanka. It is the financial district of Colombo and the location of the Colombo Stock Exchange (CSE) and the World Trade Centre of Colombo from which the CSE operates. It is also the location of the Bank of Ceylon headquarters. Along the foreshore of the Fort area is the Galle Face Green Promenade, built in 1859 under the governance of Sir Henry George Ward, the Governor of Ceylon (Sri Lanka) during British colonial era. Fort is also home to the General Post Office, hotels, government departments and offices."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/20160122_Sri_Lanka_3629_Colombo_sRGB_%2825144319923%29.jpg/960px-20160122_Sri_Lanka_3629_Colombo_sRGB_%2825144319923%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1280,
+     "page": "https://commons.wikimedia.org/wiki/File:20160122_Sri_Lanka_3629_Colombo_sRGB_(25144319923).jpg",
+     "caption": "The tallest chandelier in Asia rises up through the rotunda of the restored Central Point building which was the tallest structure in Colombo when it was comple",
+     "author": "Dan Lundberg",
+     "license": "CC BY-SA 2.0"
+    }
+   ]
+  },
+  "finalized-layer--06--colombo-old-clock-tower": {
+   "article": {
+    "title": "Old Colombo Lighthouse",
+    "url": "https://en.wikipedia.org/wiki/Old_Colombo_Lighthouse",
+    "paragraphs": [
+     "Old Colombo Lighthouse or Colombo Fort Clock Tower is a clock tower and was a lighthouse in Colombo. The lighthouse is no longer operational, but the tower remains and functions as a clock tower. It is located at the junction of Chatham Street and Janadhipathi Mawatha (formerly Queens Road) in Colombo fort."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Old_Fort_Lighthouse_Clock_Tower_Colombo_Ceylon.jpg/960px-Old_Fort_Lighthouse_Clock_Tower_Colombo_Ceylon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1445,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Fort_Lighthouse_Clock_Tower_Colombo_Ceylon.jpg",
+     "caption": "Old Colombo Lighthouse is a Lighthouse in Colombo in Sri Lanka. It is not operational any more, but functions as a clock tower and is designated as a monument. ",
+     "author": "Jorge Láscar",
+     "license": "CC BY-SA 2.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Old_Fort_Lighthouse_Clock_Tower_Colombo_Ceylon_%285438094137%29.jpg/960px-Old_Fort_Lighthouse_Clock_Tower_Colombo_Ceylon_%285438094137%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1445,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Fort_Lighthouse_Clock_Tower_Colombo_Ceylon_(5438094137).jpg",
+     "caption": "Old Colombo Lighthouse is a Lighthouse in Colombo in Sri Lanka. It is not operational any more, but functions as a clock tower and is designated as a monument. ",
+     "author": "Jorge Láscar from Australia",
+     "license": "CC BY 2.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Old_Colombo_Lighthouse_-_04.jpg/960px-Old_Colombo_Lighthouse_-_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1440,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Colombo_Lighthouse_-_04.jpg",
+     "caption": "Old Colombo Lighthouse located at the intersection of Janadhipathi Mawatha (formally Queens road) and Chatham Street in Colombo Fort. It is no longer an operati",
+     "author": "Dan arndt",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Old_Colombo_Lighthouse_-_03.jpg/960px-Old_Colombo_Lighthouse_-_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1440,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Colombo_Lighthouse_-_03.jpg",
+     "caption": "Old Colombo Lighthouse located at the intersection of Janadhipathi Mawatha (formally Queens road) and Chatham Street in Colombo Fort. It is no longer an operati",
+     "author": "Dan arndt",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "finalized-layer--00--old-parlimant": {
+   "article": {
+    "title": "Old Parliament Building, Colombo",
+    "url": "https://en.wikipedia.org/wiki/Old_Parliament_Building,_Colombo",
+    "paragraphs": [
+     "The Old Parliament Building, is the building that houses the Presidential Secretariat of Sri Lanka. Situated in the Colombo fort area facing the sea, it is in close proximity to the President's House, Colombo and adjacent to the General Treasury Building. The building housed the island's legislature for 53 years until the new parliamentary complex was opened at Sri Jayawardenepura in 1983."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Old_Parliament_Building_Colombo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+     "width": 960,
+     "height": 777,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Parliament_Building_Colombo.jpg",
+     "caption": "Photograph of Old Parliament Building Colombo",
+     "author": "The National Archives UK",
+     "license": "No restrictions"
+    },
+    {
+     "src": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Colombo_-_Old_Parliament.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+     "width": 960,
+     "height": 722,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_-_Old_Parliament.jpg",
+     "caption": "Old Parliament Building, Colombo",
+     "author": "Mayakaru at English Wikipedia",
+     "license": "CC BY 3.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Old_Parliament_Building%2C_Colombo.JPG/960px-Old_Parliament_Building%2C_Colombo.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 640,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Parliament_Building,_Colombo.JPG",
+     "caption": "Old Parliament Building, Colombo. Completed 1930",
+     "author": "Grayswoodsurrey",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Old_Parliament_Building_Colombo_-_Colourized_Version.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+     "width": 960,
+     "height": 777,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_Parliament_Building_Colombo_-_Colourized_Version.jpg",
+     "caption": "Photograph of Old Parliament Building Colombo - Colourized Version",
+     "author": "Black &amp; White / Original: The National Archives UK Colourized Version: Media",
+     "license": "No restrictions"
+    }
+   ]
+  },
+  "finalized-layer--01--gall-face-green": {
+   "article": {
+    "title": "Galle Face Green",
+    "url": "https://en.wikipedia.org/wiki/Galle_Face_Green",
+    "paragraphs": [
+     "Galle Face Green is a 5 ha (12 acres) ocean-side urban park, which stretches for 500 m (1,600 ft) along the coast, in the heart of Colombo, the financial and business capital of Sri Lanka. The promenade was initially laid out in 1859 by Governor Sir Henry George Ward, although the original Galle Face Green extended over a much larger area than is seen today. The Galle Face Green was initially used for horse racing and as a golf course, but was also used for cricket, polo, football, tennis, and rugby."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Colombo_Galle_Face_Green.jpg/960px-Colombo_Galle_Face_Green.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 718,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_Galle_Face_Green.jpg",
+     "caption": "Sri Lanka, Colombo, Galle Face Green",
+     "author": "Morgendorfferr",
+     "license": "CC BY-SA 2.5"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Flag_flying_high%2C_unity_even_higher.jpg/960px-Flag_flying_high%2C_unity_even_higher.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Flag_flying_high,_unity_even_higher.jpg",
+     "caption": "Galle Face Green, the Heart of Colombo, visited by millions of tourists every year, with all world class hotels surrounding, is the ideal place to watch the sun",
+     "author": "Oshani Wijesooriya",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "finalized-layer--04--sltda": {
+   "article": null,
+   "area": {
+    "title": "Kollupitiya",
+    "url": "https://en.wikipedia.org/wiki/Kollupitiya",
+    "paragraphs": [
+     "Kollupitiya (historically known as Colpetty, administratively as Colombo 3) is a major neighbourhood of Colombo, Sri Lanka. The name Kollupitiya comes from the name of a chief from Kandy who had unsuccessfully attempted to dethrone the last king of Kandy. During the periods of Dutch and British administration, a brewery for the conversion of coconut treacle into liquor had commenced and continued operation in Kollupitiya. The suburb is a thriving commercial area containing fashionable high-end shopping malls. Some foreign embassies are located in Kollupitiya, as is the official residence of the prime minister."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Galleroad.jpg/960px-Galleroad.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1280,
+     "page": "https://commons.wikimedia.org/wiki/File:Galleroad.jpg",
+     "caption": "This is Colombo's main street, the Galle Main Road, seen from about Kollupitiya.",
+     "author": "Peter Addor",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "locations--07--grand-oriental-hotel": {
+   "article": {
+    "title": "Grand Oriental Hotel",
+    "url": "https://en.wikipedia.org/wiki/Grand_Oriental_Hotel",
+    "paragraphs": [
+     "Grand Oriental Hotel or GOH (also previously known as the Taprobane Hotel) is a 3 star heritage hotel, located in Colombo, Sri Lanka."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/SL_Colombo_asv2020-01_img07_GOH_Chekhov_suite.jpg/960px-SL_Colombo_asv2020-01_img07_GOH_Chekhov_suite.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 600,
+     "page": "https://commons.wikimedia.org/wiki/File:SL_Colombo_asv2020-01_img07_GOH_Chekhov_suite.jpg",
+     "caption": "Anton Chekhov's suite room in the Grand Oriental Hotel in Colombo, Sri Lanka",
+     "author": "A.Savin",
+     "license": "FAL"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/SL_Colombo_asv2020-01_img24_Grand_Oriental.jpg/960px-SL_Colombo_asv2020-01_img24_Grand_Oriental.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 800,
+     "page": "https://commons.wikimedia.org/wiki/File:SL_Colombo_asv2020-01_img24_Grand_Oriental.jpg",
+     "caption": "Exterior of the Grand Oriental Hotel in Colombo, Sri Lanka",
+     "author": "A.Savin",
+     "license": "FAL"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Grand_Oriental_Hotel%2C_Colombo_in_the_1880s.jpg/960px-Grand_Oriental_Hotel%2C_Colombo_in_the_1880s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 718,
+     "page": "https://commons.wikimedia.org/wiki/File:Grand_Oriental_Hotel,_Colombo_in_the_1880s.jpg",
+     "caption": "Grand Oriental Hotel, Colombo in the 1880s",
+     "author": "Unknown authorUnknown author",
+     "license": "Public domain"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/The_Grand_Oriental_Hotel_in_Colombo_The_Grand_Oriental_Hotel_Colombo_%28titel_op_object%29%2C_RP-F-00-5018-26.jpg/960px-The_Grand_Oriental_Hotel_in_Colombo_The_Grand_Oriental_Hotel_Colombo_%28titel_op_object%29%2C_RP-F-00-5018-26.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 785,
+     "page": "https://commons.wikimedia.org/wiki/File:The_Grand_Oriental_Hotel_in_Colombo_The_Grand_Oriental_Hotel_Colombo_(titel_op_object),_RP-F-00-5018-26.jpg",
+     "caption": "IdentificatieTitel(s): The Grand Oriental Hotel in Colombo. The Grand Oriental Hotel Colombo (titel op object)Objecttype: foto Objectnummer: RP-F-00-5018-26Opsc",
+     "author": "Rijksmuseum",
+     "license": "CC0"
+    }
+   ]
+  },
+  "locations--08--old-general-post-office-gpo": {
+   "article": {
+    "title": "Former General Post Office, Colombo",
+    "url": "https://en.wikipedia.org/wiki/Former_General_Post_Office,_Colombo",
+    "paragraphs": [
+     "The former Colombo General Post Office (abbreviated: GPO), at 17 Janadhipathi Mawatha, Colombo Fort, was the headquarters of the Sri Lanka Post and the office of the Postmaster General for over one hundred years, from 1895 until 2000."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://upload.wikimedia.org/wikipedia/commons/1/10/Old_GPO_CMB.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+     "width": 960,
+     "height": 698,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_GPO_CMB.jpg",
+     "caption": "The old General Post Office – Janadhipath Mawatha (President's Street), Colombo fort",
+     "author": "Unknown authorUnknown author",
+     "license": "Public domain"
+    }
+   ]
+  },
+  "locations--15--dutch-museum": {
+   "article": {
+    "title": "Colombo Dutch Museum",
+    "url": "https://en.wikipedia.org/wiki/Colombo_Dutch_Museum",
+    "paragraphs": [
+     "The Colombo Dutch Museum is a museum that covers the history of the Dutch colonial rule in Sri Lanka."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Dutch_Period_Museum_Colombo_-_panoramio.jpg/960px-Dutch_Period_Museum_Colombo_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Dutch_Period_Museum_Colombo_-_panoramio.jpg",
+     "caption": "Dutch Period Museum Colombo",
+     "author": "Pol van den Scheetek…",
+     "license": "CC BY 3.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Dutch_Period_Museum_Colombo_-_panoramio_%281%29.jpg/960px-Dutch_Period_Museum_Colombo_-_panoramio_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Dutch_Period_Museum_Colombo_-_panoramio_(1).jpg",
+     "caption": "Dutch Period Museum Colombo",
+     "author": "Pol van den Scheetek…",
+     "license": "CC BY 3.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Dutch_Period_Museum_%285439877699%29.jpg/960px-Dutch_Period_Museum_%285439877699%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 638,
+     "page": "https://commons.wikimedia.org/wiki/File:Dutch_Period_Museum_(5439877699).jpg",
+     "caption": "Dutch Period Museum",
+     "author": "Jorge Láscar from Australia",
+     "license": "CC BY 2.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Dutch_Period_Museum_%2843458180465%29.jpg/960px-Dutch_Period_Museum_%2843458180465%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Dutch_Period_Museum_(43458180465).jpg",
+     "caption": "The Dutch Period Museum in Colombo, Sri Lanka, occupies the onetime residence of the 17th century Dutch governor of Ceylon.",
+     "author": "David Stanley from Nanaimo, Canada",
+     "license": "CC BY 2.0"
+    }
+   ]
+  },
+  "locations--04--colombo-railway-station": {
+   "article": {
+    "title": "Fort railway station",
+    "url": "https://en.wikipedia.org/wiki/Fort_railway_station",
+    "paragraphs": [
+     "Fort railway station is a major rail hub in Colombo, Sri Lanka.  The station is served by Sri Lanka Railways, with many inter-city and commuter trains entering each day.  Fort Station is the main rail gateway to central Colombo; it is the terminus of most intercity trains in the country."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/SL_Colombo_asv2020-01_img09_Fort_station.jpg/960px-SL_Colombo_asv2020-01_img09_Fort_station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 640,
+     "page": "https://commons.wikimedia.org/wiki/File:SL_Colombo_asv2020-01_img09_Fort_station.jpg",
+     "caption": "Fort railway station in Colombo, Sri Lanka",
+     "author": "A.Savin",
+     "license": "FAL"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/SL_Colombo_asv2020-01_img28_Fort_station.jpg/960px-SL_Colombo_asv2020-01_img28_Fort_station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 960,
+     "page": "https://commons.wikimedia.org/wiki/File:SL_Colombo_asv2020-01_img28_Fort_station.jpg",
+     "caption": "Fort railway station in Colombo, Sri Lanka",
+     "author": "A.Savin",
+     "license": "FAL"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Colombo_Fort_Railway_Station_4.JPG/960px-Colombo_Fort_Railway_Station_4.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_Fort_Railway_Station_4.JPG",
+     "caption": "Fort Railway Station, a major rail hub in Colombo, Sri Lanka",
+     "author": "Gobbler",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Colombo_Fort_Railway_Station_3.JPG/960px-Colombo_Fort_Railway_Station_3.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1280,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_Fort_Railway_Station_3.JPG",
+     "caption": "Fort Railway Station, a major rail hub in Colombo, Sri Lanka",
+     "author": "Gobbler",
+     "license": "CC BY-SA 3.0"
+    }
+   ]
+  },
+  "locations--02--the-old-hospital": {
+   "article": {
+    "title": "Old Colombo Dutch Hospital",
+    "url": "https://en.wikipedia.org/wiki/Old_Colombo_Dutch_Hospital",
+    "paragraphs": [
+     "The Old Colombo Dutch Hospital (known as The Dutch Hospital) is considered to be the oldest building in the Colombo Fort area dating back to the Dutch colonial era in Sri Lanka.  It is now a heritage building and a shopping and dining precinct."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/Dutch_Hospital.jpg/960px-Dutch_Hospital.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Dutch_Hospital.jpg",
+     "caption": "Dutch colonial era hospital in Colombo, Sri Lanka, established in 1637. In 2011 it was converted into a shopping mall.",
+     "author": "Kanatonian",
+     "license": "CC BY-SA 3.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/ColomboFortHospital.jpg/960px-ColomboFortHospital.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 655,
+     "page": "https://commons.wikimedia.org/wiki/File:ColomboFortHospital.jpg",
+     "caption": "Dutch hospital built by the VOC in Colombo Fort, Sri Lanka",
+     "author": "Jan Kranendonk (https://www.jankranendonk.nl)",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Voormalig_Dutch_Hospital%2C_zuidzijde_-_20651155_-_RCE.jpg/960px-Voormalig_Dutch_Hospital%2C_zuidzijde_-_20651155_-_RCE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 638,
+     "page": "https://commons.wikimedia.org/wiki/File:Voormalig_Dutch_Hospital,_zuidzijde_-_20651155_-_RCE.jpg",
+     "caption": "Voormalig Dutch Hospital, zuidzijdeOnderwerp: ziekenhuizen",
+     "author": "Maseland, J.",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/ColomboFortHospital2.jpg/960px-ColomboFortHospital2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 652,
+     "page": "https://commons.wikimedia.org/wiki/File:ColomboFortHospital2.jpg",
+     "caption": "Dutch hospital built by the VOC in Colombo Fort, Sri Lanka",
+     "author": "Jan Kranendonk (https://www.jankranendonk.nl)",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "locations--13--one-galle-face-mall": {
+   "article": {
+    "title": "One Galle Face",
+    "url": "https://en.wikipedia.org/wiki/One_Galle_Face",
+    "paragraphs": [
+     "One Galle Face is a mixed-use complex of buildings near the Galle Face Green in Colombo, Sri Lanka. It is also Sri Lanka's first internationally and developed and managed mixed use project and was officially opened on 8 November 2019. The facility consists of four skyscrapers, one which will be open for businesses to set up offices, two for the residential component, and the fourth as part of a hotel. A shopping mall is also part of the project. The premises in its entirety is owned by Shangri-La.",
+     "The twin towers of the residential component are tied as the 4th-tallest structures in the country, at 194 m (636 ft). The towers are 51 storeys each, with two-, three-, or four bedroom apartments of 161.0 m2 (1,733 ft2), 255.0 m2 (2,745 ft2), and 329.0 m2 (3,541 ft2), respectively. They will also contain 16 penthouses.",
+     "Shangri-La Colombo opened on 16 November 2017, as the first of the four project components to do so. The hotel has 500 rooms and 41 serviced apartments."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Colombo_One_Galle_Face.jpg/960px-Colombo_One_Galle_Face.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 606,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_One_Galle_Face.jpg",
+     "caption": "Colombo One Galle Face",
+     "author": "TheSriLankaLK",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/One_Galle_Face%2C_Colombo.jpg/960px-One_Galle_Face%2C_Colombo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1707,
+     "page": "https://commons.wikimedia.org/wiki/File:One_Galle_Face,_Colombo.jpg",
+     "caption": "Colombo's largest integrated development with mall, office, hotel, and residences. This is the view of that mall through galle face beach.",
+     "author": "Gobalakrishnan Thuvaragan",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/One_Galle_Face_mall_CMB_Nov_2017.jpg/960px-One_Galle_Face_mall_CMB_Nov_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 1181,
+     "page": "https://commons.wikimedia.org/wiki/File:One_Galle_Face_mall_CMB_Nov_2017.jpg",
+     "caption": "Construction progress of the retail section (mall) of the One Galle Face development in Colombo, Sri Lanka as at November 2017",
+     "author": "Jesuschristonacamel",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Old_parliament_and_Shangri-La_Colombo_2018-03-23.jpg/960px-Old_parliament_and_Shangri-La_Colombo_2018-03-23.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Old_parliament_and_Shangri-La_Colombo_2018-03-23.jpg",
+     "caption": "Old parliament and Shangri-La Colombo",
+     "author": "FaysaLBinDaruL",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  "locations--12--colombo-port-city-foot-bridge": {
+   "article": {
+    "title": "Port City Colombo",
+    "url": "https://en.wikipedia.org/wiki/Port_City_Colombo",
+    "paragraphs": [
+     "Port City Colombo (Sinhala: කොළඹ වරාය නගරය, romanised: Koḷam̆ba Warāya Nagaraya) is a multi-services special economic zone located in Colombo, Sri Lanka, which is currently under construction on reclaimed land adjacent to the Galle Face Green. The land reclamation work had been completed as of January 2019. In 2017, the cost was slated to be US$ 15 billion. Port City Colombo is a multi-billion-dollar FDI-funded Public Private Partnership (PPP).",
+     "Port City Colombo aims to facilitate connections to the South Asian market through investment opportunities, international business environments, and infrastructure developments.",
+     "Upon completion, Port City Colombo will feature five distinct precincts: the Financial District, Central Park Living, Island Living, the Marina, and the International Island. The city will additionally encompass over 6.4 million square metres of new developments in residences, healthcare, education, entertainment, hotels, restaurants, retail, and commercial complexes.",
+     "In May 2021, the Parliament of Sri Lanka approved the Port City Commission Bill to establish the Colombo Port City Special Economic Zone and Economic Commission. Under this law, companies can be exempt from all taxes, personal, corporate, excise, import, and every other tax for up to forty years."
+    ],
+    "license": "CC BY-SA 4.0"
+   },
+   "area": null,
+   "photos": [
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Colombo_Port_City_seem_from_galle_road..jpg/960px-Colombo_Port_City_seem_from_galle_road..jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 720,
+     "page": "https://commons.wikimedia.org/wiki/File:Colombo_Port_City_seem_from_galle_road..jpg",
+     "caption": "Colombo Port City seem from galle road.",
+     "author": "Dinil Samarasinha",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Progress_Update_of_Port_City_Colombo.jpg/960px-Progress_Update_of_Port_City_Colombo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 640,
+     "page": "https://commons.wikimedia.org/wiki/File:Progress_Update_of_Port_City_Colombo.jpg",
+     "caption": "Progress Update of Port City Colombo",
+     "author": "SinsiDILINI123",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Fintech_World_Cup_at_Port_City_Colombo.jpg/960px-Fintech_World_Cup_at_Port_City_Colombo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "width": 960,
+     "height": 533,
+     "page": "https://commons.wikimedia.org/wiki/File:Fintech_World_Cup_at_Port_City_Colombo.jpg",
+     "caption": "The Fintech Association of Sri Lanka (FASL), in partnership with Port City Colombo, recently hosted the Regional Competition of the FinTech World Cup (FWC) at P",
+     "author": "PortCCX",
+     "license": "CC BY-SA 4.0"
+    },
+    {
+     "src": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Port_City_Colombo_Pic.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+     "width": 960,
+     "height": 1260,
+     "page": "https://commons.wikimedia.org/wiki/File:Port_City_Colombo_Pic.png",
+     "caption": "Port City Colombo",
+     "author": "SinsiDILINI123",
+     "license": "CC BY-SA 4.0"
+    }
+   ]
+  }
+ }
+}

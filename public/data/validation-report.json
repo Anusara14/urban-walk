@@ -1,0 +1,209 @@
+{
+ "source": "data/source/urban-walk.kml",
+ "generated_at": "2026-11-02T13:55:45.392Z",
+ "crs": "EPSG:4326 (lon, lat)",
+ "document_description": "Covers 06 Segments",
+ "total_features": 35,
+ "counts_by_folder_and_type": {
+  "locations / Point": 17,
+  "locations / Polygon": 2,
+  "Finalized Layer / Point": 13,
+  "Urban Walk Final Route / LineString": 1,
+  "Urban Walk Final Route / Point": 2
+ },
+ "route": {
+  "coordinate_count": 237,
+  "length_km": 3.52,
+  "first_vertex": [
+   79.85405,
+   6.93898
+  ],
+  "last_vertex": [
+   79.84747,
+   6.91801
+  ],
+  "start_marker": {
+   "name": "Old Town Hall Building and Museum",
+   "gap_to_first_vertex_m": 0
+  },
+  "end_marker": {
+   "name": "80 Galle Rd, Colombo 00300, Sri Lanka",
+   "gap_to_last_vertex_m": 1
+  },
+  "segments_in_source": "none — single LineString; '06 Segments' appears only in the document description"
+ },
+ "bbox_lon_lat": [
+  79.837181,
+  6.917898,
+  79.854091,
+  6.938984
+ ],
+ "invalid_geometries": [],
+ "near_duplicates_within_m": 60,
+ "near_duplicates": [
+  {
+   "a": "Warm Up @ Galle Face Green [locations]",
+   "b": "Gall Face Green [Finalized Layer]",
+   "distance_m": 40.9
+  },
+  {
+   "a": "Warm Up @ Galle Face Green [locations]",
+   "b": "Public Washrooms [Finalized Layer]",
+   "distance_m": 47.3
+  },
+  {
+   "a": "Old Parliament [locations]",
+   "b": "Old Parlimant [Finalized Layer]",
+   "distance_m": 53.3
+  },
+  {
+   "a": "Colombo Old Clock Tower [locations]",
+   "b": "Historic Central Point Building [locations]",
+   "distance_m": 26.7
+  },
+  {
+   "a": "Colombo Old Clock Tower [locations]",
+   "b": "Historic Central Point Building [Finalized Layer]",
+   "distance_m": 22.3
+  },
+  {
+   "a": "Colombo Old Clock Tower [locations]",
+   "b": "Colombo Old Clock Tower [Finalized Layer]",
+   "distance_m": 7.3
+  },
+  {
+   "a": "Cargills Building [locations]",
+   "b": "Cargills Building [Finalized Layer]",
+   "distance_m": 0
+  },
+  {
+   "a": "Historic Central Point Building [locations]",
+   "b": "Historic Central Point Building [Finalized Layer]",
+   "distance_m": 8.8
+  },
+  {
+   "a": "Historic Central Point Building [locations]",
+   "b": "Colombo Old Clock Tower [Finalized Layer]",
+   "distance_m": 22.4
+  },
+  {
+   "a": "Gaffoor Building [locations]",
+   "b": "Gaffor Building [Finalized Layer]",
+   "distance_m": 11.1
+  },
+  {
+   "a": "De Mel building [locations]",
+   "b": "De Mel Building [Finalized Layer]",
+   "distance_m": 5.6
+  },
+  {
+   "a": "Jami Ul-Alfar Mosque [locations]",
+   "b": "Jami Ul Alfar Mosque [Finalized Layer]",
+   "distance_m": 33.6
+  },
+  {
+   "a": "Sri Lanka Tourism Development Authority [locations]",
+   "b": "SLTDA [Finalized Layer]",
+   "distance_m": 22.3
+  },
+  {
+   "a": "Sri Lanka Tourism Development Authority [locations]",
+   "b": "80 Galle Rd, Colombo 00300, Sri Lanka [Urban Walk Final Route]",
+   "distance_m": 26.9
+  },
+  {
+   "a": "Gall Face Green [Finalized Layer]",
+   "b": "Public Washrooms [Finalized Layer]",
+   "distance_m": 53.1
+  },
+  {
+   "a": "Historic Central Point Building [Finalized Layer]",
+   "b": "Colombo Old Clock Tower [Finalized Layer]",
+   "distance_m": 20.4
+  },
+  {
+   "a": "SLTDA [Finalized Layer]",
+   "b": "80 Galle Rd, Colombo 00300, Sri Lanka [Urban Walk Final Route]",
+   "distance_m": 12.9
+  },
+  {
+   "a": "Old Town Hall Building and Museum [Finalized Layer]",
+   "b": "Old Town Hall Building and Museum [Urban Walk Final Route]",
+   "distance_m": 13.2
+  }
+ ],
+ "folder_differences": {
+  "finalized_matched_in_locations": [
+   {
+    "finalized": "Old Parlimant",
+    "closest_location": "Old Parliament",
+    "distance_m": 53.3,
+    "exact_name": false
+   },
+   {
+    "finalized": "Gall Face Green",
+    "closest_location": "Warm Up @ Galle Face Green",
+    "distance_m": 40.9,
+    "exact_name": false
+   },
+   {
+    "finalized": "Historic Central Point Building",
+    "closest_location": "Historic Central Point Building",
+    "distance_m": 8.8,
+    "exact_name": true
+   },
+   {
+    "finalized": "Jami Ul Alfar Mosque",
+    "closest_location": "Jami Ul-Alfar Mosque",
+    "distance_m": 33.6,
+    "exact_name": true
+   },
+   {
+    "finalized": "SLTDA",
+    "closest_location": "Sri Lanka Tourism Development Authority",
+    "distance_m": 22.3,
+    "exact_name": false
+   },
+   {
+    "finalized": "De Mel Building",
+    "closest_location": "De Mel building",
+    "distance_m": 5.6,
+    "exact_name": true
+   },
+   {
+    "finalized": "Colombo Old Clock Tower",
+    "closest_location": "Colombo Old Clock Tower",
+    "distance_m": 7.3,
+    "exact_name": true
+   },
+   {
+    "finalized": "Gaffor Building",
+    "closest_location": "Gaffoor Building",
+    "distance_m": 11.1,
+    "exact_name": false
+   },
+   {
+    "finalized": "Cargills Building",
+    "closest_location": "Cargills Building",
+    "distance_m": 0,
+    "exact_name": true
+   },
+   {
+    "finalized": "Old Town Hall Building and Museum",
+    "closest_location": "Jami Ul-Alfar Mosque",
+    "distance_m": 283.5,
+    "exact_name": false
+   }
+  ],
+  "only_in_locations": [
+   "The Old Hospital",
+   "Colombo Railway Station",
+   "Grand Oriental Hotel",
+   "OLD GENERAL POST OFFICE (GPO)",
+   "Delft Gateway - Colombo Fort",
+   "Colombo Port City Foot Bridge",
+   "One Galle Face Mall",
+   "Dutch Museum"
+  ]
+ }
+}

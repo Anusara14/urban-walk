@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // vendored by the mapcn CLI; the skill says not to edit it
+    "src/components/ui/map.tsx",
   ]),
 ]);
 
