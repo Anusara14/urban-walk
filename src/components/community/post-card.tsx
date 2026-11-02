@@ -52,7 +52,12 @@ export function PostCard({ post, compact }: { post: Post; compact?: boolean }) {
 
   return (
     <article id={post.id} className="overflow-hidden rounded-[24px] bg-white">
-      {post.image_url && !compact && <img src={post.image_url} alt={post.text || "Participant photo"} loading="lazy" className="max-h-[420px] w-full object-cover" />}
+      {post.image_url && !compact && (
+        // thumbnail in the feed; the full photo only loads if someone taps it
+        <a href={post.image_url} target="_blank" rel="noreferrer" aria-label="Open full photo">
+          <img src={post.thumb_url ?? post.image_url} alt={post.text || "Participant photo"} loading="lazy" decoding="async" className="max-h-[420px] w-full object-cover" />
+        </a>
+      )}
       <div className="p-4">
         <header className="flex items-center gap-2.5">
           <span className="grid size-8 place-items-center rounded-full bg-uw-mist text-[13px] font-semibold">{post.user_name.slice(0, 1).toUpperCase()}</span>
@@ -69,7 +74,7 @@ export function PostCard({ post, compact }: { post: Post; compact?: boolean }) {
 
         {post.prompt && <p className="mt-3 text-[12px] font-medium text-uw-slate">“{post.prompt}”</p>}
         {post.text && <p className={cn("whitespace-pre-line text-[15px] leading-relaxed", post.prompt ? "mt-1" : "mt-3")}>{post.text}</p>}
-        {post.image_url && compact && <img src={post.image_url} alt="" loading="lazy" className="mt-3 h-40 w-full rounded-[16px] object-cover" />}
+        {post.image_url && compact && <img src={post.thumb_url ?? post.image_url} alt="" loading="lazy" className="mt-3 h-40 w-full rounded-[16px] object-cover" />}
 
         <div className="mt-3 flex flex-wrap gap-1.5 text-[11.5px]">
           {stop && (

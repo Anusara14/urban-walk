@@ -134,7 +134,7 @@ export function LandmarkScreen({ id }: { id: string }) {
         {photos.length > 1 && (
           <section className="mt-9">
             <h2 className="text-[19px] font-semibold tracking-tight">Photographs</h2>
-            <ul className="-mx-5 mt-3 flex snap-x gap-3 overflow-x-auto px-5 scrollbar-none">
+            <ul className="-mx-5 mt-3 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto pb-1 pl-5 scrollbar-none">
               {photos.map((p) => (
                 <li key={p.page} className="w-[220px] shrink-0 snap-start">
                   <div className="h-[260px] overflow-hidden rounded-[22px] bg-uw-mist">
@@ -143,6 +143,7 @@ export function LandmarkScreen({ id }: { id: string }) {
                   <Credit photo={p} className="mt-1.5 block text-uw-slate" />
                 </li>
               ))}
+              <li aria-hidden className="w-2 shrink-0" />
             </ul>
           </section>
         )}

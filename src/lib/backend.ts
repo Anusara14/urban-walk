@@ -6,7 +6,7 @@ import { createStore, del, get, keys, set } from "idb-keyval";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { currentAccount, displayName, type Account } from "./auth";
 import { backendMode, getSupabase } from "./supabase";
-import type { GeoTag, Post } from "./types";
+import type { GeoTag, Post, Progress, ProgressRow } from "./types";
 
 export { backendMode };
 
@@ -16,6 +16,7 @@ export type NewPost = {
   landmark_id: string | null;
   text: string;
   image: Blob | null;
+  thumb: Blob | null;
   geo: GeoTag;
   prompt?: string;
 };
@@ -28,18 +29,25 @@ function requireAccount(): Account {
 }
 
 // ---------------- local (IndexedDB) ----------------
-type StoredPost = Omit<Post, "image_url" | "liked_by_me"> & { image: Blob | null; liked_by: string[] };
+type StoredPost = Omit<Post, "image_url" | "thumb_url" | "liked_by_me"> & { image: Blob | null; thumb?: Blob | null; liked_by: string[] };
 const idb = typeof window !== "undefined" ? createStore("urban-walk", "posts") : undefined;
 const objectUrls = new Map<string, string>();
+const urlFor = (key: string, blob: Blob | null | undefined) => {
+  if (!blob) return null;
+  const url = objectUrls.get(key) ?? URL.createObjectURL(blob);
+  objectUrls.set(key, url);
+  return url;
+};
 
 function toPost(s: StoredPost, me: string): Post {
-  let image_url: string | null = null;
-  if (s.image) {
-    image_url = objectUrls.get(s.id) ?? URL.createObjectURL(s.image);
-    objectUrls.set(s.id, image_url);
-  }
-  const { image: _image, liked_by, ...rest } = s;
-  return { ...rest, image_url, likes: liked_by.length, liked_by_me: liked_by.includes(me) };
+  const { image, thumb, liked_by, ...rest } = s;
+  return {
+    ...rest,
+    image_url: urlFor(s.id, image),
+    thumb_url: urlFor(`${s.id}:thumb`, thumb),
+    likes: liked_by.length,
+    liked_by_me: liked_by.includes(me),
+  };
 }
 
 const local = {
@@ -62,6 +70,7 @@ const local = {
       landmark_id: input.landmark_id,
       text: input.text,
       image: input.image,
+      thumb: input.thumb,
       geo: input.geo,
       prompt: input.prompt,
       created_at: new Date().toISOString(),
@@ -91,10 +100,25 @@ const local = {
       liked_by: p.liked_by.includes(me) ? p.liked_by.filter((x) => x !== me) : [...p.liked_by, me],
     }));
   },
+  // progress lives in localStorage (walk-provider); nothing to sync on-device
+  async syncProgress() {},
+  async listProgress(eventId: string): Promise<ProgressRow[]> {
+    const me = currentAccount();
+    try {
+      const raw = localStorage.getItem(`uw:progress:${eventId}`);
+      if (!raw || !me) return [];
+      const p = JSON.parse(raw) as Progress;
+      return [{ user_id: me.id, user_name: displayName(me), completed_landmarks: p.visited, distance_covered_m: 0, started_at: p.started_at, completed_at: p.completed_at, updated_at: p.started_at ?? "" }];
+    } catch {
+      return [];
+    }
+  },
   async remove(postId: string) {
-    const url = objectUrls.get(postId);
-    if (url) URL.revokeObjectURL(url);
-    objectUrls.delete(postId);
+    for (const key of [postId, `${postId}:thumb`]) {
+      const url = objectUrls.get(key);
+      if (url) URL.revokeObjectURL(url);
+      objectUrls.delete(key);
+    }
     await del(postId, idb);
   },
 };
@@ -105,7 +129,7 @@ const sb = getSupabase;
 
 type Row = {
   id: string; kind: Post["kind"]; event_id: string; user_id: string; user_name: string; landmark_id: string | null;
-  content: string; image_path: string | null; lat: number | null; lng: number | null; accuracy_m: number | null;
+  content: string; image_path: string | null; thumb_path: string | null; lat: number | null; lng: number | null; accuracy_m: number | null;
   prompt: string | null; created_at: string;
   comments: { id: string; user_name: string; content: string; created_at: string }[];
   post_likes: { user_id: string }[];
@@ -136,6 +160,7 @@ const remote = {
       id: r.id, kind: r.kind, event_id: r.event_id, user_id: r.user_id, user_name: r.user_name,
       landmark_id: r.landmark_id, text: r.content, prompt: r.prompt ?? undefined, created_at: r.created_at,
       image_url: r.image_path ? c.storage.from("photos").getPublicUrl(r.image_path).data.publicUrl : null,
+      thumb_url: r.thumb_path ? c.storage.from("photos").getPublicUrl(r.thumb_path).data.publicUrl : null,
       geo: r.lat != null && r.lng != null ? { lat: r.lat, lng: r.lng, accuracy: r.accuracy_m ?? undefined } : null,
       comments: [...r.comments].sort((a, b) => a.created_at.localeCompare(b.created_at)),
       likes: r.post_likes.length,
@@ -145,17 +170,21 @@ const remote = {
   async create(input: NewPost): Promise<Post> {
     const c = await sb();
     const uid = await uidOf(c);
-    let image_path: string | null = null;
-    if (input.image) {
-      image_path = `${input.event_id}/${uid}/${crypto.randomUUID()}.${input.image.type === "image/webp" ? "webp" : "jpg"}`;
-      const up = await c.storage.from("photos").upload(image_path, input.image, { contentType: input.image.type });
+    const base = `${input.event_id}/${uid}/${crypto.randomUUID()}`;
+    const upload = async (blob: Blob, suffix: string) => {
+      const path = `${base}${suffix}.${blob.type === "image/webp" ? "webp" : "jpg"}`;
+      // a year of browser/CDN caching: paths are unique, files never change
+      const up = await c.storage.from("photos").upload(path, blob, { contentType: blob.type, cacheControl: "31536000" });
       if (up.error) throw new Error(`Photo upload failed: ${up.error.message}`);
-    }
+      return path;
+    };
+    const image_path = input.image ? await upload(input.image, "") : null;
+    const thumb_path = input.thumb ? await upload(input.thumb, ".thumb") : null;
     const { data, error } = await c
       .from("posts")
       .insert({
         kind: input.kind, event_id: input.event_id, user_id: uid, user_name: displayName(requireAccount()),
-        landmark_id: input.landmark_id, content: input.text, image_path, prompt: input.prompt ?? null,
+        landmark_id: input.landmark_id, content: input.text, image_path, thumb_path, prompt: input.prompt ?? null,
         lat: coarse(input.geo?.lat), lng: coarse(input.geo?.lng), accuracy_m: null,
       })
       .select("id")
@@ -179,10 +208,36 @@ const remote = {
     const { error } = await q;
     if (error) throw new Error(error.message);
   },
+  /** Best-effort: progress also lives on the device, so a failed sync loses nothing. */
+  async syncProgress(p: Progress, distanceM: number) {
+    const a = currentAccount();
+    if (!a) return;
+    const c = await sb();
+    await c.from("walk_progress").upsert(
+      {
+        user_id: a.id, user_name: displayName(a), event_id: p.event_id, completed_landmarks: p.visited,
+        distance_covered_m: Math.round(distanceM), started_at: p.started_at, completed_at: p.completed_at, updated_at: new Date().toISOString(),
+      },
+      { onConflict: "user_id,event_id" },
+    );
+  },
+  /** Organisers only (RLS); everyone else gets just their own row. */
+  async listProgress(eventId: string): Promise<ProgressRow[]> {
+    const c = await sb();
+    const { data, error } = await c
+      .from("walk_progress")
+      .select("user_id,user_name,completed_landmarks,distance_covered_m,started_at,completed_at,updated_at")
+      .eq("event_id", eventId)
+      .order("updated_at", { ascending: false })
+      .limit(1000);
+    if (error) throw new Error(error.message);
+    return data as ProgressRow[];
+  },
   async remove(postId: string) {
     const c = await sb();
-    const { data: row } = await c.from("posts").select("image_path").eq("id", postId).single();
-    if (row?.image_path) await c.storage.from("photos").remove([row.image_path]);
+    const { data: row } = await c.from("posts").select("image_path, thumb_path").eq("id", postId).single();
+    const files = [row?.image_path, row?.thumb_path].filter((f): f is string => !!f);
+    if (files.length) await c.storage.from("photos").remove(files);
     const { error } = await c.from("posts").delete().eq("id", postId);
     if (error) throw new Error(error.message);
   },

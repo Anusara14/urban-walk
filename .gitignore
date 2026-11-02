@@ -43,3 +43,6 @@ next-env.d.ts
 
 # local tooling
 .claude/
+
+# copied from node_modules at predev/prebuild
+/public/maplibre/

@@ -1,5 +1,4 @@
 "use client";
-/* eslint-disable @next/next/no-img-element -- static brand asset */
 
 import { useRef } from "react";
 import Link from "next/link";
@@ -55,7 +54,7 @@ export function HomeScreen() {
       {/* hero */}
       <section className="relative h-[78dvh] min-h-[560px] overflow-hidden rounded-b-[36px]">
         {cover && <WikiImage photo={cover} sizes="(max-width: 440px) 100vw, 440px" priority className="h-cover absolute inset-0 size-full" alt={coverStop?.name ?? ""} />}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/20 to-black/90" />
 
         <header className="relative flex items-center justify-between px-5 safe-top">
           <div className="h-rise flex items-center gap-2.5 pt-1">
@@ -65,12 +64,12 @@ export function HomeScreen() {
         </header>
 
         <div className="absolute inset-x-0 bottom-0 px-5 pb-7">
-          <p className="h-rise eyebrow text-white/75">{ev.kicker}</p>
-          <h1 className="display mt-3 text-[64px]">
+          <p className="h-rise eyebrow text-on-photo text-white/90">{ev.kicker}</p>
+          <h1 className="display text-on-photo mt-3 text-[64px]">
             <span className="h-rise block">{first}</span>
             <span className="h-rise block">{rest.join(" ")}</span>
           </h1>
-          <p className="h-rise mt-3 flex items-center gap-1.5 text-[14px] text-white/85">
+          <p className="h-rise text-on-photo mt-3 flex items-center gap-1.5 text-[14px] text-white">
             <MapPin className="size-4" /> {ev.location}
           </p>
 
@@ -114,7 +113,7 @@ export function HomeScreen() {
           <h2 className="text-[20px] font-semibold tracking-tight">Along the way</h2>
           <span className="text-[12px] text-white/55">Swipe</span>
         </div>
-        <ol className="mt-3 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 scrollbar-none">
+        <ol className="mt-3 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto pb-2 pl-5 scrollbar-none">
           {model.stops.map((s) => {
             const photo = s.content?.photos[0];
             return (
@@ -128,6 +127,8 @@ export function HomeScreen() {
               </li>
             );
           })}
+          {/* end inset = this 8px spacer + the 12px gap; trailing padding is unreliable in flex scrollers */}
+          <li aria-hidden className="w-2 shrink-0" />
         </ol>
       </section>
 

@@ -41,7 +41,7 @@ export const WalkMap = forwardRef<MapRef, Props>(function WalkMap(props, ref) {
       maxPitch={70}
       minZoom={11}
       dragRotate
-      className="bg-[#eceef1]"
+      className="isolate bg-[#eceef1]"
     >
       <WalkLayers model={model} show3d={show3d} />
       <MapContents {...props} />

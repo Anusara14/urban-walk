@@ -1,14 +1,13 @@
 "use client";
 // Participant accounts.
-// Supabase mode: passwordless email sign-in with a 6-digit code (works on any phone,
-// no redirect back into the app needed). Organisers are users whose
+// Supabase mode: "Sign in with Google" (no passwords, no emails to send). Organisers are users whose
 // app_metadata.role is "organiser" — set server-side, never from the client.
 // Local mode: a name-only profile kept on this device, for development and demos.
 import { useSyncExternalStore } from "react";
 import type { User } from "@supabase/supabase-js";
 import { backendMode, getSupabase } from "./supabase";
 
-export type Account = { id: string; name: string; email: string | null; organiser: boolean };
+export type Account = { id: string; name: string; email: string | null; avatar: string | null; organiser: boolean };
 type AuthState = { ready: boolean; account: Account | null };
 
 const LOCAL_KEY = "uw:account";
@@ -21,10 +20,12 @@ const emit = (next: AuthState) => {
   listeners.forEach((l) => l());
 };
 
+// Google fills name/full_name and picture/avatar_url; a rename from /login overwrites name.
 const fromUser = (u: User): Account => ({
   id: u.id,
-  name: String(u.user_metadata?.name ?? "").trim(),
+  name: String(u.user_metadata?.name ?? u.user_metadata?.full_name ?? "").trim().slice(0, 40),
   email: u.email ?? null,
+  avatar: (u.user_metadata?.avatar_url ?? u.user_metadata?.picture ?? null) as string | null,
   organiser: u.app_metadata?.role === "organiser",
 });
 
@@ -69,25 +70,25 @@ export function currentAccount(): Account | null {
 
 export const displayName = (a: Account | null) => a?.name || "Participant";
 
+/**
+ * Test access to /admin without an organiser account: on `npm run dev`, or whenever no
+ * Supabase project is connected (nothing to protect yet). A production build with
+ * Supabase never qualifies, so a deployed event always requires a real organiser.
+ */
+export const adminTestAccess = process.env.NODE_ENV === "development" || backendMode === "local";
+
 // ---------------- actions ----------------
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const cleanName = (n: string) => n.trim().replace(/\s+/g, " ").slice(0, 40);
 
-export async function sendCode(email: string) {
-  const e = email.trim().toLowerCase();
-  if (!EMAIL.test(e)) throw new Error("Enter a valid email address.");
+/** Full-page redirect to Google; Supabase sends the user back to /login?next=… signed in. */
+export async function signInWithGoogle(next: string) {
   const c = await getSupabase();
-  const { error } = await c.auth.signInWithOtp({ email: e, options: { shouldCreateUser: true } });
-  if (error) throw new Error(error.status === 429 ? "Too many attempts — wait a minute and try again." : error.message);
-  return e;
-}
-
-export async function verifyCode(email: string, code: string) {
-  const token = code.replace(/\D/g, "");
-  if (token.length !== 6) throw new Error("The code has 6 digits.");
-  const c = await getSupabase();
-  const { error } = await c.auth.verifyOtp({ email, token, type: "email" });
-  if (error) throw new Error("That code didn't work. Check the latest email or send a new code.");
+  const redirectTo = `${window.location.origin}/login?next=${encodeURIComponent(next)}`;
+  const { error } = await c.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo, queryParams: { prompt: "select_account" } },
+  });
+  if (error) throw new Error(error.message);
 }
 
 export async function updateName(name: string) {
@@ -115,7 +116,7 @@ export function signInLocal(name: string) {
     if (legacy) id = (JSON.parse(legacy) as { id?: string }).id ?? id;
   } catch {}
   // every local profile can open /admin so organisers can try it without a backend
-  const account: Account = { id, name: n, email: null, organiser: true };
+  const account: Account = { id, name: n, email: null, avatar: null, organiser: true };
   try {
     localStorage.setItem(LOCAL_KEY, JSON.stringify(account));
   } catch {

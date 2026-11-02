@@ -39,6 +39,7 @@ type Ctx = {
   comment: (postId: string, text: string) => Promise<void>;
   like: (postId: string) => Promise<void>;
   removePost: (postId: string) => Promise<void>;
+  reloadPosts: () => Promise<void>;
 };
 
 const WalkContext = createContext<Ctx | null>(null);
@@ -72,8 +73,11 @@ export function WalkProvider({ children }: { children: ReactNode }) {
       try {
         localStorage.setItem(progressKey(eventId), JSON.stringify(p));
       } catch {}
+      // share with organisers' dashboard (no-op in local mode)
+      const furthestM = Math.max(0, ...model.stops.filter((s) => p.visited.includes(s.id)).map((s) => s.routeKm * 1000));
+      backend.syncProgress(p, furthestM).catch(() => {});
     },
-    [eventId],
+    [eventId, model.stops],
   );
   const toggleVisited = useCallback(
     (id: string) => {
@@ -195,7 +199,8 @@ export function WalkProvider({ children }: { children: ReactNode }) {
   const value = useMemo<Ctx>(() => ({
     geo, startLocation, userCoord, progress, toggleVisited, resetProgress, fraction, coveredM, nextStop, distanceTo,
     toast, dismissToast, composer, openComposer, closeComposer, posts, postsError, createPost, comment, like, removePost,
-  }), [geo, startLocation, userCoord, progress, toggleVisited, resetProgress, fraction, coveredM, nextStop, distanceTo,
+    reloadPosts: refresh,
+  }), [refresh, geo, startLocation, userCoord, progress, toggleVisited, resetProgress, fraction, coveredM, nextStop, distanceTo,
     toast, dismissToast, composer, openComposer, closeComposer, posts, postsError, createPost, comment, like, removePost]);
   return <WalkContext.Provider value={value}>{children}</WalkContext.Provider>;
 }

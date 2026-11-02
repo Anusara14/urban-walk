@@ -32,6 +32,8 @@ Fort to Galle Face Green and down Galle Road.
   - [Hybrid 2D/3D map](#hybrid-2d3d-map)
   - [Location, proximity and privacy](#location-proximity-and-privacy)
   - [Accounts](#accounts)
+  - [Organiser dashboard](#organiser-dashboard)
+  - [Bandwidth](#bandwidth)
 - [Running a walk](#running-a-walk)
 - [Deploying with Supabase](#deploying-with-supabase)
 - [Project structure](#project-structure)
@@ -71,8 +73,8 @@ stay in that browser, so you can try every feature without a backend.
 | Landmark | `/landmark/[id]` | Editorial page: sourced overview, verified organiser notes, photos, observation prompts, participants' posts, related places |
 | Discoveries | `/community` | Participants' photos and observations, with appreciation, comments and filters |
 | Progress | `/progress` | Stop *N / 10*, distance covered and remaining, time remaining, visited stops |
-| Sign in | `/login` | Email code (Supabase) or a device profile (local mode); rename, sign out |
-| Organiser console | `/admin` | Organisers only. Event details, stops, verified content, the six segments, feature categories |
+| Sign in | `/login` | *Continue with Google* (Supabase) or a device profile (local mode); rename, sign out |
+| Organiser dashboard | `/admin` | Organisers only, built for desktop and phone. Live overview, moderation, and editors for event details, stops, verified content, the six segments and feature categories |
 
 The yellow camera button on every screen opens photo capture. Observations open from a landmark page
 or from Discoveries. Browsing is open to everyone; posting needs an account.
@@ -155,12 +157,39 @@ public/data/
 Browsing is open. Posting, commenting, appreciating and `/admin` need an account. A signed-out user is
 sent to `/login` and returned to the page they were on.
 
-- **Supabase mode:** passwordless sign-in. The participant enters an email address, types the 6-digit
-  code they receive, and picks a display name.
+- **Supabase mode:** *Continue with Google*. The Google account name labels the participant's
+  posts and can be changed on `/login`. Email addresses are never shown to other participants.
 - **Organisers:** users whose `app_metadata.role` is `"organiser"`. Only they can open `/admin`, and
   they can delete any post. Row-level security enforces both.
 - **Local mode:** a name-only profile on the device. Every local profile counts as an organiser, so
   the console can be tried without a backend.
+- **Test access to `/admin`:** on `npm run dev`, or whenever no Supabase project is connected,
+  `/admin` opens without an organiser account and shows a *Test mode* banner. The sign-in page also
+  links to it. A production deployment with Supabase always requires a real organiser.
+
+### Organiser dashboard
+
+`/admin` has a dark sidebar on desktop, and a sticky top bar with scrollable section tabs on phones.
+
+- **Overview:** live figures that refresh every minute:
+  - participants walking and finished, average stops visited
+  - photos, observations, comments and appreciations
+  - visits by stop and posts by stop
+  - the latest posts
+- **Moderation:** every post, filterable by type and stop and searchable. It's a table on desktop
+  and cards on phones, with delete.
+- **Event, Stops, Content, Segments, Features:** the editors. Changes are drafts in the browser until
+  you *Export event.json*.
+
+Walking progress is synced to Supabase (`walk_progress`). It records visited stops only, never live
+location. Organisers can read it; everyone else can only see their own.
+
+### Bandwidth
+
+- **Photos:** each one is saved twice, at 1600 px and as a 480 px thumbnail. Feeds, map markers and
+  the dashboard load only thumbnails; the full photo loads when someone taps it.
+- **Map worker:** MapLibre's worker is served from this app, copied by
+  `scripts/copy-maplibre-worker.mjs` before `dev` and `build`, so the map has no unpkg dependency.
 
 ## Running a walk
 
@@ -176,25 +205,24 @@ sent to `/login` and returned to the page they were on.
 
 ## Deploying with Supabase
 
-Without Supabase, everything stays on each participant's device. To share posts between participants:
+Without Supabase, everything stays on each participant's device. The full step-by-step guide is
+**[docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md)**. In short:
 
-1. **Create a Supabase project.**
-   - Keep **Auth → Providers → Email** enabled.
-   - Edit **Auth → Email Templates → Magic Link** so the email includes `{{ .Token }}`. That's how the
-     6-digit code gets into the email.
-2. **Run `supabase/migrations/0001_urban_walk.sql`** in the SQL editor. It sets up:
+1. **Create a Supabase project** (Mumbai or Singapore region) and run
+   `supabase/migrations/0001_urban_walk.sql` in the SQL editor. It sets up:
    - PostGIS and the tables, with row-level security
    - a `photos` bucket limited to WebP/JPEG files up to 3 MB
    - rate limits on posts and comments
-   - the `landmarks_near()` and `posts_near_landmark()` helper functions
-3. **Connect the app:** copy `.env.example` to `.env.local` and fill in the project URL and anon key.
-4. **Grant organisers** in the SQL editor, once per person:
-   ```sql
-   update auth.users set raw_app_meta_data = raw_app_meta_data || '{"role":"organiser"}'
-   where email = 'organiser@example.org';
-   ```
+   - the organiser role, and organiser read access to progress
+2. **Create a Google OAuth client** (web application). Its redirect URI is
+   `https://PROJECT-REF.supabase.co/auth/v1/callback`. Publish the consent screen, then enable
+   **Google** under Supabase **Auth → Providers**.
+3. **Set the Site URL and Redirect URLs** in Supabase to your Vercel domain.
+4. **Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`** to `.env.local` and to
+   Vercel's environment variables, then redeploy.
+5. **Make organisers:** each person signs in once, then you run one SQL update per person (in the guide).
 
-Walking progress and admin drafts stay on the device in both modes.
+Admin drafts stay in the browser in both modes until they're exported.
 
 ## Project structure
 
@@ -205,11 +233,13 @@ src/
     map/                    WalkMap, 3D corridor layers, zoom-tiered markers
     walk/ landmark/ home/   screens
     community/ auth/        Discoveries cards, sign-in
+    admin/                  dashboard: overview, moderation, editors
     providers/              event model and walk state (GPS, progress, posts)
     uw/                     design system: sheet, composer, nav, brand, badges
     ui/map.tsx              mapcn (vendored by the shadcn CLI, not edited)
   lib/                      geo maths, proximity rules, auth, data backend, types
-scripts/                    KML → GeoJSON, content fetcher
+scripts/                    KML → GeoJSON, content fetcher, MapLibre worker copy
+docs/                       Supabase + Google + Vercel setup guide
 supabase/migrations/        schema, RLS, storage, functions
 tests/                      node:test suites
 public/sw.js                offline service worker
@@ -230,7 +260,7 @@ This is **v1-beta**.
 | Status | Area |
 |---|---|
 | ✅ Tested | Lint, type checks, the test suite and the production build all pass. Every screen and the core flows were checked in a mobile browser: map, 3D, segments, proximity alerts with simulated GPS, photo posts, comments and likes, device sign-in, the admin gate. |
-| ⚠️ Not yet tested | The Supabase path (email sign-in, shared posts, storage) and offline mode on a real phone. Test both before an event. |
+| ⚠️ Not yet tested | The Supabase path (Google sign-in, shared posts, storage, synced progress) and offline mode on a real phone. Follow the trial-run checklist in the setup guide before an event. |
 
 Known limits:
 
@@ -240,8 +270,10 @@ Known limits:
   stays at 150 m until you re-run `npm run data:kml`.
 - **Event date:** it isn't in the source data, so the home screen shows *Date to be announced* until
   you set it.
-- **No Content Security Policy yet:** MapLibre loads its worker from unpkg and blob URLs, so a policy
-  needs testing against the deployed site first.
+- **No Content Security Policy yet:** MapLibre needs `blob:` workers, so a policy needs testing
+  against the deployed site first.
+- **Map tiles** come from OpenFreeMap, a free service with no uptime guarantee. That's fine at this
+  scale; self-hosting a Colombo tile extract would remove the dependency.
 
 ## Credits
 

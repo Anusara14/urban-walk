@@ -80,6 +80,8 @@ export function WalkLayers({ model, show3d }: { model: WalkModel; show3d: boolea
       for (const l of [ids.buildings3d, ids.restLine, ids.rest, ids.corridor]) if (map.getLayer(l)) map.removeLayer(l);
       for (const s of [ids.rest, ids.corridor]) if (map.getSource(s)) map.removeSource(s);
     };
+    // show3d only sets the initial visibility; the effect below toggles it without rebuilding layers
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, isLoaded, model]);
 
   useEffect(() => {

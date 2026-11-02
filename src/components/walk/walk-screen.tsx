@@ -140,7 +140,7 @@ export function WalkScreen() {
       />
 
       {/* soft top fade so the editorial title reads over any part of the map */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-uw-paper/85 via-uw-paper/45 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-uw-paper via-uw-paper/80 to-transparent" />
 
       {/* top bar */}
       <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 px-4 safe-top">

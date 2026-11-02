@@ -1,16 +1,14 @@
 -- Urban Walk schema. Apply with `supabase db push` or paste into the SQL editor.
--- Sign-in is passwordless email (6-digit code). In the dashboard:
---   Auth > Providers > Email: enabled ("Confirm email" on).
---   Auth > Email Templates > Magic Link: include {{ .Token }} so the email carries the code.
+-- Sign-in is "Continue with Google" (Auth > Providers > Google); see docs/SUPABASE_SETUP.md.
 -- Organisers: grant once per person (service role / SQL editor only):
 --   update auth.users set raw_app_meta_data = raw_app_meta_data || '{"role":"organiser"}'
 --   where email = 'organiser@example.org';
 create extension if not exists postgis;
 
 -- app_metadata is only writable server-side, so it is safe to trust in policies
-create or replace function is_organiser() returns boolean language sql stable as $
+create or replace function is_organiser() returns boolean language sql stable as $$
   select coalesce(auth.jwt() -> 'app_metadata' ->> 'role', '') = 'organiser';
-$;
+$$;
 
 -- ---------- event content (admin-managed) ----------
 create table if not exists events (
@@ -69,6 +67,8 @@ create table if not exists posts (
   content text not null default '' check (char_length(content) <= 2000),
   -- must live in the uploader's own folder: <event>/<uid>/<file>
   image_path text check (image_path is null or (image_path like event_id || '/' || user_id::text || '/%' and image_path not like '%..%')),
+  -- ~480 px version used by the feed and map markers (keeps bandwidth down)
+  thumb_path text check (thumb_path is null or (thumb_path like event_id || '/' || user_id::text || '/%' and thumb_path not like '%..%')),
   prompt text check (char_length(prompt) <= 200),
   lat double precision check (lat between -90 and 90),
   lng double precision check (lng between -180 and 180),
@@ -98,13 +98,16 @@ create table if not exists post_likes (
 create table if not exists walk_progress (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade default auth.uid(),
-  event_id text not null,
-  completed_landmarks text[] not null default '{}',
-  distance_covered_m double precision not null default 0,
+  event_id text not null check (char_length(event_id) <= 80),
+  user_name text not null default 'Participant' check (char_length(user_name) between 1 and 40),
+  completed_landmarks text[] not null default '{}' check (cardinality(completed_landmarks) <= 100),
+  distance_covered_m double precision not null default 0 check (distance_covered_m between 0 and 100000),
   started_at timestamptz,
   completed_at timestamptz,
+  updated_at timestamptz not null default now(),
   unique (user_id, event_id)
 );
+create index if not exists walk_progress_event_idx on walk_progress (event_id, updated_at desc);
 
 -- ---------- geographic helpers ----------
 -- Landmarks within radius of a point (proximity, "photos near a landmark").
@@ -152,6 +155,8 @@ create policy "like as self" on post_likes for insert with check (auth.uid() = u
 create policy "unlike as self" on post_likes for delete using (auth.uid() = user_id);
 
 create policy "own progress" on walk_progress for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+-- the organiser dashboard reads everyone's progress (never live location: only visited stops)
+create policy "organisers read progress" on walk_progress for select using (is_organiser());
 
 -- ---------- storage ----------
 -- photos only, ≤ 3 MB (the client re-encodes to ≤1600 px WebP/JPEG, typically 150–400 KB)

@@ -30,9 +30,8 @@ function loadMapLibre() {
   maplibrePromise ??= import("maplibre-gl")
     .then((lib) => {
       if (!lib.getWorkerUrl()) {
-        lib.setWorkerUrl(
-          `https://unpkg.com/maplibre-gl@${lib.getVersion()}/dist/maplibre-gl-worker.mjs`,
-        );
+        // Urban Walk: self-hosted (scripts/copy-maplibre-worker.mjs), not unpkg
+        lib.setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
       }
       return lib;
     })

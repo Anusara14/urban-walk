@@ -22,16 +22,16 @@ export function TitleBlock({ stop, isNext, onClick }: { stop: Stop; isNext: bool
   const lines = words.length > 1 ? [words.slice(0, half).join(" "), words.slice(half).join(" ")] : [stop.name];
   return (
     <button ref={ref} onClick={onClick} className="max-w-[230px] text-left focus-visible:outline-none" aria-label={`${isNext ? "Next stop" : "Selected stop"}: ${stop.name}`}>
-      <p className="tb-line eyebrow mb-2 flex items-center gap-2 text-uw-charcoal/70">
+      <p className="tb-line eyebrow text-on-map mb-2 flex items-center gap-2 text-uw-charcoal">
         <span className="tabular grid size-5 place-items-center rounded-full bg-uw-yellow text-[10px] text-uw-ink">{stop.number}</span>
         {isNext ? "Next stop" : "Stop"}
       </p>
-      <h1 className="display text-[44px] text-uw-ink">
+      <h1 className="display text-on-map text-[44px] text-uw-ink">
         {lines.map((l) => (
           <span key={l} className="tb-line block overflow-hidden pb-[0.06em]">{l}</span>
         ))}
       </h1>
-      <p className="tb-line mt-2 text-[13px] font-medium text-uw-charcoal/75">{stop.area}, Colombo</p>
+      <p className="tb-line text-on-map mt-2 text-[13px] font-medium text-uw-charcoal">{stop.area}, Colombo</p>
     </button>
   );
 }

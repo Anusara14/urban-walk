@@ -1,7 +1,7 @@
 // Urban Walk service worker — offline-friendly, hand-rolled (no build plugin).
 // Pages: network first (4 s budget), cached copy when offline or slow.
 // Static assets, event data, photos and map tiles: stale-while-revalidate, capped.
-const VERSION = "uw-v4";
+const VERSION = "uw-v5";
 const PAGES = `${VERSION}-pages`;
 const ASSETS = `${VERSION}-assets`;
 const TILES = `${VERSION}-tiles`;
@@ -11,7 +11,7 @@ const NAV_TIMEOUT_MS = 4000;
 const PRECACHE_PAGES = ["/", "/walk", "/community", "/progress"];
 const PRECACHE_ASSETS = [
   "/data/event.json", "/data/urban-walk-route.geojson", "/data/landmark-content.json",
-  "/brand/urban-walk-app-icon.svg", "/icon-192.png",
+  "/brand/urban-walk-app-icon.svg", "/icon-192.png", "/maplibre/maplibre-gl-worker.mjs",
 ];
 
 self.addEventListener("install", (e) => {
@@ -81,9 +81,10 @@ self.addEventListener("fetch", (e) => {
   if (req.mode === "navigate") return e.respondWith(networkFirstPage(e));
   if (url.hostname === "tiles.openfreemap.org") return e.respondWith(staleWhileRevalidate(e, TILES));
   if (
-    (url.origin === self.location.origin && (url.pathname.startsWith("/_next/static") || url.pathname.startsWith("/data/") || url.pathname.startsWith("/brand/"))) ||
+    (url.origin === self.location.origin && (url.pathname.startsWith("/_next/static") || url.pathname.startsWith("/data/") || url.pathname.startsWith("/brand/") || url.pathname.startsWith("/maplibre/"))) ||
     (url.hostname.endsWith("wikimedia.org") && req.destination === "image") ||
-    url.hostname === "unpkg.com" // MapLibre's worker script, version-pinned in the URL
+    // participant photos and thumbnails (unique, immutable paths)
+    (url.hostname.endsWith(".supabase.co") && url.pathname.includes("/storage/v1/object/public/") && req.destination === "image")
   ) {
     return e.respondWith(staleWhileRevalidate(e, ASSETS));
   }

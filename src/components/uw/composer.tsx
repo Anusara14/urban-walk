@@ -9,7 +9,7 @@ import { useWalk } from "@/components/providers/walk-provider";
 import Link from "next/link";
 import { displayName, useAuth } from "@/lib/auth";
 import { haversineM, fmtDistance } from "@/lib/geo";
-import { preparePhoto } from "@/lib/image";
+import { preparePhoto, type PreparedPhoto } from "@/lib/image";
 import type { GeoTag } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +38,7 @@ function ComposerBody() {
   const { model } = useEvent();
   const { composer, closeComposer, createPost, geo, startLocation } = useWalk();
   const kind = composer!.kind;
-  const [file, setFile] = useState<Blob | null>(null);
+  const [file, setFile] = useState<PreparedPhoto | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [text, setText] = useState("");
   const [prompt, setPrompt] = useState(kind === "observation" ? OBSERVATION_PROMPTS[0] : undefined);
@@ -74,9 +74,9 @@ function ComposerBody() {
     if (!f) return;
     setError(null);
     try {
-      const blob = await preparePhoto(f);
-      setFile(blob);
-      setPreview(URL.createObjectURL(blob));
+      const photo = await preparePhoto(f);
+      setFile(photo);
+      setPreview(URL.createObjectURL(photo.full));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't read that photo.");
     }
@@ -91,7 +91,8 @@ function ComposerBody() {
         kind,
         landmark_id: landmark,
         text: text.trim().slice(0, 2000),
-        image: file,
+        image: file?.full ?? null,
+        thumb: file?.thumb ?? null,
         geo: attachGeo ? geoTag : null,
         prompt: kind === "observation" ? prompt : undefined,
       });
@@ -116,7 +117,7 @@ function ComposerBody() {
       </header>
 
       {kind === "observation" && (
-        <div className="-mx-5 flex gap-2 overflow-x-auto px-5 scrollbar-none" role="listbox" aria-label="Prompts">
+        <div className="-mx-5 flex scroll-px-5 gap-2 overflow-x-auto pl-5 after:w-3 after:shrink-0 after:content-[''] scrollbar-none" role="listbox" aria-label="Prompts">
           {OBSERVATION_PROMPTS.map((p) => (
             <button
               key={p}

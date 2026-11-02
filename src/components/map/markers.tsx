@@ -116,7 +116,7 @@ export const PostMarker = memo(function PostMarker({ post, tier, onSelect }: { p
     <MapMarker longitude={post.geo.lng} latitude={post.geo.lat} onClick={() => onSelect(post)}>
       <MarkerContent>
         <button aria-label={`Post by ${post.user_name}`} className="block size-8 overflow-hidden rounded-[10px] bg-white shadow-md ring-2 ring-white">
-          {post.image_url ? <img src={post.image_url} alt="" className="size-full object-cover" /> : <span className="grid size-full place-items-center text-[13px]">✎</span>}
+          {post.image_url ? <img src={post.thumb_url ?? post.image_url} alt="" loading="lazy" className="size-full object-cover" /> : <span className="grid size-full place-items-center text-[13px]">✎</span>}
         </button>
       </MarkerContent>
     </MapMarker>

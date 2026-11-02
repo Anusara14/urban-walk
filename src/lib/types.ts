@@ -137,6 +137,8 @@ export type Post = {
   text: string;
   /** object URL / data URL / storage URL */
   image_url: string | null;
+  /** small version for feeds and markers; falls back to image_url for older posts */
+  thumb_url: string | null;
   geo: GeoTag;
   created_at: string;
   likes: number;
@@ -146,6 +148,17 @@ export type Post = {
 };
 
 export type Comment = { id: string; user_name: string; content: string; created_at: string };
+
+/** One participant's progress as organisers see it (Supabase: walk_progress table). */
+export type ProgressRow = {
+  user_id: string;
+  user_name: string;
+  completed_landmarks: string[];
+  distance_covered_m: number;
+  started_at: string | null;
+  completed_at: string | null;
+  updated_at: string;
+};
 
 export type Progress = {
   event_id: string;

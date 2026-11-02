@@ -25,7 +25,7 @@ function FloatingCard({ children, onClose, k }: { children: ReactNode; onClose: 
   }, { dependencies: [k] });
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-[calc(max(env(safe-area-inset-bottom),14px)+80px)] z-30 flex justify-center px-3">
-      <div ref={ref} className="glass pointer-events-auto relative w-full max-w-[416px] rounded-[28px] p-2.5">
+      <div ref={ref} className="glass-strong pointer-events-auto relative w-full max-w-[416px] rounded-[28px] p-2.5">
         <button onClick={onClose} aria-label="Close preview" className="press absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/70">
           <X className="size-4" />
         </button>
@@ -105,7 +105,7 @@ export function PostPreview({ post, onClose }: { post: Post; onClose: () => void
   return (
     <FloatingCard onClose={onClose} k={post.id}>
       <div className="flex gap-3">
-        {post.image_url && <img src={post.image_url} alt="" className="h-[96px] w-[88px] shrink-0 rounded-[18px] object-cover" />}
+        {post.image_url && <img src={post.thumb_url ?? post.image_url} alt="" className="h-[96px] w-[88px] shrink-0 rounded-[18px] object-cover" />}
         <div className="min-w-0 flex-1 py-1">
           <p className="eyebrow pr-8 text-uw-slate">{post.user_name}{stop ? ` · ${stop.name}` : ""}</p>
           <p className="mt-1 line-clamp-3 text-[13px] leading-snug">{post.text || "—"}</p>

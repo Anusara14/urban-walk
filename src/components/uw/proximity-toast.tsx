@@ -38,7 +38,7 @@ export function ProximityToast() {
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] flex justify-center px-3 safe-top">
-      <div ref={ref} role="status" aria-live="polite" className="glass pointer-events-auto w-full max-w-[416px] rounded-[26px] p-2.5">
+      <div ref={ref} role="status" aria-live="polite" className="glass-strong pointer-events-auto w-full max-w-[416px] rounded-[26px] p-2.5">
         <div className="flex gap-3">
           <div className="relative size-[76px] shrink-0 overflow-hidden rounded-[18px] bg-uw-mist">
             {photo && <WikiImage photo={photo} sizes="76px" maxWidth={250} className="size-full" alt="" />}

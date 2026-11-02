@@ -1,15 +1,16 @@
 "use client";
 
-import { useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight, Loader2, LogOut, Settings2 } from "lucide-react";
 import { Wordmark } from "@/components/uw/brand";
-import { displayName, sendCode, signInLocal, signOut, updateName, useAuth, verifyCode } from "@/lib/auth";
+import { displayName, signInLocal, signInWithGoogle, signOut, updateName, useAuth } from "@/lib/auth";
 import { settleAfter } from "@/lib/motion";
 import { backendMode } from "@/lib/supabase";
+import { adminTestAccess } from "@/lib/auth";
 
 gsap.registerPlugin(useGSAP);
 
@@ -23,7 +24,10 @@ const field = "h-14 w-full rounded-[18px] border border-white/15 bg-white/10 px-
 export function LoginScreen() {
   const { ready, account } = useAuth();
   const router = useRouter();
-  const next = safeNext(useSearchParams().get("next"));
+  const params = useSearchParams();
+  const next = safeNext(params.get("next"));
+  // Supabase puts OAuth failures (e.g. the user cancelled) on the return URL
+  const oauthError = params.get("error_description");
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -41,7 +45,7 @@ export function LoginScreen() {
   else if (account && account.name) body = <AccountCard next={next} />;
   else if (account) body = <NameStep onDone={() => router.replace(next)} />;
   else if (backendMode === "local") body = <LocalStep onDone={() => router.replace(next)} />;
-  else body = <EmailCodeSteps />;
+  else body = <GoogleStep next={next} initialError={oauthError} />;
 
   return (
     <main ref={root} className="relative flex min-h-dvh flex-col overflow-hidden bg-uw-ink px-6 pb-10 text-white safe-top">
@@ -61,9 +65,14 @@ export function LoginScreen() {
           Don’t just walk through the city. <span className="text-white">Understand the city.</span>
         </p>
         <div className="lg-rise mt-9">{body}</div>
+        {adminTestAccess && (
+          <Link href="/admin" className="lg-rise mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-uw-yellow underline-offset-4 hover:underline">
+            <Settings2 className="size-4" /> Open the organiser dashboard (test mode)
+          </Link>
+        )}
         {backendMode === "local" && !account && (
           <p className="lg-rise mt-5 text-[12px] leading-relaxed text-white/45">
-            Development mode: your profile and posts stay on this device. Connect Supabase to sign in with email.
+            Development mode: your profile and posts stay on this device. Connect Supabase to sign in with Google.
           </p>
         )}
       </section>
@@ -102,43 +111,35 @@ function Submit({ busy, children }: { busy: boolean; children: ReactNode }) {
 const ErrorText = ({ error }: { error: string | null }) =>
   error ? <p role="alert" className="mt-3 text-[13px] text-[#ffb4a8]">{error}</p> : null;
 
-function EmailCodeSteps() {
-  const [email, setEmail] = useState<string | null>(null);
-  const [value, setValue] = useState("");
+function GoogleStep({ next, initialError }: { next: string; initialError: string | null }) {
   const { busy, error, run } = useAction();
-
-  const submit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!email) run(async () => { setEmail(await sendCode(value)); setValue(""); });
-    else run(() => verifyCode(email, value));
-  };
-
   return (
-    <form onSubmit={submit} noValidate>
-      <label className="eyebrow block text-white/55" htmlFor="login-field">
-        {email ? `Code sent to ${email}` : "Sign in or join with your email"}
-      </label>
-      {email ? (
-        <input
-          id="login-field" key="code" value={value} onChange={(e) => setValue(e.target.value)}
-          inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]*" maxLength={6} placeholder="6-digit code" autoFocus
-          className={`${field} mt-2 tabular text-center text-[22px] tracking-[0.5em]`}
-        />
-      ) : (
-        <input
-          id="login-field" key="email" type="email" value={value} onChange={(e) => setValue(e.target.value)}
-          autoComplete="email" inputMode="email" placeholder="you@university.lk" className={`${field} mt-2`}
-        />
-      )}
-      <ErrorText error={error} />
-      <Submit busy={busy}>{email ? "Verify and continue" : "Email me a code"}</Submit>
-      {email && (
-        <div className="mt-4 flex justify-between text-[13px] text-white/60">
-          <button type="button" onClick={() => { setEmail(null); setValue(""); }} className="underline underline-offset-2">Use another email</button>
-          <button type="button" disabled={busy} onClick={() => run(async () => { await sendCode(email); })} className="underline underline-offset-2">Send a new code</button>
-        </div>
-      )}
-    </form>
+    <div>
+      <button
+        onClick={() => run(() => signInWithGoogle(next))}
+        disabled={busy}
+        className="press focus-ring flex h-14 w-full items-center justify-center gap-3 rounded-full bg-white text-[15px] font-semibold text-uw-ink disabled:opacity-60"
+      >
+        {busy ? <Loader2 className="size-5 animate-spin" /> : <GoogleG />}
+        Continue with Google
+      </button>
+      <ErrorText error={error ?? (initialError ? "Google sign-in didn't finish. Try again." : null)} />
+      <p className="mt-4 text-[12px] leading-relaxed text-white/50">
+        We use your Google name to label your posts. Your email is never shown to other participants.
+      </p>
+    </div>
+  );
+}
+
+/** Google's "G" mark, as required by Google's sign-in branding guidelines. */
+function GoogleG() {
+  return (
+    <svg viewBox="0 0 48 48" className="size-5" aria-hidden>
+      <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" />
+      <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
+      <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z" />
+      <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z" />
+    </svg>
   );
 }
 
@@ -176,7 +177,12 @@ function AccountCard({ next }: { next: string }) {
   return (
     <div className="glass-dark rounded-[26px] p-5">
       <div className="flex items-center gap-3">
-        <span className="grid size-12 place-items-center rounded-full bg-uw-yellow text-[18px] font-semibold text-uw-ink">{displayName(account).slice(0, 1).toUpperCase()}</span>
+        {account?.avatar ? (
+          // eslint-disable-next-line @next/next/no-img-element -- Google profile photo
+          <img src={account.avatar} alt="" referrerPolicy="no-referrer" className="size-12 rounded-full object-cover" />
+        ) : (
+          <span className="grid size-12 place-items-center rounded-full bg-uw-yellow text-[18px] font-semibold text-uw-ink">{displayName(account).slice(0, 1).toUpperCase()}</span>
+        )}
         <div className="min-w-0">
           <p className="truncate text-[17px] font-semibold">{displayName(account)}</p>
           <p className="truncate text-[12.5px] text-white/55">{account?.email ?? "Profile on this device"}{account?.organiser ? " · Organiser" : ""}</p>
