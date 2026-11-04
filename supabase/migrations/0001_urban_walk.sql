@@ -3,10 +3,14 @@
 -- Organisers: grant once per person (service role / SQL editor only):
 --   update auth.users set raw_app_meta_data = raw_app_meta_data || '{"role":"organiser"}'
 --   where email = 'organiser@example.org';
-create extension if not exists postgis;
+
+-- Supabase convention: extensions live in their own schema, not public
+create extension if not exists postgis with schema extensions;
+set search_path = public, extensions;
 
 -- app_metadata is only writable server-side, so it is safe to trust in policies
-create or replace function is_organiser() returns boolean language sql stable as $$
+create or replace function is_organiser() returns boolean
+language sql stable set search_path = public, extensions as $$
   select coalesce(auth.jwt() -> 'app_metadata' ->> 'role', '') = 'organiser';
 $$;
 
@@ -30,6 +34,7 @@ create table if not exists routes (
   distance_m double precision generated always as (st_length(geom::geography)) stored,
   estimated_minutes int
 );
+create index if not exists routes_event_idx on routes (event_id);
 
 create table if not exists route_segments (
   id uuid primary key default gen_random_uuid(),
@@ -39,6 +44,7 @@ create table if not exists route_segments (
   end_fraction double precision not null check (end_fraction between 0 and 1 and end_fraction > start_fraction),
   sort int not null
 );
+create index if not exists route_segments_route_idx on route_segments (route_id);
 
 create table if not exists landmarks (
   id text primary key,                              -- KML-derived feature id
@@ -55,6 +61,7 @@ create table if not exists landmarks (
   proximity_radius_m int not null default 40
 );
 create index if not exists landmarks_geom_idx on landmarks using gist (geom);
+create index if not exists landmarks_route_idx on landmarks (route_id);
 
 -- ---------- participant content ----------
 create table if not exists posts (
@@ -78,6 +85,7 @@ create table if not exists posts (
   created_at timestamptz not null default now()
 );
 create index if not exists posts_event_idx on posts (event_id, created_at desc);
+create index if not exists posts_user_idx on posts (user_id, created_at desc);
 create index if not exists posts_geom_idx on posts using gist (geom);
 
 create table if not exists comments (
@@ -88,12 +96,15 @@ create table if not exists comments (
   content text not null check (char_length(content) between 1 and 1000),
   created_at timestamptz not null default now()
 );
+create index if not exists comments_post_idx on comments (post_id, created_at);
+create index if not exists comments_user_idx on comments (user_id, created_at desc);
 
 create table if not exists post_likes (
   post_id uuid not null references posts(id) on delete cascade,
   user_id uuid not null references auth.users(id) on delete cascade default auth.uid(),
   primary key (post_id, user_id)
 );
+create index if not exists post_likes_user_idx on post_likes (user_id);
 
 create table if not exists walk_progress (
   id uuid primary key default gen_random_uuid(),
@@ -112,7 +123,8 @@ create index if not exists walk_progress_event_idx on walk_progress (event_id, u
 -- ---------- geographic helpers ----------
 -- Landmarks within radius of a point (proximity, "photos near a landmark").
 create or replace function landmarks_near(p_lat double precision, p_lng double precision, p_radius_m double precision)
-returns table (id text, name text, distance_m double precision) language sql stable as $$
+returns table (id text, name text, distance_m double precision)
+language sql stable set search_path = public, extensions as $$
   select l.id, l.name, st_distance(l.geom::geography, st_setsrid(st_makepoint(p_lng, p_lat), 4326)::geography)
   from landmarks l
   where st_dwithin(l.geom::geography, st_setsrid(st_makepoint(p_lng, p_lat), 4326)::geography, p_radius_m)
@@ -120,13 +132,15 @@ returns table (id text, name text, distance_m double precision) language sql sta
 $$;
 
 create or replace function posts_near_landmark(p_landmark text, p_radius_m double precision default 60)
-returns setof posts language sql stable as $$
+returns setof posts
+language sql stable set search_path = public, extensions as $$
   select p.* from posts p join landmarks l on l.id = p_landmark
   where p.geom is not null and st_dwithin(p.geom::geography, l.geom::geography, p_radius_m)
   order by p.created_at desc;
 $$;
 
 -- ---------- row level security ----------
+-- (select auth.uid()) is evaluated once per query instead of once per row.
 alter table events enable row level security;
 alter table routes enable row level security;
 alter table route_segments enable row level security;
@@ -143,43 +157,56 @@ create policy "public read landmarks" on landmarks for select using (true);
 -- event/route/landmark writes: service role only (admin tooling), no client policy.
 
 create policy "read posts" on posts for select using (true);
-create policy "insert own posts" on posts for insert with check (auth.uid() = user_id);
-create policy "delete own posts" on posts for delete using (auth.uid() = user_id or is_organiser());
+create policy "insert own posts" on posts for insert to authenticated
+  with check ((select auth.uid()) = user_id);
+create policy "delete own posts" on posts for delete to authenticated
+  using ((select auth.uid()) = user_id or (select is_organiser()));
 
 create policy "read comments" on comments for select using (true);
-create policy "insert own comments" on comments for insert with check (auth.uid() = user_id);
-create policy "delete own comments" on comments for delete using (auth.uid() = user_id or is_organiser());
+create policy "insert own comments" on comments for insert to authenticated
+  with check ((select auth.uid()) = user_id);
+create policy "delete own comments" on comments for delete to authenticated
+  using ((select auth.uid()) = user_id or (select is_organiser()));
 
 create policy "read likes" on post_likes for select using (true);
-create policy "like as self" on post_likes for insert with check (auth.uid() = user_id);
-create policy "unlike as self" on post_likes for delete using (auth.uid() = user_id);
+create policy "like as self" on post_likes for insert to authenticated
+  with check ((select auth.uid()) = user_id);
+create policy "unlike as self" on post_likes for delete to authenticated
+  using ((select auth.uid()) = user_id);
 
-create policy "own progress" on walk_progress for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
--- the organiser dashboard reads everyone's progress (never live location: only visited stops)
-create policy "organisers read progress" on walk_progress for select using (is_organiser());
+-- your own progress; organisers' dashboard reads everyone's (visited stops only, never live location)
+create policy "read progress" on walk_progress for select to authenticated
+  using ((select auth.uid()) = user_id or (select is_organiser()));
+create policy "insert own progress" on walk_progress for insert to authenticated
+  with check ((select auth.uid()) = user_id);
+create policy "update own progress" on walk_progress for update to authenticated
+  using ((select auth.uid()) = user_id) with check ((select auth.uid()) = user_id);
+create policy "delete own progress" on walk_progress for delete to authenticated
+  using ((select auth.uid()) = user_id);
 
 -- ---------- storage ----------
--- photos only, ≤ 3 MB (the client re-encodes to ≤1600 px WebP/JPEG, typically 150–400 KB)
+-- photos only, ≤ 3 MB (the client re-encodes to ≤1600 px WebP/JPEG, typically 150–400 KB).
+-- Public bucket: files are served by public URL without any SELECT policy, so none is
+-- created — a broad SELECT policy would also let anyone list every file in the bucket.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('photos', 'photos', true, 3145728, array['image/webp', 'image/jpeg'])
-on conflict (id) do update set file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
-create policy "public read photos" on storage.objects for select using (bucket_id = 'photos');
-create policy "upload own photos" on storage.objects for insert
-  with check (bucket_id = 'photos' and (storage.foldername(name))[2] = auth.uid()::text and name ~* '\.(webp|jpe?g)$');
-create policy "delete own photos" on storage.objects for delete
-  using (bucket_id = 'photos' and ((storage.foldername(name))[2] = auth.uid()::text or is_organiser()));
+on conflict (id) do update set public = excluded.public, file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
+create policy "upload own photos" on storage.objects for insert to authenticated
+  with check (bucket_id = 'photos' and (storage.foldername(name))[2] = (select auth.uid())::text and name ~* '\.(webp|jpe?g)$');
+create policy "delete own photos" on storage.objects for delete to authenticated
+  using (bucket_id = 'photos' and ((storage.foldername(name))[2] = (select auth.uid())::text or (select is_organiser())));
 
 -- ---------- spam throttle ----------
--- Anyone with an email address can join, so cap each user to a sane rate.
--- Also keep Supabase Auth's email rate limits on (Auth > Rate Limits).
-create or replace function throttle_writes() returns trigger language plpgsql as $$
+-- Anyone with a Google account can join, so cap each user to a sane rate.
+create or replace function throttle_writes() returns trigger
+language plpgsql set search_path = public, extensions as $$
 begin
-  if (select count(*) from posts where user_id = auth.uid() and created_at > now() - interval '1 minute') >= 6
-     and tg_table_name = 'posts' then
+  if tg_table_name = 'posts'
+     and (select count(*) from posts where user_id = auth.uid() and created_at > now() - interval '1 minute') >= 6 then
     raise exception 'Too many posts, wait a minute';
   end if;
-  if (select count(*) from comments where user_id = auth.uid() and created_at > now() - interval '1 minute') >= 15
-     and tg_table_name = 'comments' then
+  if tg_table_name = 'comments'
+     and (select count(*) from comments where user_id = auth.uid() and created_at > now() - interval '1 minute') >= 15 then
     raise exception 'Too many comments, wait a minute';
   end if;
   return new;

@@ -1,14 +1,14 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useRef, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ArrowRight, Loader2, LogOut, Settings2 } from "lucide-react";
+import { ArrowRight, Loader2, LogOut, Mail, Settings2 } from "lucide-react";
 import { Wordmark } from "@/components/uw/brand";
 import { MadeBy } from "@/components/uw/made-by";
-import { displayName, signInLocal, signInWithGoogle, signOut, updateName, useAuth } from "@/lib/auth";
+import { displayName, sendEmailCode, signInLocal, signInWithGoogle, signOut, updateName, useAuth, verifyEmailCode } from "@/lib/auth";
 import { settleAfter } from "@/lib/motion";
 import { backendMode } from "@/lib/supabase";
 import { adminTestAccess } from "@/lib/auth";
@@ -46,7 +46,7 @@ export function LoginScreen() {
   else if (account && account.name) body = <AccountCard next={next} />;
   else if (account) body = <NameStep onDone={() => router.replace(next)} />;
   else if (backendMode === "local") body = <LocalStep onDone={() => router.replace(next)} />;
-  else body = <GoogleStep next={next} initialError={oauthError} />;
+  else body = <SignInStep next={next} initialError={oauthError} />;
 
   return (
     <main ref={root} className="relative flex min-h-dvh flex-col overflow-hidden bg-uw-ink px-6 pb-10 text-white safe-top">
@@ -113,23 +113,89 @@ function Submit({ busy, children }: { busy: boolean; children: ReactNode }) {
 const ErrorText = ({ error }: { error: string | null }) =>
   error ? <p role="alert" className="mt-3 text-[13px] text-[#ffb4a8]">{error}</p> : null;
 
-function GoogleStep({ next, initialError }: { next: string; initialError: string | null }) {
-  const { busy, error, run } = useAction();
+/** Google first; email code as the alternative for people without (or not wanting) Google. */
+function SignInStep({ next, initialError }: { next: string; initialError: string | null }) {
+  const [mode, setMode] = useState<"choose" | "email">("choose");
+  const google = useAction();
+
+  if (mode === "email") return <EmailCodeStep next={next} onBack={() => setMode("choose")} />;
   return (
     <div>
       <button
-        onClick={() => run(() => signInWithGoogle(next))}
-        disabled={busy}
+        onClick={() => google.run(() => signInWithGoogle(next))}
+        disabled={google.busy}
         className="press focus-ring flex h-14 w-full items-center justify-center gap-3 rounded-full bg-white text-[15px] font-semibold text-uw-ink disabled:opacity-60"
       >
-        {busy ? <Loader2 className="size-5 animate-spin" /> : <GoogleG />}
+        {google.busy ? <Loader2 className="size-5 animate-spin" /> : <GoogleG />}
         Continue with Google
       </button>
-      <ErrorText error={error ?? (initialError ? "Google sign-in didn't finish. Try again." : null)} />
+      <ErrorText error={google.error ?? (initialError ? "Sign-in didn't finish. Try again." : null)} />
+
+      <div className="my-4 flex items-center gap-3 text-[12px] text-white/40" aria-hidden>
+        <span className="h-px flex-1 bg-white/15" /> or <span className="h-px flex-1 bg-white/15" />
+      </div>
+
+      <button
+        onClick={() => setMode("email")}
+        className="press focus-ring flex h-14 w-full items-center justify-center gap-3 rounded-full border border-white/20 text-[15px] font-semibold text-white hover:bg-white/5"
+      >
+        <Mail className="size-5" strokeWidth={1.75} /> Continue with email
+      </button>
       <p className="mt-4 text-[12px] leading-relaxed text-white/50">
-        We use your Google name to label your posts. Your email is never shown to other participants.
+        No passwords. Your name labels your posts; your email is never shown to other participants.
       </p>
     </div>
+  );
+}
+
+function EmailCodeStep({ next, onBack }: { next: string; onBack: () => void }) {
+  const [email, setEmail] = useState<string | null>(null);
+  const [value, setValue] = useState("");
+  const [resent, setResent] = useState(false);
+  const { busy, error, run } = useAction();
+
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!email) run(async () => { setEmail(await sendEmailCode(value, next)); setValue(""); });
+    else run(() => verifyEmailCode(email, value));
+  };
+
+  return (
+    <form onSubmit={submit} noValidate>
+      <label className="eyebrow block text-white/55" htmlFor="login-field">
+        {email ? "Enter the code we emailed you" : "Your email address"}
+      </label>
+      {email ? (
+        <input
+          id="login-field" key="code" value={value} onChange={(e) => setValue(e.target.value)}
+          inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]*" maxLength={6} placeholder="6-digit code" autoFocus
+          className={`${field} tabular mt-2 text-center text-[22px] tracking-[0.5em]`}
+        />
+      ) : (
+        <input
+          id="login-field" key="email" type="email" value={value} onChange={(e) => setValue(e.target.value)}
+          autoComplete="email" inputMode="email" placeholder="you@university.lk" autoFocus className={`${field} mt-2`}
+        />
+      )}
+      {email && (
+        <p className="mt-2 text-[12.5px] leading-relaxed text-white/60">
+          Sent to <span className="text-white">{email}</span>. On this phone you can also just tap the link in that email.
+          {resent && " A new email is on its way."}
+        </p>
+      )}
+      <ErrorText error={error} />
+      <Submit busy={busy}>{email ? "Verify and continue" : "Email me a sign-in code"}</Submit>
+      <div className="mt-4 flex justify-between text-[13px] text-white/60">
+        <button type="button" onClick={email ? () => { setEmail(null); setValue(""); } : onBack} className="underline underline-offset-2">
+          {email ? "Use another email" : "Back"}
+        </button>
+        {email && (
+          <button type="button" disabled={busy} onClick={() => run(async () => { await sendEmailCode(email, next); setResent(true); })} className="underline underline-offset-2">
+            Send a new code
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
 

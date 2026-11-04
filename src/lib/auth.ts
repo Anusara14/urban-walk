@@ -1,6 +1,8 @@
 "use client";
 // Participant accounts.
-// Supabase mode: "Sign in with Google" (no passwords, no emails to send). Organisers are users whose
+// Supabase mode: "Continue with Google", or a passwordless email code. No passwords anywhere.
+// Email needs custom SMTP in Supabase for real use: the built-in sender only reaches the
+// organisation's own members and a few emails per hour. Organisers are users whose
 // app_metadata.role is "organiser" — set server-side, never from the client.
 // Local mode: a name-only profile kept on this device, for development and demos.
 import { useSyncExternalStore } from "react";
@@ -89,6 +91,49 @@ export async function signInWithGoogle(next: string) {
     options: { redirectTo, queryParams: { prompt: "select_account" } },
   });
   if (error) throw new Error(error.message);
+}
+
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** Plain-language messages for the auth error codes participants can actually hit. */
+function emailAuthError(code: string | undefined, fallback: string) {
+  switch (code) {
+    case "email_address_not_authorized":
+      return "Email sign-in isn't fully set up yet. Please use Continue with Google for now.";
+    case "over_email_send_rate_limit":
+    case "over_request_rate_limit":
+      return "Too many sign-in emails were requested. Wait a minute and try again, or use Google.";
+    case "otp_expired":
+      return "That code has expired. Send a new one.";
+    case "email_address_invalid":
+      return "That email address doesn't look right.";
+    default:
+      return fallback;
+  }
+}
+
+/**
+ * Passwordless email sign-in. Sends one email containing a 6-digit code (when the
+ * Magic Link template includes {{ .Token }}) and a sign-in link back to /login.
+ */
+export async function sendEmailCode(email: string, next: string) {
+  const e = email.trim().toLowerCase();
+  if (!EMAIL.test(e)) throw new Error("Enter a valid email address.");
+  const c = await getSupabase();
+  const { error } = await c.auth.signInWithOtp({
+    email: e,
+    options: { shouldCreateUser: true, emailRedirectTo: `${window.location.origin}/login?next=${encodeURIComponent(next)}` },
+  });
+  if (error) throw new Error(emailAuthError(error.code, error.message));
+  return e;
+}
+
+export async function verifyEmailCode(email: string, code: string) {
+  const token = code.replace(/\D/g, "");
+  if (token.length !== 6) throw new Error("The code has 6 digits.");
+  const c = await getSupabase();
+  const { error } = await c.auth.verifyOtp({ email, token, type: "email" });
+  if (error) throw new Error(emailAuthError(error.code, "That code didn't work. Check the latest email, or send a new code."));
 }
 
 export async function updateName(name: string) {
