@@ -161,10 +161,8 @@ public/data/
 Browsing is open. Posting, commenting, appreciating and `/admin` need an account. A signed-out user is
 sent to `/login` and returned to the page they were on.
 
-- **Supabase mode:** *Continue with Google*, or *Continue with email* (a passwordless 6-digit code;
-  the email's link also works on the same phone). The name labels the participant's posts and can be
-  changed on `/login`. Email addresses are never shown to other participants. Email sign-in needs
-  custom SMTP in Supabase for anyone outside your organisation; see the setup guide.
+- **Supabase mode:** *Continue with Google*. The name labels the participant's posts and can be
+  changed on `/login`. Email addresses are never shown to other participants.
 - **Organisers:** users whose `app_metadata.role` is `"organiser"`. Only they can open `/admin`, and
   they can delete any post. Row-level security enforces both.
 - **Local mode:** a name-only profile on the device. Every local profile counts as an organiser, so

@@ -73,17 +73,8 @@ In the [Google Cloud Console](https://console.cloud.google.com/):
    1. Enable it.
    2. Paste the Client ID and Client secret.
    3. Save.
-2. **Authentication → Sign In / Providers → Email:** keep it **on** for "Continue with email"
-   (a passwordless 6-digit code). The app never shows a password field.
-   - **Authentication → Emails → Templates → Magic Link:** add `{{ .Token }}` so the email carries the
-     code, e.g. `<p>Your Urban Walk code: <strong>{{ .Token }}</strong></p>`. Keep the existing link
-     too; tapping it on the same phone also signs people in.
-   - **Custom SMTP is required for participants.** Supabase's built-in sender only delivers to
-     members of your Supabase organisation and only a few emails per hour. Set up
-     **Authentication → Emails → SMTP Settings** with a provider such as
-     [Resend](https://resend.com) (free tier: 3,000 emails/month, 100/day). Then raise
-     **Authentication → Rate Limits → emails per hour** to suit your event (e.g. 300).
-   - Until SMTP is set up, the app tells participants to use Google instead.
+2. **Authentication → Sign In / Providers → Email:** turn it **off**. The app signs in with Google
+   only, so nobody can create accounts through the email endpoint.
 3. **Authentication → URL Configuration:**
    - **Site URL:** `https://YOUR-APP.vercel.app`
    - **Redirect URLs:** add these three:
@@ -166,7 +157,7 @@ Test with 3–4 phones: a mix of Android and iPhone, on mobile data rather than 
 | Database 500 MB | Posts, comments and progress are tiny. No issue. |
 | File storage 1 GB | Each photo is stored twice, roughly 300 KB full plus 40 KB thumbnail, so 1 GB holds about 3,000 photos. |
 | Bandwidth ≈ 5 GB / month | The feed and map load only thumbnails, so 300 people browsing 1,000 photos uses about 12 GB. Full-size photos load only when tapped. If you expect more than ~500 photos, use **Pro** for the event month ($25). |
-| Auth | Google sign-in sends no emails. Email sign-in sends one email per sign-in, so it depends on your SMTP provider's limits (Resend free: 100/day), not Supabase's. |
+| Auth | Google sign-in sends no emails, so Supabase's email limits don't apply. |
 
 Check current limits at <https://supabase.com/pricing>. They change from time to time.
 
