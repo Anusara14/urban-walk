@@ -5,14 +5,14 @@
   "location": "Pettah · Colombo Fort · Galle Face",
   "city": "Colombo, Sri Lanka",
   "organiser": "Young Planners Forum",
-  "start_date": null,
+  "start_date": "2026-11-08",
   "end_date": null,
   "description": "A 3.5 km walk that starts at the Old Town Hall in Pettah, threads through the commercial streets of Colombo Fort, passes the Old Parliament and opens onto Galle Face Green before following Galle Road south.",
   "cover": {
     "feature_id": "finalized-layer--06--colombo-old-clock-tower",
     "photo": 0
   },
-  "source_note": "Route, stops and facilities come from the organisers' Google My Maps export (Urban Walk.kml). The original map describes the walk as covering 06 segments; segment boundaries are not in the export and can be set in /admin.",
+  "source_note": "An Urban Walk by the Young Planners Forum. Walk it slowly, look up, and share what you notice about how Colombo's streets, buildings and public spaces work.",
   "walking_speed_kmh": 4.5,
   "dwell_minutes_per_stop": 6,
   "corridor_m": 150,

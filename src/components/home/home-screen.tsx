@@ -20,7 +20,13 @@ gsap.registerPlugin(useGSAP);
 
 function fmtDate(iso: string | null) {
   if (!iso) return "Date to be announced";
-  return new Intl.DateTimeFormat("en-GB", { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }).format(new Date(iso));
+  // "2026-11-08" = a day with no start time yet; parse as local midnight so the day never shifts
+  const dateOnly = !iso.includes("T");
+  const d = new Date(dateOnly ? `${iso}T00:00` : iso);
+  const opts: Intl.DateTimeFormatOptions = dateOnly
+    ? { weekday: "short", day: "numeric", month: "short", year: "numeric" }
+    : { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" };
+  return new Intl.DateTimeFormat("en-GB", opts).format(d);
 }
 
 export function HomeScreen() {
@@ -134,7 +140,14 @@ export function HomeScreen() {
       </section>
 
       <div className="px-content mt-8">
-        <p className="rounded-[20px] border border-white/10 p-4 text-[12px] leading-relaxed text-white/55">{ev.source_note}</p>
+        <section aria-label="Organiser" className="flex items-center gap-4 rounded-[20px] border border-white/10 p-4">
+          {/* white tile keeps the logo's navy and teal true on the dark page */}
+          <span className="grid size-16 shrink-0 place-items-center rounded-[14px] bg-white p-2">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/ypf-logo.png" alt="Young Planners Forum" width={320} height={295} className="h-full w-auto" loading="lazy" />
+          </span>
+          <p className="text-[12.5px] leading-relaxed text-white/65">{ev.source_note}</p>
+        </section>
         <MadeBy tone="dark" className="mt-6 justify-center" />
       </div>
     </main>
