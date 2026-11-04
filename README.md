@@ -8,7 +8,7 @@
 <p align="center"><em>Don't just walk through the city. Understand the city.</em></p>
 
 <p align="center">
-  <strong>v1-beta</strong> · Next.js 16 · MapLibre GL · Supabase (optional) · PWA
+  <strong>v1.0</strong> · Next.js 16 · MapLibre GL · Supabase (optional) · PWA
 </p>
 
 <p align="center">
@@ -73,14 +73,14 @@ stay in that browser, so you can try every feature without a backend.
 | Screen | Route | What it does |
 |---|---|---|
 | Event home | `/` | Hero photo, stops, distance, duration, *Start walking*, a carousel of the stops |
-| Walking map | `/walk` | Full-screen 2D/3D map, yellow route, zoom-dependent markers, GPS, floating controls, stop previews |
+| Walking map | `/walk` | Full-screen 2D/3D map, blue route, zoom-dependent markers, GPS, floating controls, stop previews |
 | Landmark | `/landmark/[id]` | Editorial page: sourced overview, verified organiser notes, photos, observation prompts, participants' posts, related places |
 | Discoveries | `/community` | Participants' photos and observations, with appreciation, comments and filters |
 | Progress | `/progress` | Stop *N / 10*, distance covered and remaining, time remaining, visited stops |
 | Sign in | `/login` | *Continue with Google* (Supabase) or a device profile (local mode); rename, sign out |
 | Organiser dashboard | `/admin` | Organisers only, built for desktop and phone. Live overview, moderation, and editors for event details, stops, verified content, the six segments and feature categories |
 
-The yellow camera button on every screen opens photo capture. Observations open from a landmark page
+The orange camera button on every screen opens photo capture. Observations open from a landmark page
 or from Discoveries. Browsing is open to everyone; posting needs an account.
 
 ## How it works
@@ -131,9 +131,9 @@ public/data/
   only buildings within `corridor_m` (150 m) of the route, using MapLibre's `distance` expression in
   the tile worker. No 3D geometry is ever built outside the corridor.
 - **Zoom-dependent markers:** far out shows numbered dots, medium zoom shows small photos with names,
-  and close in shows large photo bubbles with a yellow ring. Markers re-render only when the zoom tier
+  and close in shows large photo bubbles with an orange ring (green once visited). Markers re-render only when the zoom tier
   changes, and their size animates with `transform`.
-- **Route:** a white casing with the remaining route in yellow and the walked part dashed. A pill on
+- **Route:** a white casing with the remaining route in blue and the walked part dashed. A pill on
   the line shows the minutes to the next stop.
 - **Low-power devices:** on devices with 2 GB of RAM or less, 2 CPU cores or fewer, or Save-Data
   turned on, the map starts in 2D and the frosted-glass blur is off. Every feature still works.
@@ -254,17 +254,18 @@ public/sw.js                offline service worker
 | Logo | Used for | File |
 |---|---|---|
 | Text logo | The only logo inside the app UI (`<Wordmark>`) | `public/brand/urban-walk-wordmark.svg` |
-| Header logo (yellow circle) | Browser tab icon only | `src/app/icon.svg` |
-| Add-to-home-screen logo (yellow square) | Installed-app icon on iOS and Android, including Android's cropped icon shapes | `public/brand/urban-walk-app-icon.svg` → `public/icon-*.png`, `src/app/apple-icon.png` |
+| Header logo (orange circle) | Browser tab icon only | `src/app/icon.svg` |
+| Add-to-home-screen logo (orange square) | Installed-app icon on iOS and Android, including Android's cropped icon shapes | `public/brand/urban-walk-app-icon.svg` → `public/icon-*.png`, `src/app/apple-icon.png` |
 
 ## Status and known limits
 
-This is **v1-beta**.
+This is **v1.0**. The app follows the phone's light or dark setting, using the brand palette: blue for the route and navigation, orange for actions and stops, green for visited stops and progress.
 
 | Status | Area |
 |---|---|
 | ✅ Tested | Lint, type checks, the test suite and the production build all pass. Every screen and the core flows were checked in a mobile browser: map, 3D, segments, proximity alerts with simulated GPS, photo posts, comments and likes, device sign-in, the admin gate. |
-| ⚠️ Not yet tested | The Supabase path (Google sign-in, shared posts, storage, synced progress) and offline mode on a real phone. Follow the trial-run checklist in the setup guide before an event. |
+| ✅ Live | Hosted on Vercel with Supabase connected; Google sign-in and the organiser gate verified on the live site. |
+| ⚠️ Not yet tested | Shared posts, photo storage and synced progress with several phones at once, and offline mode on a real phone. Follow the trial-run checklist in the setup guide before an event. |
 
 Known limits:
 

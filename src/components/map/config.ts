@@ -34,9 +34,9 @@ const DARK: typeof LIGHT = {
   background: "#15181b",
   water: "#1b2733",
   park: "#18261a",
-  building2d: "#22262b",
-  building3d: "#343a41",
-  road: "#2a2f35",
+  building2d: "#262b31",
+  building3d: "#6a737f", // MapLibre shades extrusion sides darker, so the base colour sits well above the ground
+  road: "#3a414a",
   label: "#8a94a0",
 };
 
