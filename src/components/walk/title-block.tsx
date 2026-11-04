@@ -23,7 +23,7 @@ export function TitleBlock({ stop, isNext, onClick }: { stop: Stop; isNext: bool
   return (
     <button ref={ref} onClick={onClick} className="max-w-[min(62vw,360px)] text-left focus-visible:outline-none" aria-label={`${isNext ? "Next stop" : "Selected stop"}: ${stop.name}`}>
       <p className="tb-line eyebrow text-on-map mb-2 flex items-center gap-2 text-uw-charcoal">
-        <span className="tabular grid size-5 place-items-center rounded-full bg-uw-yellow text-[10px] text-uw-ink">{stop.number}</span>
+        <span className="tabular grid size-5 place-items-center rounded-full bg-uw-orange text-[10px] text-uw-on-accent">{stop.number}</span>
         {isNext ? "Next stop" : "Stop"}
       </p>
       <h1 className="display text-on-map text-[clamp(32px,11vw,56px)] text-uw-ink [@media(max-height:560px)]:text-[28px]">

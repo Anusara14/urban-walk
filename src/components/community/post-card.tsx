@@ -51,7 +51,7 @@ export function PostCard({ post, compact }: { post: Post; compact?: boolean }) {
   };
 
   return (
-    <article id={post.id} className="overflow-hidden rounded-[24px] bg-white">
+    <article id={post.id} className="overflow-hidden rounded-[24px] bg-uw-surface">
       {post.image_url && !compact && (
         // thumbnail in the feed; the full photo only loads if someone taps it
         <a href={post.image_url} target="_blank" rel="noreferrer" aria-label="Open full photo">
@@ -78,7 +78,7 @@ export function PostCard({ post, compact }: { post: Post; compact?: boolean }) {
 
         <div className="mt-3 flex flex-wrap gap-1.5 text-[11.5px]">
           {stop && (
-            <Link href={`/landmark/${stop.id}`} className="rounded-full bg-uw-yellow px-2.5 py-1 font-semibold">{String(stop.number).padStart(2, "0")} · {stop.name}</Link>
+            <Link href={`/landmark/${stop.id}`} className="rounded-full bg-uw-orange px-2.5 py-1 font-semibold text-uw-on-accent">{String(stop.number).padStart(2, "0")} · {stop.name}</Link>
           )}
           {post.geo && (
             <Link href={`/walk`} className="flex items-center gap-1 rounded-full bg-uw-mist px-2.5 py-1 text-uw-charcoal">
@@ -114,9 +114,9 @@ export function PostCard({ post, compact }: { post: Post; compact?: boolean }) {
                 maxLength={1000}
                 placeholder="Add to the discussion…"
                 aria-label="Comment"
-                className="h-10 flex-1 rounded-full border border-uw-line bg-white px-4 text-[13.5px] outline-none focus:border-uw-ink"
+                className="h-10 flex-1 rounded-full border border-uw-line bg-uw-surface px-4 text-[13.5px] outline-none focus:border-uw-ink"
               />
-              <button onClick={send} disabled={!draft.trim()} aria-label="Send comment" className="press grid size-10 place-items-center rounded-full bg-uw-ink text-white disabled:opacity-30">
+              <button onClick={send} disabled={!draft.trim()} aria-label="Send comment" className="press grid size-10 place-items-center rounded-full bg-uw-ink text-uw-paper disabled:opacity-30">
                 <Send className="size-4" />
               </button>
             </div>

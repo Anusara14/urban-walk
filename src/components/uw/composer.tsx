@@ -126,7 +126,7 @@ function ComposerBody() {
               onClick={() => setPrompt(p)}
               className={cn(
                 "press shrink-0 rounded-full border px-3.5 py-2 text-[13px]",
-                p === prompt ? "border-uw-ink bg-uw-ink text-white" : "border-uw-line bg-white text-uw-charcoal",
+                p === prompt ? "border-uw-ink bg-uw-ink text-uw-paper" : "border-uw-line bg-uw-surface text-uw-charcoal",
               )}
             >
               {p}
@@ -151,11 +151,11 @@ function ComposerBody() {
         </div>
       ) : (
         <div className={cn("grid gap-2", kind === "photo" ? "grid-cols-2" : "grid-cols-2")}>
-          <button onClick={() => camRef.current?.click()} className={cn("press focus-ring flex flex-col items-start gap-6 rounded-card p-4 text-left", kind === "photo" ? "bg-uw-yellow" : "bg-white")}>
+          <button onClick={() => camRef.current?.click()} className={cn("press focus-ring flex flex-col items-start gap-6 rounded-card p-4 text-left", kind === "photo" ? "bg-uw-orange text-uw-on-accent" : "bg-uw-surface")}>
             <Camera className="size-6" strokeWidth={1.75} />
             <span className="text-sm font-semibold">{kind === "photo" ? "Take photo" : "Attach photo"}</span>
           </button>
-          <button onClick={() => galRef.current?.click()} className="press focus-ring flex flex-col items-start gap-6 rounded-card bg-white p-4 text-left">
+          <button onClick={() => galRef.current?.click()} className="press focus-ring flex flex-col items-start gap-6 rounded-card bg-uw-surface p-4 text-left">
             <ImagePlus className="size-6" strokeWidth={1.75} />
             <span className="text-sm font-semibold">From gallery</span>
           </button>
@@ -170,7 +170,7 @@ function ComposerBody() {
           maxLength={2000}
           rows={kind === "photo" ? 2 : 5}
           placeholder={kind === "photo" ? "What are we looking at?" : "Describe what you saw, heard and felt…"}
-          className="mt-2 w-full resize-none rounded-card border border-uw-line bg-white p-4 text-[15px] leading-relaxed outline-none focus:border-uw-ink"
+          className="mt-2 w-full resize-none rounded-card border border-uw-line bg-uw-surface p-4 text-[15px] leading-relaxed outline-none focus:border-uw-ink"
         />
       </label>
 
@@ -181,7 +181,7 @@ function ComposerBody() {
           <select
             value={landmark ?? ""}
             onChange={(e) => { setLandmark(e.target.value || null); setLandmarkTouched(true); }}
-            className="h-11 flex-1 rounded-full border border-uw-line bg-white px-4 text-[14px] outline-none focus:border-uw-ink"
+            className="h-11 flex-1 rounded-full border border-uw-line bg-uw-surface px-4 text-[14px] outline-none focus:border-uw-ink"
           >
             <option value="">Not linked to a stop</option>
             {model.stops.map((s) => (
@@ -195,8 +195,8 @@ function ComposerBody() {
       </div>
 
       {/* location privacy */}
-      <div className="flex items-center gap-3 rounded-card bg-white p-3.5">
-        <div className={cn("grid size-9 place-items-center rounded-full", attachGeo && geoTag ? "bg-uw-yellow" : "bg-uw-mist")}>
+      <div className="flex items-center gap-3 rounded-card bg-uw-surface p-3.5">
+        <div className={cn("grid size-9 place-items-center rounded-full", attachGeo && geoTag ? "bg-uw-green text-uw-on-accent" : "bg-uw-mist")}>
           {attachGeo ? <MapPin className="size-4" /> : <MapPinOff className="size-4" />}
         </div>
         <div className="min-w-0 flex-1 text-[13px] leading-snug">
@@ -223,7 +223,7 @@ function ComposerBody() {
             onClick={() => setAttachGeo((v) => !v)}
             className={cn("relative h-7 w-12 shrink-0 rounded-full transition-colors", attachGeo ? "bg-uw-ink" : "bg-uw-line")}
           >
-            <span className={cn("absolute top-1 size-5 rounded-full bg-white transition-transform", attachGeo ? "translate-x-6" : "translate-x-1")} />
+            <span className={cn("absolute top-1 size-5 rounded-full bg-uw-surface transition-transform", attachGeo ? "translate-x-6" : "translate-x-1")} />
           </button>
         )}
       </div>
@@ -238,7 +238,7 @@ function ComposerBody() {
       <button
         disabled={!canPublish}
         onClick={publish}
-        className="press focus-ring flex h-14 items-center justify-center gap-2 rounded-full bg-uw-ink text-[15px] font-semibold text-white disabled:opacity-35"
+        className="press focus-ring flex h-14 items-center justify-center gap-2 rounded-full bg-uw-ink text-[15px] font-semibold text-uw-paper disabled:opacity-35"
       >
         {busy && <Loader2 className="size-4 animate-spin" />}
         Publish to Discoveries

@@ -19,13 +19,19 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#f4f5f6",
+  // Android: the on-screen keyboard shrinks the layout instead of covering the composer
+  interactiveWidget: "resizes-content",
+  // light screens; home and sign-in override with night (see their page files)
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f4f5f6" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e1012" },
+  ],
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
   const base = await loadBaseData();
   return (
-    <html lang="en" className={`${inter.variable} light h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-dvh">
         <EventProvider base={base}>
           <WalkProvider>

@@ -115,13 +115,13 @@ export function LandmarkScreen({ id }: { id: string }) {
 
         {stop && (
           <div className="mt-5 grid grid-cols-3 gap-2">
-            <button onClick={() => walk.toggleVisited(stop.id)} aria-pressed={visited} className={cn("press flex h-[74px] flex-col items-start justify-between rounded-[20px] p-3 text-left text-[12.5px] font-semibold", visited ? "bg-uw-ink text-white" : "bg-uw-yellow")}>
+            <button onClick={() => walk.toggleVisited(stop.id)} aria-pressed={visited} className={cn("press flex h-[74px] flex-col items-start justify-between rounded-[20px] p-3 text-left text-[12.5px] font-semibold", visited ? "bg-uw-green text-uw-on-accent" : "bg-uw-orange text-uw-on-accent")}>
               <Check className="size-5" /> {visited ? "Visited" : "Mark visited"}
             </button>
-            <button onClick={() => walk.openComposer("observation", stop.id)} className="press flex h-[74px] flex-col items-start justify-between rounded-[20px] bg-white p-3 text-left text-[12.5px] font-semibold">
+            <button onClick={() => walk.openComposer("observation", stop.id)} className="press flex h-[74px] flex-col items-start justify-between rounded-[20px] bg-uw-surface p-3 text-left text-[12.5px] font-semibold">
               <PenLine className="size-5" /> Observe
             </button>
-            <button onClick={() => walk.openComposer("photo", stop.id)} className="press flex h-[74px] flex-col items-start justify-between rounded-[20px] bg-white p-3 text-left text-[12.5px] font-semibold">
+            <button onClick={() => walk.openComposer("photo", stop.id)} className="press flex h-[74px] flex-col items-start justify-between rounded-[20px] bg-uw-surface p-3 text-left text-[12.5px] font-semibold">
               <Camera className="size-5" /> Photograph
             </button>
           </div>
@@ -154,7 +154,7 @@ export function LandmarkScreen({ id }: { id: string }) {
             <p className="mt-1 text-[13px] text-uw-slate">Pick a question and write what you observe here.</p>
             <div className="mt-3 flex flex-col gap-2">
               {OBSERVATION_PROMPTS.slice(0, 4).map((p) => (
-                <button key={p} onClick={() => walk.openComposer("observation", stop.id)} className="press flex items-center justify-between rounded-[18px] bg-white px-4 py-3.5 text-left text-[14px]">
+                <button key={p} onClick={() => walk.openComposer("observation", stop.id)} className="press flex items-center justify-between rounded-[18px] bg-uw-surface px-4 py-3.5 text-left text-[14px]">
                   {p} <ArrowRight className="size-4 shrink-0 text-uw-slate" />
                 </button>
               ))}
@@ -181,7 +181,7 @@ export function LandmarkScreen({ id }: { id: string }) {
               {next && <RelatedLink stop={next} dir="next" />}
             </div>
             {nearby.length > 0 && (
-              <ul className="mt-3 flex flex-col divide-y divide-uw-line rounded-[18px] bg-white">
+              <ul className="mt-3 flex flex-col divide-y divide-uw-line rounded-[18px] bg-uw-surface">
                 {nearby.map((p) => (
                   <li key={p.id}>
                     <Link href={`/landmark/${p.id}`} className="flex items-center justify-between px-4 py-3 text-[14px]">
@@ -241,7 +241,7 @@ function OrganiserSections({ stop }: { stop: Stop }) {
 
 function RelatedLink({ stop, dir }: { stop: Stop; dir: "prev" | "next" }) {
   return (
-    <Link href={`/landmark/${stop.id}`} className={cn("press flex flex-col gap-3 rounded-[20px] bg-white p-3.5", dir === "next" && "col-start-2 items-end text-right")}>
+    <Link href={`/landmark/${stop.id}`} className={cn("press flex flex-col gap-3 rounded-[20px] bg-uw-surface p-3.5", dir === "next" && "col-start-2 items-end text-right")}>
       <span className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-uw-slate">
         {dir === "prev" ? <><ArrowLeft className="size-3.5" /> Previous</> : <>Next <ArrowRight className="size-3.5" /></>}
       </span>

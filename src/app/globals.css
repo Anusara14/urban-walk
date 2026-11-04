@@ -148,8 +148,12 @@
 }
 /* ───────────────────────── URBAN WALK design tokens ───────────────────────── */
 @theme inline {
-  --color-uw-yellow: var(--uw-yellow);
-  --color-uw-yellow-deep: var(--uw-yellow-deep);
+  --color-uw-surface: var(--uw-surface);
+  --color-uw-night: var(--uw-night);
+  --color-uw-on-accent: var(--uw-on-accent);
+  --color-uw-blue: var(--uw-blue);
+  --color-uw-green: var(--uw-green);
+  --color-uw-orange: var(--uw-orange);
   --color-uw-ink: var(--uw-ink);
   --color-uw-charcoal: var(--uw-charcoal);
   --color-uw-paper: var(--uw-paper);
@@ -165,10 +169,12 @@
 }
 
 :root {
-  /* one accent, used only for actions, the route and the active stop */
+  /* brand palette: blue = route + navigation, orange = actions + stops, green = walked / visited.
+     orange and green carry ink text (6.9:1, 5.1:1); blue carries white (8.9:1). */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --uw-yellow: #ffe500;
-  --uw-yellow-deep: #f2cf00;
+  --uw-blue: #004b87;
+  --uw-green: #319b24;
+  --uw-orange: #ff7900;
   --uw-ink: #141518;
   --uw-charcoal: #2b2d31;
   --uw-paper: #f4f5f6;
@@ -177,25 +183,67 @@
   /* secondary text: ~5:1 on paper, ~4.6:1 on white glass */
   --uw-slate: #5f6a78;
   --uw-sea: #c7d3dc;
+  /* cards and sheets */
+  --uw-surface: #ffffff;
+  /* fixed, never themed: dark hero screens (home, sign-in, admin rail) and text on orange/green */
+  --uw-night: #141518;
+  --uw-on-accent: #141518;
 
   --background: var(--uw-paper);
   --foreground: var(--uw-ink);
   --primary: var(--uw-ink);
-  --primary-foreground: #fff;
+  --primary-foreground: var(--uw-paper);
   --muted-foreground: #6b7280;
   --border: var(--uw-line);
-  --ring: var(--uw-yellow-deep);
+  --ring: var(--uw-blue);
   --radius: 1rem;
 
   --glass-light: rgba(238, 240, 243, 0.58);
   --glass-dark: rgba(28, 30, 34, 0.58);
   --glass-strong: rgba(250, 250, 251, 0.9);
+  --glass-edge: rgba(255, 255, 255, 0.55);
+  --glass-strong-edge: rgba(255, 255, 255, 0.8);
+  --glass-lowfx: rgba(240, 241, 243, 0.96);
+  --glass-strong-lowfx: rgba(250, 250, 251, 0.98);
   --shadow-float: 0 10px 30px -12px rgba(20, 21, 24, 0.35), 0 2px 6px -2px rgba(20, 21, 24, 0.12);
   --shadow-soft: 0 18px 50px -24px rgba(20, 21, 24, 0.45);
 }
 
-html { color-scheme: light; -webkit-tap-highlight-color: transparent; }
-body { background: var(--uw-paper); overscroll-behavior: none; }
+/*
+ * Dark mode follows the phone's setting. Ink and paper swap, so "ink" fills with
+ * "paper" text invert together; night, on-accent and the brand colours stay fixed.
+ * Contrast: slate 6.7:1 on surface, ink 16:1 on paper.
+ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --uw-ink: #eef0f3;
+    --uw-charcoal: #cfd4da;
+    --uw-paper: #0e1012;
+    --uw-surface: #1a1d21;
+    --uw-mist: #252a30;
+    --uw-line: #343a41;
+    --uw-slate: #9aa4b0;
+    --uw-sea: #2b3a47;
+    --muted-foreground: #9aa4b0;
+
+    --glass-light: rgba(30, 33, 38, 0.62);
+    --glass-strong: rgba(24, 27, 31, 0.9);
+    --glass-edge: rgba(255, 255, 255, 0.08);
+    --glass-strong-edge: rgba(255, 255, 255, 0.1);
+    --glass-lowfx: rgba(30, 33, 38, 0.97);
+    --glass-strong-lowfx: rgba(24, 27, 31, 0.98);
+    --shadow-float: 0 10px 30px -12px rgba(0, 0, 0, 0.7), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+    --shadow-soft: 0 18px 50px -24px rgba(0, 0, 0, 0.8);
+  }
+}
+
+html { color-scheme: light dark; -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+/*
+ * Safari (iOS 26+) tints its status-bar and toolbar areas from the html/body background,
+ * so the page background must match the screen: dark screens mark themselves .surface-night.
+ */
+html, body { background: var(--uw-paper); overscroll-behavior: none; }
+html:has(.surface-night), html:has(.surface-night) body { background: var(--uw-night); }
 
 /*
  * One content measure for every screen: 20px gutters on phones, growing on
@@ -213,7 +261,7 @@ body { background: var(--uw-paper); overscroll-behavior: none; }
     background: var(--glass-light);
     backdrop-filter: blur(18px) saturate(160%);
     -webkit-backdrop-filter: blur(18px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--glass-edge);
     box-shadow: var(--shadow-float);
   }
   .glass-dark {
@@ -228,7 +276,7 @@ body { background: var(--uw-paper); overscroll-behavior: none; }
     background: var(--glass-strong);
     backdrop-filter: blur(22px) saturate(160%);
     -webkit-backdrop-filter: blur(22px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--glass-strong-edge);
     box-shadow: var(--shadow-soft), 0 1px 0 rgba(20, 21, 24, 0.04);
   }
   /* legibility over photographs */
@@ -236,8 +284,8 @@ body { background: var(--uw-paper); overscroll-behavior: none; }
   /* legibility of map titles over busy tiles and labels */
   .text-on-map { text-shadow: 0 0 2px var(--uw-paper), 0 0 14px var(--uw-paper), 0 0 28px var(--uw-paper); }
   /* low-power devices: no blur, solid surfaces */
-  .lowfx .glass-strong { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(250, 250, 251, 0.98); }
-  .lowfx .glass { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(240, 241, 243, 0.96); }
+  .lowfx .glass-strong { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--glass-strong-lowfx); }
+  .lowfx .glass { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--glass-lowfx); }
   .lowfx .glass-dark { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(40, 42, 46, 0.88); }
 
   .display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.045em; line-height: 0.9; }

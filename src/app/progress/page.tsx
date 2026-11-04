@@ -37,7 +37,7 @@ export default function ProgressPage() {
 
       {/* route bar with stop ticks at their real positions */}
       <div className="relative mt-7 h-3 rounded-full bg-uw-mist" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(fraction * 100)} aria-label="Route covered">
-        <div className="absolute inset-y-0 left-0 rounded-full bg-uw-yellow" style={{ width: `${fraction * 100}%` }} />
+        <div className="absolute inset-y-0 left-0 rounded-full bg-uw-green text-uw-on-accent" style={{ width: `${fraction * 100}%` }} />
         {model.stops.map((s) => (
           <span key={s.id} className={cn("absolute top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-uw-paper", progress.visited.includes(s.id) ? "bg-uw-ink" : "bg-uw-slate/50")} style={{ left: `${(s.routeKm * 1000 / model.lengthM) * 100}%` }} />
         ))}
@@ -50,7 +50,7 @@ export default function ProgressPage() {
           ["Covered", fmtDistance(coveredM)],
           ["To go", `${fmtDistance(remainingM)} · ${fmtMinutes(remainingMin)}`],
         ].map(([k, v]) => (
-          <div key={k} className="rounded-[20px] bg-white p-4">
+          <div key={k} className="rounded-[20px] bg-uw-surface p-4">
             <dt className="eyebrow text-uw-slate">{k}</dt>
             <dd className="tabular mt-1.5 text-[18px] font-semibold tracking-tight">{v}</dd>
           </div>
@@ -70,7 +70,7 @@ export default function ProgressPage() {
                 onClick={() => toggleVisited(s.id)}
                 aria-pressed={visited}
                 aria-label={`${visited ? "Unmark" : "Mark"} ${s.name} as visited`}
-                className={cn("press tabular grid size-10 shrink-0 place-items-center rounded-full text-[13px] font-semibold", visited ? "bg-uw-ink text-white" : s.id === nextStop?.id ? "bg-uw-yellow" : "bg-white")}
+                className={cn("press tabular grid size-10 shrink-0 place-items-center rounded-full text-[13px] font-semibold", visited ? "bg-uw-green text-uw-on-accent" : s.id === nextStop?.id ? "bg-uw-orange text-uw-on-accent" : "bg-uw-surface")}
               >
                 {visited ? <Check className="size-4" /> : s.number}
               </button>

@@ -81,7 +81,7 @@ export function Sheet({ open, onClose, children, label, className }: SheetProps)
   if (!mounted) return null;
   return (
     <div ref={root} className="fixed inset-0 z-50 flex justify-center" role="dialog" aria-modal="true" aria-label={label}>
-      <button aria-label="Close" onClick={onClose} className="sheet-scrim absolute inset-0 bg-uw-ink/30 opacity-0" />
+      <button aria-label="Close" onClick={onClose} className="sheet-scrim absolute inset-0 bg-uw-night/40 opacity-0" />
       <div
         ref={panel}
         tabIndex={-1}

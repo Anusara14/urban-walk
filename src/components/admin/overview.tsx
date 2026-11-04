@@ -68,7 +68,7 @@ export function Overview({ onOpenModeration }: { onOpenModeration: () => void })
             ? "Development mode: figures show this device only. Connect Supabase for everyone's data."
             : updated ? `Updated ${updated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} · refreshes every minute` : "Loading live data…"}
         </p>
-        <button onClick={load} disabled={busy} className="press flex h-9 items-center gap-2 rounded-full bg-white px-3.5 text-[13px] font-medium shadow-sm disabled:opacity-60">
+        <button onClick={load} disabled={busy} className="press flex h-9 items-center gap-2 rounded-full bg-uw-surface px-3.5 text-[13px] font-medium shadow-sm disabled:opacity-60">
           <RefreshCw className={cn("size-4", busy && "animate-spin")} /> Refresh
         </button>
       </div>
@@ -89,7 +89,7 @@ export function Overview({ onOpenModeration }: { onOpenModeration: () => void })
         <StopBars title="Posts by stop" unit="posts" rows={postsByStop} total={posts.length} />
       </div>
 
-      <section className="rounded-[24px] bg-white p-5">
+      <section className="rounded-[24px] bg-uw-surface p-5">
         <div className="flex items-center justify-between">
           <h2 className="text-[16px] font-semibold tracking-tight">Latest posts</h2>
           <button onClick={onOpenModeration} className="text-[13px] font-medium underline underline-offset-2">Moderate all</button>
@@ -127,12 +127,12 @@ export function Overview({ onOpenModeration }: { onOpenModeration: () => void })
 
 function Tile({ icon: Icon, label, value, hint, accent }: { icon: typeof Users; label: string; value: number | string; hint: string; accent?: boolean }) {
   return (
-    <div className={cn("rounded-[20px] p-4", accent ? "bg-uw-ink text-white" : "bg-white")}>
-      <dt className={cn("flex items-center gap-1.5 text-[12px] font-medium", accent ? "text-white/70" : "text-uw-slate")}>
+    <div className={cn("rounded-[20px] p-4", accent ? "bg-uw-ink text-uw-paper" : "bg-uw-surface")}>
+      <dt className={cn("flex items-center gap-1.5 text-[12px] font-medium", accent ? "text-uw-paper/70" : "text-uw-slate")}>
         <Icon className="size-3.5" /> {label}
       </dt>
       <dd className="tabular mt-2 text-[30px] font-semibold leading-none tracking-tight">{value}</dd>
-      <dd className={cn("mt-1.5 truncate text-[11.5px]", accent ? "text-white/60" : "text-uw-slate")}>{hint}</dd>
+      <dd className={cn("mt-1.5 truncate text-[11.5px]", accent ? "text-uw-paper/60" : "text-uw-slate")}>{hint}</dd>
     </div>
   );
 }
@@ -144,7 +144,7 @@ function Tile({ icon: Icon, label, value, hint, accent }: { icon: typeof Users; 
 function StopBars({ title, unit, rows, total }: { title: string; unit: string; rows: { stop: Stop; value: number }[]; total: number }) {
   const max = Math.max(1, ...rows.map((r) => r.value));
   return (
-    <section className="rounded-[24px] bg-white p-5" aria-label={title}>
+    <section className="rounded-[24px] bg-uw-surface p-5" aria-label={title}>
       <div className="flex items-baseline justify-between">
         <h2 className="text-[16px] font-semibold tracking-tight">{title}</h2>
         <span className="text-[12px] text-uw-slate">{unit}</span>
@@ -157,7 +157,7 @@ function StopBars({ title, unit, rows, total }: { title: string; unit: string; r
             className="group grid grid-cols-[minmax(0,9.5rem)_1fr_2.25rem] items-center gap-3 rounded-[10px] px-1.5 py-1.5 hover:bg-uw-paper sm:grid-cols-[minmax(0,12rem)_1fr_2.5rem]"
           >
             <span className="flex min-w-0 items-center gap-2 text-[13px]">
-              <span className="tabular grid size-5 shrink-0 place-items-center rounded-full bg-uw-yellow text-[10px] font-semibold">{stop.number}</span>
+              <span className="tabular grid size-5 shrink-0 place-items-center rounded-full bg-uw-orange text-[10px] font-semibold text-uw-on-accent">{stop.number}</span>
               <span className="truncate">{stop.name}</span>
             </span>
             <span className="h-2 overflow-hidden rounded-full bg-uw-mist">

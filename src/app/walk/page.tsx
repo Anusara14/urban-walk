@@ -3,7 +3,7 @@ import { WalkScreen } from "@/components/walk/walk-screen";
 
 export default function WalkPage() {
   return (
-    <Suspense fallback={<div className="h-dvh bg-[#eceef1]" />}>
+    <Suspense fallback={<div className="h-dvh bg-uw-paper" />}>
       <WalkScreen />
     </Suspense>
   );

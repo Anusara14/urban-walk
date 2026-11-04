@@ -5,7 +5,7 @@ import type * as GeoJSON from "geojson";
 import type { ExpressionSpecification, Map as MLMap } from "maplibre-gl";
 import { useMap } from "@/components/ui/map";
 import type { WalkModel } from "@/lib/event-model";
-import { BUILDING_LAYER, COLORS, MIN_3D_ZOOM, VECTOR_SOURCE } from "./config";
+import { BUILDING_LAYER, MIN_3D_ZOOM, VECTOR_SOURCE, type MapColors } from "./config";
 
 const ids = {
   corridor: "uw-corridor",
@@ -15,17 +15,17 @@ const ids = {
 };
 
 /** Quiet, architectural basemap: grey ground, pale water, white roads, muted labels. */
-function tuneBasemap(map: MLMap) {
+function tuneBasemap(map: MLMap, c: MapColors) {
   const set = (layer: string, prop: Parameters<MLMap["setPaintProperty"]>[1], value: string) => {
     if (map.getLayer(layer)) map.setPaintProperty(layer, prop, value);
   };
-  set("background", "background-color", COLORS.background);
-  set("water", "fill-color", COLORS.water);
-  set("park", "fill-color", COLORS.park);
-  set("building", "fill-color", COLORS.building2d);
+  set("background", "background-color", c.background);
+  set("water", "fill-color", c.water);
+  set("park", "fill-color", c.park);
+  set("building", "fill-color", c.building2d);
   for (const l of map.getStyle().layers) {
-    if (l.type === "line" && /^highway_(minor|major_inner|motorway_inner|path)/.test(l.id)) set(l.id, "line-color", COLORS.road);
-    if (l.type === "symbol" && l.id.startsWith("label_")) set(l.id, "text-color", COLORS.label);
+    if (l.type === "line" && /^highway_(minor|major_inner|motorway_inner|path)/.test(l.id)) set(l.id, "line-color", c.road);
+    if (l.type === "symbol" && l.id.startsWith("label_")) set(l.id, "text-color", c.label);
   }
 }
 
@@ -35,25 +35,25 @@ function tuneBasemap(map: MLMap) {
  * evaluated per feature in the tile worker via the `distance` expression —
  * so nothing outside the walking corridor is ever extruded.
  */
-export function WalkLayers({ model, show3d }: { model: WalkModel; show3d: boolean }) {
+export function WalkLayers({ model, show3d, colors }: { model: WalkModel; show3d: boolean; colors: MapColors }) {
   const { map, isLoaded } = useMap();
 
   useEffect(() => {
     if (!map || !isLoaded) return;
-    tuneBasemap(map);
+    tuneBasemap(map, colors);
 
     const routeGeom: GeoJSON.LineString = { type: "LineString", coordinates: model.line };
     const firstLabel = map.getStyle().layers.find((l) => l.type === "symbol")?.id;
 
     map.addSource(ids.corridor, { type: "geojson", data: model.corridor });
     map.addLayer(
-      { id: ids.corridor, type: "fill", source: ids.corridor, paint: { "fill-color": "#ffffff", "fill-opacity": 0.42 } },
+      { id: ids.corridor, type: "fill", source: ids.corridor, paint: { "fill-color": colors.corridor } },
       "building",
     );
 
     map.addSource(ids.rest, { type: "geojson", data: model.restAreas });
-    map.addLayer({ id: ids.rest, type: "fill", source: ids.rest, paint: { "fill-color": "#b8d4b0", "fill-opacity": 0.55 } }, firstLabel);
-    map.addLayer({ id: ids.restLine, type: "line", source: ids.rest, paint: { "line-color": "#7fa877", "line-width": 1.2 } }, firstLabel);
+    map.addLayer({ id: ids.rest, type: "fill", source: ids.rest, paint: { "fill-color": colors.green, "fill-opacity": 0.22 } }, firstLabel);
+    map.addLayer({ id: ids.restLine, type: "line", source: ids.rest, paint: { "line-color": colors.green, "line-width": 1.2 } }, firstLabel);
 
     const nearRoute: ExpressionSpecification = ["<=", ["distance", routeGeom], model.event.corridor_m];
     map.addLayer(
@@ -66,7 +66,7 @@ export function WalkLayers({ model, show3d }: { model: WalkModel; show3d: boolea
         filter: ["all", ["!=", ["get", "hide_3d"], true], nearRoute],
         layout: { visibility: show3d ? "visible" : "none" },
         paint: {
-          "fill-extrusion-color": COLORS.building3d,
+          "fill-extrusion-color": colors.building3d,
           "fill-extrusion-height": ["interpolate", ["linear"], ["zoom"], MIN_3D_ZOOM, 0, MIN_3D_ZOOM + 0.6, ["coalesce", ["get", "render_height"], 6]],
           "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
           "fill-extrusion-opacity": 0.92,
@@ -82,7 +82,7 @@ export function WalkLayers({ model, show3d }: { model: WalkModel; show3d: boolea
     };
     // show3d only sets the initial visibility; the effect below toggles it without rebuilding layers
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map, isLoaded, model]);
+  }, [map, isLoaded, model, colors]);
 
   useEffect(() => {
     if (!map || !isLoaded || !map.getLayer(ids.buildings3d)) return;

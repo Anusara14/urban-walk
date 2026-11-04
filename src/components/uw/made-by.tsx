@@ -7,7 +7,7 @@ const GITHUB_URL = "https://github.com/Anusara14";
 /** "Developed by Codemypage · Anusara14" credit. `tone` matches the surface it sits on. */
 export function MadeBy({ tone = "light", className }: { tone?: "light" | "dark"; className?: string }) {
   const muted = tone === "dark" ? "text-white/55" : "text-uw-slate";
-  const strong = tone === "dark" ? "text-white hover:text-uw-yellow" : "text-uw-ink hover:text-uw-charcoal";
+  const strong = tone === "dark" ? "text-white hover:text-uw-orange" : "text-uw-ink hover:text-uw-charcoal";
   return (
     <p className={cn("flex flex-wrap items-center gap-x-2 gap-y-1 text-[12px]", muted, className)}>
       <span>Developed by</span>

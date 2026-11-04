@@ -20,21 +20,21 @@ export function StopListSheet({ open, onClose, onPick }: { open: boolean; onClos
         </div>
       </header>
       <ol className="relative">
-        <span className="absolute bottom-6 left-[27px] top-6 w-[3px] rounded bg-uw-yellow" aria-hidden />
+        <span className="absolute bottom-6 left-[27px] top-6 w-[3px] rounded bg-uw-blue" aria-hidden />
         {model.stops.map((s) => {
           const visited = progress.visited.includes(s.id);
           const d = distanceTo(s.coord);
           const photo = s.content?.photos[0];
           return (
             <li key={s.id}>
-              <button onClick={() => onPick(s.id)} className="press relative flex w-full items-center gap-3 rounded-[20px] py-2 pr-2 text-left hover:bg-white/60">
-                <span className={cn("relative z-10 grid size-14 shrink-0 place-items-center overflow-hidden rounded-full ring-[3px]", visited ? "ring-uw-ink" : "ring-uw-yellow", "bg-uw-mist")}>
+              <button onClick={() => onPick(s.id)} className="press relative flex w-full items-center gap-3 rounded-[20px] py-2 pr-2 text-left hover:bg-uw-surface/60">
+                <span className={cn("relative z-10 grid size-14 shrink-0 place-items-center overflow-hidden rounded-full ring-[3px]", visited ? "ring-uw-green" : "ring-uw-orange", "bg-uw-mist")}>
                   {photo ? <WikiImage photo={photo} sizes="56px" maxWidth={250} className="size-full" alt="" /> : <span className="font-semibold">{s.number}</span>}
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="eyebrow tabular text-uw-slate">
                     {String(s.number).padStart(2, "0")} · {s.area}
-                    {s.id === nextStop?.id && <span className="ml-1.5 rounded-full bg-uw-yellow px-1.5 py-0.5 text-uw-ink">Next</span>}
+                    {s.id === nextStop?.id && <span className="ml-1.5 rounded-full bg-uw-orange px-1.5 py-0.5 text-uw-on-accent">Next</span>}
                   </span>
                   <span className="mt-0.5 block truncate text-[16px] font-semibold tracking-tight">{s.name}</span>
                 </span>

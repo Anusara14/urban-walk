@@ -59,14 +59,14 @@ export function ProximityToast() {
           <Link
             href={`/landmark/${stop.id}`}
             onClick={dismissToast}
-            className="press flex h-10 flex-1 items-center justify-center rounded-full bg-uw-yellow text-[13.5px] font-semibold"
+            className="press flex h-10 flex-1 items-center justify-center rounded-full bg-uw-orange text-[13.5px] font-semibold text-uw-on-accent"
           >
             View landmark
           </Link>
           {!visited && (
             <button
               onClick={() => { toggleVisited(stop.id); dismissToast(); }}
-              className="press flex h-10 items-center gap-1.5 rounded-full bg-white/80 px-4 text-[13.5px] font-medium"
+              className="press flex h-10 items-center gap-1.5 rounded-full bg-uw-surface/80 px-4 text-[13.5px] font-medium"
             >
               <Check className="size-4" /> Mark visited
             </button>

@@ -13,7 +13,7 @@ import type { ZoomTier } from "./use-zoom-tier";
  * One DOM node per stop whose look changes by zoom tier:
  *   1 far    → small numbered dot
  *   2 medium → compact photo + name
- *   3 close  → large photo bubble with yellow ring, number and name
+ *   3 close  → large photo bubble with orange ring, number and name
  * Size changes are transform: scale on a fixed 64px bubble (compositor only).
  */
 export const StopMarker = memo(function StopMarker({
@@ -39,7 +39,7 @@ export const StopMarker = memo(function StopMarker({
           <span
             className={cn(
               "absolute inset-0 overflow-hidden rounded-full bg-uw-mist shadow-[var(--shadow-float)] transition-[transform,opacity] duration-500 ease-[var(--ease-out-expo)]",
-              visited ? "ring-[3px] ring-uw-ink" : "ring-[3px] ring-uw-yellow",
+              visited ? "ring-[3px] ring-uw-green" : "ring-[3px] ring-uw-orange",
               selected && "ring-4",
               !showPhoto && "opacity-0",
             )}
@@ -48,14 +48,14 @@ export const StopMarker = memo(function StopMarker({
             {photo ? (
               <WikiImage photo={photo} sizes="64px" maxWidth={250} className="size-full" alt="" />
             ) : (
-              <span className="grid size-full place-items-center bg-white text-[22px] font-semibold text-uw-ink">{stop.number}</span>
+              <span className="grid size-full place-items-center bg-uw-surface text-[22px] font-semibold text-uw-ink">{stop.number}</span>
             )}
           </span>
           {/* number badge: the whole marker at tier 1, a corner badge otherwise */}
           <span
             className={cn(
               "tabular absolute grid size-6 place-items-center rounded-full text-[11px] font-semibold ring-2 ring-white transition-transform duration-500 ease-[var(--ease-out-expo)]",
-              visited ? "bg-uw-ink text-white" : "bg-uw-yellow text-uw-ink",
+              visited ? "bg-uw-green text-uw-on-accent" : "bg-uw-orange text-uw-on-accent",
             )}
             style={{
               transform: showPhoto
@@ -68,7 +68,7 @@ export const StopMarker = memo(function StopMarker({
         </button>
         <span
           className={cn(
-            "pointer-events-none absolute left-1/2 top-full whitespace-nowrap rounded-full bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold tracking-tight text-uw-ink shadow-sm transition-[opacity,transform] duration-300",
+            "pointer-events-none absolute left-1/2 top-full whitespace-nowrap rounded-full bg-uw-surface/90 px-2.5 py-1 text-[11.5px] font-semibold tracking-tight text-uw-ink shadow-sm transition-[opacity,transform] duration-300",
             tier === 1 && !selected ? "opacity-0" : "opacity-100",
           )}
           style={{ transform: `translate(-50%, ${tier === 3 || selected ? 4 : -10}px)` }}
@@ -90,7 +90,7 @@ export const PlaceMarker = memo(function PlaceMarker({ place, tier, onSelect }: 
           <span className="grid size-5 place-items-center rounded-full bg-uw-slate text-white ring-2 ring-white">
             <Info className="size-3" strokeWidth={2.5} />
           </span>
-          {tier === 3 && <span className="rounded-full bg-white/85 px-2 py-0.5 text-[10.5px] font-medium text-uw-charcoal">{place.name}</span>}
+          {tier === 3 && <span className="rounded-full bg-uw-surface/85 px-2 py-0.5 text-[10.5px] font-medium text-uw-charcoal">{place.name}</span>}
         </button>
       </MarkerContent>
     </MapMarker>
@@ -102,7 +102,7 @@ export const FacilityMarker = memo(function FacilityMarker({ place, tier }: { pl
   return (
     <MapMarker longitude={place.coord[0]} latitude={place.coord[1]}>
       <MarkerContent>
-        <span title={place.name} aria-label={place.name} className="grid size-6 place-items-center rounded-[8px] bg-[#3949ab] text-white ring-2 ring-white">
+        <span title={place.name} aria-label={place.name} className="grid size-6 place-items-center rounded-[8px] bg-uw-blue text-white ring-2 ring-white">
           <Bath className="size-3.5" />
         </span>
       </MarkerContent>
@@ -115,7 +115,7 @@ export const PostMarker = memo(function PostMarker({ post, tier, onSelect }: { p
   return (
     <MapMarker longitude={post.geo.lng} latitude={post.geo.lat} onClick={() => onSelect(post)}>
       <MarkerContent>
-        <button aria-label={`Post by ${post.user_name}`} className="block size-8 overflow-hidden rounded-[10px] bg-white shadow-md ring-2 ring-white">
+        <button aria-label={`Post by ${post.user_name}`} className="block size-8 overflow-hidden rounded-[10px] bg-uw-surface shadow-md ring-2 ring-white">
           {post.image_url ? <img src={post.thumb_url ?? post.image_url} alt="" loading="lazy" className="size-full object-cover" /> : <span className="grid size-full place-items-center text-[13px]">✎</span>}
         </button>
       </MarkerContent>

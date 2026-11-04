@@ -33,21 +33,21 @@ export default function CommunityPage() {
         </p>
       </header>
 
-      <button onClick={() => openComposer("observation", stopId || null)} className="press mt-5 flex w-full items-center gap-3 rounded-[22px] bg-uw-ink p-4 text-left text-white">
-        <span className="grid size-10 place-items-center rounded-full bg-uw-yellow text-uw-ink"><PenLine className="size-5" /></span>
+      <button onClick={() => openComposer("observation", stopId || null)} className="press mt-5 flex w-full items-center gap-3 rounded-[22px] bg-uw-ink p-4 text-left text-uw-paper">
+        <span className="grid size-10 place-items-center rounded-full bg-uw-orange text-uw-on-accent"><PenLine className="size-5" /></span>
         <span>
           <span className="block text-[15px] font-semibold">Write an observation</span>
-          <span className="block text-[12.5px] text-white/65">How did this part of the city feel to walk through?</span>
+          <span className="block text-[12.5px] text-uw-paper/65">How did this part of the city feel to walk through?</span>
         </span>
       </button>
 
       <div className="mt-6 flex items-center gap-2">
         {(["all", "photo", "observation"] as Filter[]).map((f) => (
-          <button key={f} onClick={() => setFilter(f)} aria-pressed={filter === f} className={cn("press h-9 rounded-full px-3.5 text-[13px] font-medium capitalize", filter === f ? "bg-uw-ink text-white" : "bg-white")}>
+          <button key={f} onClick={() => setFilter(f)} aria-pressed={filter === f} className={cn("press h-9 rounded-full px-3.5 text-[13px] font-medium capitalize", filter === f ? "bg-uw-ink text-uw-paper" : "bg-uw-surface")}>
             {f === "all" ? "All" : `${f}s`}
           </button>
         ))}
-        <select value={stopId} onChange={(e) => setStopId(e.target.value)} aria-label="Filter by stop" className="ml-auto h-9 max-w-[130px] rounded-full bg-white px-3 text-[13px] outline-none">
+        <select value={stopId} onChange={(e) => setStopId(e.target.value)} aria-label="Filter by stop" className="ml-auto h-9 max-w-[130px] rounded-full bg-uw-surface px-3 text-[13px] outline-none">
           <option value="">Every stop</option>
           {model.stops.map((s) => <option key={s.id} value={s.id}>{s.number}. {s.name}</option>)}
         </select>
@@ -58,7 +58,7 @@ export default function CommunityPage() {
       <div className="mt-4 grid items-start gap-3 md:grid-cols-2">
         {shown.length === 0 ? (
           <div className="rounded-[24px] border border-dashed border-uw-line p-6 text-center text-[14px] text-uw-slate">
-            Nothing here yet. Tap the yellow camera button or write the first observation.
+            Nothing here yet. Tap the orange camera button or write the first observation.
           </div>
         ) : (
           shown.map((p) => <PostCard key={p.id} post={p} />)

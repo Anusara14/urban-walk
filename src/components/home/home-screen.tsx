@@ -51,7 +51,7 @@ export function HomeScreen() {
   const [first, ...rest] = ev.title.split(" ");
 
   return (
-    <main ref={root} className="relative min-h-dvh overflow-hidden bg-uw-ink pb-32 text-white">
+    <main ref={root} className="surface-night relative min-h-dvh overflow-hidden bg-uw-night pb-32 text-white">
       {/* hero */}
       <section className="relative h-[78dvh] min-h-[540px] overflow-hidden rounded-b-[36px] md:h-[72dvh] md:max-h-[860px] md:rounded-b-[48px] [@media(max-height:560px)]:h-auto [@media(max-height:560px)]:min-h-[100dvh]">
         {cover && <WikiImage photo={cover} sizes="(max-width: 440px) 100vw, 440px" priority className="h-cover absolute inset-0 size-full" alt={coverStop?.name ?? ""} />}
@@ -98,9 +98,9 @@ export function HomeScreen() {
         <p className="h-rise mt-3 text-[16px] leading-relaxed text-white/90">{ev.description}</p>
 
         <div className="h-rise mt-6 flex gap-2.5">
-          <button onClick={start} className="press focus-ring flex h-14 flex-1 items-center justify-between rounded-full bg-uw-yellow pl-6 pr-2 text-[15px] font-semibold text-uw-ink">
+          <button onClick={start} className="press focus-ring flex h-14 flex-1 items-center justify-between rounded-full bg-uw-orange pl-6 pr-2 text-[15px] font-semibold text-uw-on-accent">
             {started ? "Continue walking" : "Start walking"}
-            <span className="grid size-10 place-items-center rounded-full bg-uw-ink text-uw-yellow"><ArrowRight className="size-5" /></span>
+            <span className="grid size-10 place-items-center rounded-full bg-uw-night text-uw-orange"><ArrowRight className="size-5" /></span>
           </button>
           <Link href="/walk" className="press focus-ring glass-dark flex h-14 items-center gap-2 rounded-full px-5 text-[14px] font-medium">
             <Route className="size-4" /> Explore route

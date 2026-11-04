@@ -20,7 +20,7 @@ const Field = ({ label, children, hint }: { label: string; children: React.React
     {hint && <span className="mt-1 block text-[11.5px] text-uw-slate">{hint}</span>}
   </label>
 );
-const input = "h-11 w-full rounded-[14px] border border-uw-line bg-white px-3.5 text-[14px] outline-none focus:border-uw-ink";
+const input = "h-11 w-full rounded-[14px] border border-uw-line bg-uw-surface px-3.5 text-[14px] outline-none focus:border-uw-ink";
 
 export function EventTab({ cfg, patch }: TabProps) {
   const toLocal = (iso: string | null) => (iso ? iso.slice(0, 16) : "");
@@ -52,7 +52,7 @@ export function StopsTab({ cfg, patch }: TabProps) {
     <div className="grid gap-3">
       <p className="text-[13px] text-uw-slate">Stops are numbered by their position along the KML route, not by this list order.</p>
       {cfg.stops.map((s, i) => (
-        <div key={s.feature_id} className="grid grid-cols-[1fr_120px_90px_40px] items-end gap-2 rounded-[18px] bg-white p-3">
+        <div key={s.feature_id} className="grid grid-cols-[1fr_120px_90px_40px] items-end gap-2 rounded-[18px] bg-uw-surface p-3">
           <Field label={`KML: ${byId.get(s.feature_id)?.name ?? s.feature_id}`}><input className={input} value={s.display_name} onChange={(e) => update(i, { display_name: e.target.value })} /></Field>
           <Field label="Area"><input className={input} value={s.area ?? ""} onChange={(e) => update(i, { area: e.target.value })} /></Field>
           <Field label="Radius m"><input type="number" min="10" max="300" className={input} value={s.proximity_m ?? cfg.default_proximity_m} onChange={(e) => update(i, { proximity_m: Number(e.target.value) || undefined })} /></Field>
@@ -83,14 +83,14 @@ export function ContentTab({ cfg, patch }: TabProps) {
   const free = (Object.keys(SECTION_LABELS) as SectionKey[]).filter((k) => !used.has(k));
   return (
     <div className="grid gap-4">
-      <p className="rounded-[16px] bg-uw-yellow/40 p-3 text-[13px] leading-relaxed">
+      <p className="rounded-[16px] border border-uw-orange bg-uw-orange/12 p-3 text-[13px] leading-relaxed">
         Only add verified information, and cite a source for each section. The overview shown in the app comes from Wikipedia with attribution.
       </p>
       <select value={stopId} onChange={(e) => setStopId(e.target.value)} className={input}>
         {model.stops.map((s) => <option key={s.id} value={s.id}>{s.number}. {s.name}</option>)}
       </select>
       {sections.map((s, i) => (
-        <div key={s.key} className="grid gap-2 rounded-[18px] bg-white p-3">
+        <div key={s.key} className="grid gap-2 rounded-[18px] bg-uw-surface p-3">
           <div className="flex items-center justify-between">
             <span className="text-[14px] font-semibold">{SECTION_LABELS[s.key]}</span>
             <button onClick={() => set(sections.filter((_, j) => j !== i))} aria-label="Remove section" className="text-uw-slate"><Trash2 className="size-4" /></button>
@@ -103,7 +103,7 @@ export function ContentTab({ cfg, patch }: TabProps) {
       {free.length > 0 && (
         <div className="flex flex-wrap gap-2">
           {free.map((k) => (
-            <button key={k} onClick={() => set([...sections, { key: k, body: "" }])} className="press flex h-9 items-center gap-1 rounded-full bg-white px-3 text-[12.5px]">
+            <button key={k} onClick={() => set([...sections, { key: k, body: "" }])} className="press flex h-9 items-center gap-1 rounded-full bg-uw-surface px-3 text-[12.5px]">
               <Plus className="size-3.5" /> {SECTION_LABELS[k]}
             </button>
           ))}
@@ -113,7 +113,7 @@ export function ContentTab({ cfg, patch }: TabProps) {
   );
 }
 
-const SEG_COLORS = ["#ffe500", "#141518", "#7b8796", "#f2a900", "#4b5563", "#c7d3dc", "#a16207", "#1f2937"];
+const SEG_COLORS = ["#004b87", "#ff7900", "#319b24", "#141518", "#6b9bc9", "#ffb066", "#86c47c", "#7b8796"];
 
 export function SegmentsTab({ cfg, patch, lengthKm, line, stops }: TabProps & { lengthKm: number; line: [number, number][]; stops: { n: number; km: number }[] }) {
   const segs = cfg.segments;
@@ -156,13 +156,13 @@ export function SegmentsTab({ cfg, patch, lengthKm, line, stops }: TabProps & { 
         </p>
         {segs.length === 0 ? (
           <div className="flex gap-2">
-            <button onClick={() => create(6)} className="press h-11 rounded-full bg-uw-ink px-5 text-[13px] font-semibold text-white">Create 6 equal segments</button>
-            <button onClick={() => create(Number(prompt("How many segments?", "6")) || 6)} className="press h-11 rounded-full bg-white px-5 text-[13px]">Other count…</button>
+            <button onClick={() => create(6)} className="press h-11 rounded-full bg-uw-ink px-5 text-[13px] font-semibold text-uw-paper">Create 6 equal segments</button>
+            <button onClick={() => create(Number(prompt("How many segments?", "6")) || 6)} className="press h-11 rounded-full bg-uw-surface px-5 text-[13px]">Other count…</button>
           </div>
         ) : (
           <>
             {segs.map((g, i) => (
-              <div key={g.id} className="grid gap-2 rounded-[18px] bg-white p-3">
+              <div key={g.id} className="grid gap-2 rounded-[18px] bg-uw-surface p-3">
                 <div className="flex items-center gap-2">
                   <span className="size-3 rounded-full" style={{ background: SEG_COLORS[i % SEG_COLORS.length] }} />
                   <input className={cn(input, "h-9")} value={g.name} onChange={(e) => patch({ segments: segs.map((x, j) => (j === i ? { ...x, name: e.target.value } : x)) })} />
@@ -178,11 +178,11 @@ export function SegmentsTab({ cfg, patch, lengthKm, line, stops }: TabProps & { 
                 )}
               </div>
             ))}
-            <button onClick={() => patch({ segments: [] })} className="press h-10 justify-self-start rounded-full bg-white px-4 text-[13px]">Remove segments</button>
+            <button onClick={() => patch({ segments: [] })} className="press h-10 justify-self-start rounded-full bg-uw-surface px-4 text-[13px]">Remove segments</button>
           </>
         )}
       </div>
-      <svg viewBox={`0 0 ${W + 20} ${H + 10}`} className="w-full rounded-[22px] bg-white" role="img" aria-label="Route preview coloured by segment">
+      <svg viewBox={`0 0 ${W + 20} ${H + 10}`} className="w-full rounded-[22px] bg-uw-surface" role="img" aria-label="Route preview coloured by segment">
         {line.slice(1).map((p, i) => (
           <line key={i} x1={px(line[i]).split(",")[0]} y1={px(line[i]).split(",")[1]} x2={px(p).split(",")[0]} y2={px(p).split(",")[1]} stroke={colourAt((cum[i] + cum[i + 1]) / 2)} strokeWidth={6} strokeLinecap="round" />
         ))}
@@ -195,7 +195,7 @@ export function FeaturesTab({ cfg, patch }: TabProps) {
   const { base } = useEvent();
   const all = [...base.landmarks.features, ...base.facilities.features, ...base.restAreas.features];
   return (
-    <div className="overflow-hidden rounded-[18px] bg-white">
+    <div className="overflow-hidden rounded-[18px] bg-uw-surface">
       <table className="w-full text-left text-[13px]">
         <thead className="bg-uw-mist text-[11px] uppercase tracking-wider text-uw-slate">
           <tr><th className="p-3">KML feature</th><th className="p-3">Folder</th><th className="p-3">Category</th></tr>

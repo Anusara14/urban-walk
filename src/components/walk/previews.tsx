@@ -26,7 +26,7 @@ function FloatingCard({ children, onClose, k }: { children: ReactNode; onClose: 
   return (
     <div className="pointer-events-none absolute inset-x-0 bottom-[calc(max(env(safe-area-inset-bottom),14px)+80px)] z-30 flex justify-center px-3">
       <div ref={ref} className="glass-strong pointer-events-auto relative w-full max-w-[416px] rounded-[28px] p-2.5">
-        <button onClick={onClose} aria-label="Close preview" className="press absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-white/70">
+        <button onClick={onClose} aria-label="Close preview" className="press absolute right-2.5 top-2.5 grid size-8 place-items-center rounded-full bg-uw-surface/70">
           <X className="size-4" />
         </button>
         {children}
@@ -56,13 +56,13 @@ export function StopPreview({ stop, onClose }: { stop: Stop; onClose: () => void
             {stop.short || "Organisers’ notes for this stop are still being verified."}
           </p>
           <div className="mt-auto flex gap-2 pt-2">
-            <Link href={`/landmark/${stop.id}`} className="press flex h-9 items-center gap-1 whitespace-nowrap rounded-full bg-uw-yellow px-3.5 text-[12.5px] font-semibold">
+            <Link href={`/landmark/${stop.id}`} className="press flex h-9 items-center gap-1 whitespace-nowrap rounded-full bg-uw-orange px-3.5 text-[12.5px] font-semibold text-uw-on-accent">
               View details <ArrowUpRight className="size-3.5" />
             </Link>
             <button
               onClick={() => toggleVisited(stop.id)}
               aria-pressed={visited}
-              className={cn("press flex h-9 items-center gap-1 whitespace-nowrap rounded-full px-3 text-[12.5px] font-medium", visited ? "bg-uw-ink text-white" : "bg-white/80")}
+              className={cn("press flex h-9 items-center gap-1 whitespace-nowrap rounded-full px-3 text-[12.5px] font-medium", visited ? "bg-uw-ink text-uw-paper" : "bg-uw-surface/80")}
             >
               <Check className="size-3.5" /> Visited
             </button>

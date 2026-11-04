@@ -41,7 +41,7 @@ export default function AdminPage() {
           <p className="mt-3 text-[14px] leading-relaxed text-uw-slate">
             {account ? "Your account isn’t an organiser account. Ask the event team to grant access." : "Sign in with an organiser account to manage this event."}
           </p>
-          <Link href="/login?next=/admin" className="press mt-6 inline-flex h-12 items-center rounded-full bg-uw-ink px-6 text-[14px] font-semibold text-white">
+          <Link href="/login?next=/admin" className="press mt-6 inline-flex h-12 items-center rounded-full bg-uw-ink px-6 text-[14px] font-semibold text-uw-paper">
             {account ? "Switch account" : "Sign in"}
           </Link>
         </div>
@@ -101,7 +101,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
   return (
     <div className="min-h-dvh bg-uw-paper lg:grid lg:grid-cols-[256px_minmax(0,1fr)]">
       {/* desktop sidebar */}
-      <aside className="sticky top-0 hidden h-dvh flex-col bg-uw-ink px-4 py-6 text-white lg:flex">
+      <aside className="sticky top-0 hidden h-dvh flex-col bg-uw-night px-4 py-6 text-white lg:flex">
         <Link href="/" className="px-2" aria-label="Open the app"><Wordmark className="w-[150px] text-white" /></Link>
         <p className="eyebrow mt-3 px-2 text-white/45">Organiser console</p>
         <nav className="mt-8 grid gap-1" aria-label="Admin sections">
@@ -112,7 +112,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
               aria-current={section === id ? "page" : undefined}
               className={cn(
                 "flex h-11 items-center gap-3 rounded-[14px] px-3 text-left text-[14px] font-medium transition-colors",
-                section === id ? "bg-uw-yellow text-uw-ink" : "text-white/75 hover:bg-white/10 hover:text-white",
+                section === id ? "bg-uw-blue text-white" : "text-white/75 hover:bg-white/10 hover:text-white",
               )}
             >
               <Icon className="size-[18px]" strokeWidth={1.75} /> {label}
@@ -142,7 +142,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
                 key={id}
                 onClick={() => go(id)}
                 aria-current={section === id ? "page" : undefined}
-                className={cn("flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium", section === id ? "bg-uw-ink text-white" : "bg-white text-uw-charcoal")}
+                className={cn("flex h-9 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium", section === id ? "bg-uw-ink text-uw-paper" : "bg-uw-surface text-uw-charcoal")}
               >
                 <Icon className="size-4" strokeWidth={1.75} /> {label}
               </button>
@@ -152,7 +152,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
 
         <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-6 sm:px-6 lg:px-10 lg:pt-10">
           {testMode && (
-            <p role="note" className="mb-6 rounded-[16px] border border-uw-yellow-deep bg-uw-yellow/40 px-4 py-3 text-[13px] leading-relaxed text-uw-ink">
+            <p role="note" className="mb-6 rounded-[16px] border border-uw-orange bg-uw-orange/12 px-4 py-3 text-[13px] leading-relaxed text-uw-ink">
               <strong className="font-semibold">Test mode.</strong> You&apos;re seeing the dashboard without an organiser account because this is{" "}
               {backendMode === "local" ? "running without Supabase" : "a development build"}. A deployed event with Supabase requires an organiser sign-in
               {backendMode === "supabase" && "; deleting other people's posts still needs the organiser role"}.
@@ -166,18 +166,18 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
             </div>
             {/* publishing actions: edits are local drafts until exported */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className={cn("rounded-full px-3 py-1.5 text-[12px] font-semibold", drafts ? "bg-uw-yellow text-uw-ink" : "bg-white text-uw-slate")}>
+              <span className={cn("rounded-full px-3 py-1.5 text-[12px] font-semibold", drafts ? "bg-uw-orange text-uw-on-accent" : "bg-uw-surface text-uw-slate")}>
                 {drafts ? "Unpublished drafts" : "Published config"}
               </span>
-              <label className="press flex h-10 cursor-pointer items-center gap-2 rounded-full bg-white px-4 text-[13px] font-medium shadow-sm">
+              <label className="press flex h-10 cursor-pointer items-center gap-2 rounded-full bg-uw-surface px-4 text-[13px] font-medium shadow-sm">
                 <Upload className="size-4" /> Import
                 <input type="file" accept="application/json" hidden onChange={(e) => importJson(e.target.files?.[0])} />
               </label>
-              <button onClick={exportJson} className="press flex h-10 items-center gap-2 rounded-full bg-uw-ink px-4 text-[13px] font-medium text-white">
+              <button onClick={exportJson} className="press flex h-10 items-center gap-2 rounded-full bg-uw-ink px-4 text-[13px] font-medium text-uw-paper">
                 <Download className="size-4" /> Export event.json
               </button>
               {drafts && (
-                <button onClick={() => confirm("Discard all unpublished edits?") && resetOverride()} className="press flex h-10 items-center gap-1.5 rounded-full bg-white px-3.5 text-[13px] shadow-sm" aria-label="Discard drafts">
+                <button onClick={() => confirm("Discard all unpublished edits?") && resetOverride()} className="press flex h-10 items-center gap-1.5 rounded-full bg-uw-surface px-3.5 text-[13px] shadow-sm" aria-label="Discard drafts">
                   <Undo2 className="size-4" /> Discard
                 </button>
               )}

@@ -173,7 +173,7 @@ export function WalkScreen() {
             <button
               key={s.id}
               onClick={() => { const next = segmentId === s.id ? null : s.id; setSegmentId(next); overview(next ? s.line : undefined); }}
-              className={cn("press shrink-0 rounded-full px-3 py-1.5 text-[12px] font-semibold", segmentId === s.id ? "bg-uw-ink text-white" : "glass")}
+              className={cn("press shrink-0 rounded-full px-3 py-1.5 text-[12px] font-semibold", segmentId === s.id ? "bg-uw-ink text-uw-paper" : "glass")}
             >
               {String(i + 1).padStart(2, "0")} {s.name}
             </button>
@@ -220,7 +220,7 @@ export function WalkScreen() {
 
 function RailButton({ label, onClick, children, active }: { label: string; onClick: () => void; children: React.ReactNode; active?: boolean }) {
   return (
-    <button aria-label={label} title={label} onClick={onClick} className={cn("press focus-ring grid size-12 place-items-center rounded-full", active ? "bg-uw-ink text-white shadow-[var(--shadow-float)]" : "glass")}>
+    <button aria-label={label} title={label} onClick={onClick} className={cn("press focus-ring grid size-12 place-items-center rounded-full", active ? "bg-uw-ink text-uw-paper shadow-[var(--shadow-float)]" : "glass")}>
       {children}
     </button>
   );

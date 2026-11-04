@@ -21,7 +21,7 @@ function safeNext(raw: string | null) {
   return raw && raw.startsWith("/") && !raw.startsWith("//") && !raw.startsWith("/login") ? raw : "/walk";
 }
 
-const field = "h-14 w-full rounded-[18px] border border-white/15 bg-white/10 px-5 text-[16px] text-white placeholder:text-white/40 outline-none focus:border-uw-yellow";
+const field = "h-14 w-full rounded-[18px] border border-white/15 bg-white/10 px-5 text-[16px] text-white placeholder:text-white/40 outline-none focus:border-uw-orange";
 
 export function LoginScreen() {
   const { ready, account } = useAuth();
@@ -50,11 +50,11 @@ export function LoginScreen() {
   else body = <SignInStep next={next} initialError={oauthError} />;
 
   return (
-    <main ref={root} className="relative flex min-h-dvh flex-col overflow-hidden bg-uw-ink px-6 pb-10 text-white safe-top">
-      {/* the route's yellow line, abstracted */}
-      <svg aria-hidden className="pointer-events-none absolute -right-24 top-28 h-[520px] w-[420px] opacity-[0.16]" viewBox="0 0 420 520" fill="none">
-        <path d="M380 20 C300 60 330 140 250 170 S120 200 140 290 S60 400 110 500" stroke="var(--uw-yellow)" strokeWidth="14" strokeLinecap="round" />
-        {[[380, 20], [250, 170], [140, 290], [110, 500]].map(([x, y]) => <circle key={x} cx={x} cy={y} r="16" fill="var(--uw-yellow)" />)}
+    <main ref={root} className="surface-night relative flex min-h-dvh flex-col overflow-hidden bg-uw-night px-6 pb-10 text-white safe-top">
+      {/* the route, abstracted: blue line, orange stops */}
+      <svg aria-hidden className="pointer-events-none absolute -right-24 top-28 h-[520px] w-[420px]" viewBox="0 0 420 520" fill="none">
+        <path d="M380 20 C300 60 330 140 250 170 S120 200 140 290 S60 400 110 500" stroke="var(--uw-blue)" strokeOpacity="0.42" strokeWidth="14" strokeLinecap="round" />
+        {[[380, 20], [250, 170], [140, 290], [110, 500]].map(([x, y]) => <circle key={x} cx={x} cy={y} r="16" fill="var(--uw-orange)" fillOpacity="0.4" />)}
       </svg>
 
       <header className="relative flex items-center justify-end pt-4">
@@ -68,7 +68,7 @@ export function LoginScreen() {
         </p>
         <div className="lg-rise mt-9">{body}</div>
         {adminTestAccess && (
-          <Link href="/admin" className="lg-rise mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-uw-yellow underline-offset-4 hover:underline">
+          <Link href="/admin" className="lg-rise mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-uw-orange underline-offset-4 hover:underline">
             <Settings2 className="size-4" /> Open the organiser dashboard (test mode)
           </Link>
         )}
@@ -102,9 +102,9 @@ function useAction() {
 
 function Submit({ busy, children }: { busy: boolean; children: ReactNode }) {
   return (
-    <button disabled={busy} className="press focus-ring mt-3 flex h-14 w-full items-center justify-between rounded-full bg-uw-yellow pl-6 pr-2 text-[15px] font-semibold text-uw-ink disabled:opacity-60">
+    <button disabled={busy} className="press focus-ring mt-3 flex h-14 w-full items-center justify-between rounded-full bg-uw-orange pl-6 pr-2 text-[15px] font-semibold text-uw-on-accent disabled:opacity-60">
       {children}
-      <span className="grid size-10 place-items-center rounded-full bg-uw-ink text-uw-yellow">
+      <span className="grid size-10 place-items-center rounded-full bg-uw-night text-uw-orange">
         {busy ? <Loader2 className="size-5 animate-spin" /> : <ArrowRight className="size-5" />}
       </span>
     </button>
@@ -196,7 +196,7 @@ function AccountCard({ next }: { next: string }) {
           // eslint-disable-next-line @next/next/no-img-element -- Google profile photo
           <img src={account.avatar} alt="" referrerPolicy="no-referrer" className="size-12 rounded-full object-cover" />
         ) : (
-          <span className="grid size-12 place-items-center rounded-full bg-uw-yellow text-[18px] font-semibold text-uw-ink">{displayName(account).slice(0, 1).toUpperCase()}</span>
+          <span className="grid size-12 place-items-center rounded-full bg-uw-blue text-[18px] font-semibold text-white">{displayName(account).slice(0, 1).toUpperCase()}</span>
         )}
         <div className="min-w-0">
           <p className="truncate text-[17px] font-semibold">{displayName(account)}</p>
@@ -205,12 +205,12 @@ function AccountCard({ next }: { next: string }) {
       </div>
 
       <form className="mt-5 flex gap-2" onSubmit={(e) => { e.preventDefault(); run(async () => { await updateName(name); setSaved(true); }); }}>
-        <input aria-label="Display name" value={name} onChange={(e) => { setName(e.target.value); setSaved(false); }} maxLength={40} className="h-11 min-w-0 flex-1 rounded-full border border-white/15 bg-white/10 px-4 text-[14px] outline-none focus:border-uw-yellow" />
+        <input aria-label="Display name" value={name} onChange={(e) => { setName(e.target.value); setSaved(false); }} maxLength={40} className="h-11 min-w-0 flex-1 rounded-full border border-white/15 bg-white/10 px-4 text-[14px] outline-none focus:border-uw-orange" />
         <button disabled={busy || name.trim() === account?.name} className="press h-11 rounded-full bg-white/15 px-4 text-[13px] font-medium disabled:opacity-40">{saved ? "Saved" : "Rename"}</button>
       </form>
       <ErrorText error={error} />
 
-      <Link href={next} className="press mt-4 flex h-12 items-center justify-center rounded-full bg-uw-yellow text-[14.5px] font-semibold text-uw-ink">Continue</Link>
+      <Link href={next} className="press mt-4 flex h-12 items-center justify-center rounded-full bg-uw-orange text-[14.5px] font-semibold text-uw-on-accent">Continue</Link>
       <div className="mt-3 flex items-center justify-between text-[13px] text-white/65">
         {account?.organiser ? (
           <Link href="/admin" className="flex items-center gap-1.5 underline-offset-2 hover:underline"><Settings2 className="size-4" /> Organiser console</Link>
