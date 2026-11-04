@@ -142,7 +142,7 @@ export function HomeScreen() {
       <div className="px-content mt-8">
         <section aria-label="Organiser" className="flex items-center gap-4 rounded-[20px] border border-white/10 p-4">
           {/* white tile keeps the logo's navy and teal true on the dark page */}
-          <span className="grid size-16 shrink-0 place-items-center rounded-[14px] bg-white p-2">
+          <span className="grid size-11 shrink-0 place-items-center rounded-[10px] bg-white p-1.5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/ypf-logo.png" alt="Young Planners Forum" width={320} height={295} className="h-full w-auto" loading="lazy" />
           </span>
