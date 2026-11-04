@@ -60,9 +60,9 @@ In the [Google Cloud Console](https://console.cloud.google.com/):
       test users you list (max 100) can sign in.
 3. **APIs & Services → Credentials → Create credentials → OAuth client ID**
    1. Application type: **Web application**.
-   2. **Authorised JavaScript origins:**
+   2. **Authorised JavaScript origins** (Google's own button only works from these):
       - `https://YOUR-APP.vercel.app`
-      - `http://localhost:3000`
+      - `http://localhost` and `http://localhost:3000` (Google requires both for local testing)
    3. **Authorised redirect URIs:** exactly `https://PROJECT-REF.supabase.co/auth/v1/callback`
       (in the Supabase dashboard, *Authentication → Providers → Google* shows this URL with a copy button).
    4. Create, then note the **Client ID** and **Client secret** **(copy)**.
@@ -107,15 +107,21 @@ Fill in:
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://PROJECT-REF.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon / publishable key>
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=<Google OAuth Client ID>
 ```
 
 Restart `npm run dev`. The sign-in screen now shows **Continue with Google**.
+
+`NEXT_PUBLIC_GOOGLE_CLIENT_ID` (public, same client as in step 3) switches the button to Google's own
+sign-in button. Sign-in then happens on your site, so Google's screen shows **YOUR-APP.vercel.app**
+instead of `PROJECT-REF.supabase.co`. Without it, or if Google's script is blocked, the app falls back
+to the redirect flow, which still works.
 
 ### Vercel
 
 1. <https://vercel.com/new> → import the GitHub repo **Anusara14/urban-walk**. The framework is
    detected as Next.js, so keep the defaults.
-2. Before deploying, open **Environment Variables** and add the same two `NEXT_PUBLIC_SUPABASE_*`
+2. Before deploying, open **Environment Variables** and add the same `NEXT_PUBLIC_*` values (Supabase URL, key, Google Client ID)
    variables for Production, Preview and Development.
 3. Deploy. If you add or change the variables later, **redeploy**, because `NEXT_PUBLIC_*` values are
    baked in at build time.

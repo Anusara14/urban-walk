@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ArrowRight, Loader2, LogOut, Mail, Settings2 } from "lucide-react";
+import { GoogleButton } from "./google-button";
 import { Wordmark } from "@/components/uw/brand";
 import { MadeBy } from "@/components/uw/made-by";
 import { displayName, sendEmailCode, signInLocal, signInWithGoogle, signOut, updateName, useAuth, verifyEmailCode } from "@/lib/auth";
@@ -116,20 +117,29 @@ const ErrorText = ({ error }: { error: string | null }) =>
 /** Google first; email code as the alternative for people without (or not wanting) Google. */
 function SignInStep({ next, initialError }: { next: string; initialError: string | null }) {
   const [mode, setMode] = useState<"choose" | "email">("choose");
+  const [gisError, setGisError] = useState<string | null>(null);
   const google = useAction();
+  const router = useRouter();
 
   if (mode === "email") return <EmailCodeStep next={next} onBack={() => setMode("choose")} />;
   return (
     <div>
-      <button
-        onClick={() => google.run(() => signInWithGoogle(next))}
-        disabled={google.busy}
-        className="press focus-ring flex h-14 w-full items-center justify-center gap-3 rounded-full bg-white text-[15px] font-semibold text-uw-ink disabled:opacity-60"
-      >
-        {google.busy ? <Loader2 className="size-5 animate-spin" /> : <GoogleG />}
-        Continue with Google
-      </button>
-      <ErrorText error={google.error ?? (initialError ? "Sign-in didn't finish. Try again." : null)} />
+      <GoogleButton
+        onSignedIn={() => router.replace(next)}
+        onError={setGisError}
+        fallback={
+          // redirect flow: works everywhere, but Google's screen shows the Supabase URL
+          <button
+            onClick={() => google.run(() => signInWithGoogle(next))}
+            disabled={google.busy}
+            className="press focus-ring flex h-14 w-full items-center justify-center gap-3 rounded-full bg-white text-[15px] font-semibold text-uw-ink disabled:opacity-60"
+          >
+            {google.busy ? <Loader2 className="size-5 animate-spin" /> : <GoogleG />}
+            Continue with Google
+          </button>
+        }
+      />
+      <ErrorText error={gisError ?? google.error ?? (initialError ? "Sign-in didn't finish. Try again." : null)} />
 
       <div className="my-4 flex items-center gap-3 text-[12px] text-white/40" aria-hidden>
         <span className="h-px flex-1 bg-white/15" /> or <span className="h-px flex-1 bg-white/15" />

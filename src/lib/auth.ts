@@ -93,6 +93,24 @@ export async function signInWithGoogle(next: string) {
   if (error) throw new Error(error.message);
 }
 
+/**
+ * Google's own button (Google Identity Services) signs in on our origin, so Google's
+ * screen names urbanwalk.vercel.app instead of the Supabase project URL. It hands us an
+ * ID token, which Supabase verifies. The nonce goes to Google hashed and to Supabase raw.
+ */
+export async function signInWithGoogleIdToken(credential: string, nonce: string) {
+  const c = await getSupabase();
+  const { error } = await c.auth.signInWithIdToken({ provider: "google", token: credential, nonce });
+  if (error) throw new Error("Google sign-in didn't finish. Try again.");
+}
+
+export async function makeNonce(): Promise<{ raw: string; hashed: string }> {
+  const raw = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32))));
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(raw));
+  const hashed = Array.from(new Uint8Array(digest), (b) => b.toString(16).padStart(2, "0")).join("");
+  return { raw, hashed };
+}
+
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Plain-language messages for the auth error codes participants can actually hit. */
