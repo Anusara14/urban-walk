@@ -1,7 +1,7 @@
 // Urban Walk service worker — offline-friendly, hand-rolled (no build plugin).
 // Pages: network first (4 s budget), cached copy when offline or slow.
 // Static assets, event data, photos and map tiles: stale-while-revalidate, capped.
-const VERSION = "uw-v6";
+const VERSION = "uw-v7";
 const PAGES = `${VERSION}-pages`;
 const ASSETS = `${VERSION}-assets`;
 const TILES = `${VERSION}-tiles`;
