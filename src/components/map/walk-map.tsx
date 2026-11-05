@@ -11,6 +11,7 @@ import { FacilityMarker, PlaceMarker, PostMarker, StopMarker, UserMarker } from 
 import { useZoomTier } from "./use-zoom-tier";
 import { WalkLayers } from "./walk-layers";
 
+const MAP_POSTS = 60;
 export const ROUTE_PADDING = { top: 190, bottom: 210, left: 36, right: 76 };
 const STYLES = { light: BASEMAP_STYLE, dark: BASEMAP_STYLE_DARK };
 
@@ -83,7 +84,8 @@ function MapContents({ model, selectedId, visited, fraction, user, posts, segmen
 
       {model.facilities.map((f) => <FacilityMarker key={f.id} place={f} tier={tier} />)}
       {model.places.map((p) => <PlaceMarker key={p.id} place={p} tier={tier} onSelect={onSelect} />)}
-      {posts.map((p) => <PostMarker key={p.id} post={p} tier={tier} onSelect={onSelectPost} />)}
+      {/* newest 60 only: every pin downloads a preview photo, and the feed shows the rest */}
+      {posts.slice(0, MAP_POSTS).map((p) => <PostMarker key={p.id} post={p} tier={tier} onSelect={onSelectPost} />)}
       {model.stops.map((s) => (
         <StopMarker key={s.id} stop={s} tier={tier} selected={s.id === selectedId} visited={visitedSet.has(s.id)} onSelect={onSelect} />
       ))}

@@ -1,10 +1,10 @@
 "use client";
 
-/** Full photo for the detail view, and a small one for feeds and map markers (~30–50 KB). */
+/** Full photo for the detail view, and a small one for feeds and map markers (~20–35 KB). */
 export type PreparedPhoto = { full: Blob; thumb: Blob };
 
-const FULL_EDGE = 1600;
-const THUMB_EDGE = 480;
+const FULL_EDGE = 1280; // sharp on any phone; keeps 2,000 photos near 420 MB in Supabase free storage
+const THUMB_EDGE = 400;
 
 /**
  * Downscale + re-encode a captured photo. Re-encoding through a canvas also
@@ -15,7 +15,7 @@ export async function preparePhoto(file: File): Promise<PreparedPhoto> {
   if (!file.type.startsWith("image/")) throw new Error("That file isn't an image.");
   const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" });
   try {
-    const [full, thumb] = [await encode(bitmap, FULL_EDGE, 0.82), await encode(bitmap, THUMB_EDGE, 0.72)];
+    const [full, thumb] = [await encode(bitmap, FULL_EDGE, 0.78), await encode(bitmap, THUMB_EDGE, 0.7)];
     return { full, thumb };
   } finally {
     bitmap.close();

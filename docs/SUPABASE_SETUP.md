@@ -155,8 +155,8 @@ Test with 3–4 phones: a mix of Android and iPhone, on mobile data rather than 
 |---|---|
 | **Projects pause after 7 days without activity** | Open the dashboard or app the day before the event. A paused project needs a manual *Restore*. |
 | Database 500 MB | Posts, comments and progress are tiny. No issue. |
-| File storage 1 GB | Each photo is stored twice, roughly 300 KB full plus 40 KB thumbnail, so 1 GB holds about 3,000 photos. |
-| Bandwidth ≈ 5 GB / month | The feed and map load only thumbnails, so 300 people browsing 1,000 photos uses about 12 GB. Full-size photos load only when tapped. If you expect more than ~500 photos, use **Pro** for the event month ($25). |
+| File storage 1 GB | Each photo is stored twice, roughly 180 KB full (1280 px) plus 25 KB preview, so 1 GB holds about 5,000 photos. 200 people × 10 photos ≈ 420 MB. |
+| Bandwidth ≈ 5 GB / month | The feed shows 20 posts at a time and the map at most the newest 60 photo pins, all as small previews; full-size photos load only when tapped. 200 people each scrolling ~300 previews and opening ~30 photos ≈ 2.8 GB. Check usage in the Supabase dashboard during the event. |
 | Auth | Google sign-in sends no emails, so Supabase's email limits don't apply. |
 
 Check current limits at <https://supabase.com/pricing>. They change from time to time.

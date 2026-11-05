@@ -154,7 +154,8 @@ const remote = {
       .select("*, comments(id,user_name,content,created_at), post_likes(user_id)")
       .eq("event_id", eventId)
       .order("created_at", { ascending: false })
-      .limit(200);
+      // ponytail: newest 500 rows (~80 KB gzipped, text only); add range() paging if an event goes past that
+      .limit(500);
     if (error) throw new Error(error.message);
     return (data as Row[]).map((r) => ({
       id: r.id, kind: r.kind, event_id: r.event_id, user_id: r.user_id, user_name: r.user_name,
