@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, BookOpenText, CalendarCog, Download, LayoutDashboard, MapPinned, Route, ShieldCheck, Shapes, Upload, Undo2 } from "lucide-react";
+import { ArrowUpRight, BookOpenText, CalendarCog, Download, LayoutDashboard, MapPinned, Route, ShieldCheck, Shapes, Upload, Undo2, UsersRound } from "lucide-react";
 import { useEvent } from "@/components/providers/event-provider";
 import { ContentTab, EventTab, FeaturesTab, SegmentsTab, StopsTab } from "@/components/admin/editors";
 import { Moderation } from "@/components/admin/moderation";
 import { Overview } from "@/components/admin/overview";
+import { Users } from "@/components/admin/users";
 import { AccountButton } from "@/components/uw/account-button";
 import { Wordmark } from "@/components/uw/brand";
 import { MadeBy } from "@/components/uw/made-by";
@@ -18,6 +19,7 @@ import { cn } from "@/lib/utils";
 const SECTIONS = [
   { id: "overview", label: "Overview", icon: LayoutDashboard, blurb: "Live participation across the walk" },
   { id: "moderation", label: "Moderation", icon: ShieldCheck, blurb: "Review and remove participant posts" },
+  { id: "users", label: "Users", icon: UsersRound, blurb: "Everyone who has signed in: organiser access, blocking and deleting accounts" },
   { id: "event", label: "Event", icon: CalendarCog, blurb: "Title, date, description and pacing" },
   { id: "stops", label: "Stops", icon: MapPinned, blurb: "Which KML points are stops, their names and alert radii" },
   { id: "content", label: "Content", icon: BookOpenText, blurb: "Verified notes for each stop, each with a source" },
@@ -187,6 +189,7 @@ function AdminConsole({ testMode }: { testMode: boolean }) {
           <div className="mt-7">
             {section === "overview" && <Overview onOpenModeration={() => go("moderation")} />}
             {section === "moderation" && <Moderation />}
+            {section === "users" && <Users />}
             {section === "event" && <Narrow><EventTab cfg={cfg} patch={patch} /></Narrow>}
             {section === "stops" && <Narrow><StopsTab cfg={cfg} patch={patch} /></Narrow>}
             {section === "content" && <Narrow><ContentTab cfg={cfg} patch={patch} /></Narrow>}

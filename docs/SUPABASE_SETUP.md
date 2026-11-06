@@ -130,7 +130,9 @@ to the redirect flow, which still works.
    ```
 3. **Sign out and back in.** The role is read when you sign in. `/admin` now opens the dashboard.
 
-Repeat for each organiser. To remove the role:
+After that, manage everyone from **/admin → Users**: make or remove organisers, block accounts, or delete an account with its posts and photos. That section needs [`supabase/migrations/0002_admin_users.sql`](../supabase/migrations/0002_admin_users.sql) applied (SQL Editor → paste → Run).
+
+To remove the role by SQL instead:
 
 ```sql
 update auth.users set raw_app_meta_data = raw_app_meta_data - 'role' where email = '…';
